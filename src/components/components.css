@@ -1,0 +1,171 @@
+.form2{
+    background-color: brown;
+    margin:100px 400px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px blanchedalmond;
+}
+.form2 input,textarea,select{
+    margin: 5px 150px;
+    background-color: blanchedalmond;
+    border-radius: 5px;
+    width: 200px;
+    height: 25px;
+    color: brown;
+}
+.form2 input::placeholder{
+    color: brown;
+}
+.form2 textarea::placeholder{
+    color: brown;
+}
+.form2 button{
+    margin: 5px 200px;
+    background-color: blanchedalmond;
+    border-radius: 5px;
+    color: brown;
+    width: 100px;
+    height: 25px;
+}
+.form2 label{
+    margin: 15px 150px;
+    color:blanchedalmond;
+}
+.form2 h3{
+    margin: 15px 150px;
+    color:blanchedalmond;
+}
+.feed{
+    display: flex;
+}
+.form1{
+    margin:10px 50px;
+    padding: 10px 20px;
+    width:300px;
+    background-color: brown;
+    color: blanchedalmond;
+    text-align: center;
+    border-radius: 20px;
+}
+.form1 input{
+    margin-left: 30px;
+    margin-top: 5px;
+    text-align: center;
+    background-color: blanchedalmond;
+    color: brown;
+    border-radius: 10px;
+}
+.form1 input::placeholder{
+    color: brown;
+}
+.form1 button{
+    margin-left: 40px;
+    margin-top: 5px;
+    background-color: blanchedalmond;
+    color: brown;
+    border-radius: 10px;
+}
+.f1{
+    color: brown;
+    text-align: center;
+}
+.feed h2{
+    margin-top: 10px;
+}
+.lab{
+    display: flex;
+    width:500px
+}
+.lab input{
+    margin-left: -80px;
+    background-color: blanchedalmond;
+    border-radius: 10px;
+}
+.h3{
+    width: 400px;
+}
+.head{
+    color: brown;
+    text-align: center;
+}
+.rep{
+    display: flex;
+}
+.rep h2{
+    margin-left: 150px;
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+
+  .form2 {
+    margin: 40px auto;
+    width: 90%;
+    padding: 20px;
+  }
+
+  .form2 input,
+  .form2 textarea,
+  .form2 select {
+    margin: 10px auto;
+    width: 90%;
+    height: 35px;
+    display: block;
+  }
+
+  .form2 button {
+    margin: 15px auto;
+    display: block;
+    width: 120px;
+    height: 35px;
+  }
+
+  .form2 label,
+  .form2 h3 {
+    margin: 10px 0;
+    text-align: center;
+    display: block;
+  }
+
+  .feed {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form1 {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .form1 input,
+  .form1 button {
+    margin: 10px auto;
+    width: 80%;
+    display: block;
+  }
+
+  .lab {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .lab input {
+    margin-left: 0;
+    width: 90%;
+  }
+
+  .h3 {
+    width: 100%;
+  }
+
+  .rep {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rep h2 {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}

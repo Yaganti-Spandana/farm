@@ -1,0 +1,17 @@
+h2 {
+  color: brown;
+  text-align: center;
+  margin-top: 120px; /* desktop */
+}
+
+@media (max-width: 768px) {
+  h2 {
+    margin-top: 60px; /* tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    margin-top: 40px; /* mobile */
+  }
+}

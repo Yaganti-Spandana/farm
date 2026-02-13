@@ -1,0 +1,21 @@
+body {
+  background-image: url('../public/pictures/logo.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  body {
+    background-size: contain;  /* prevent cropping on phones */
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+

@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  padding-top: 120px; /* default desktop */
+}
+
+@media (max-width: 768px) {
+  .App {
+    padding-top: 60px; /* tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding-top: 40px; /* phones */
+  }
+}

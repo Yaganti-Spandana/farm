@@ -1,0 +1,55 @@
+.navbar{
+    display: flex;
+    align-items: center;
+    background-color: blanchedalmond;
+    height: 110px;
+    padding: 0 20px;
+}
+
+/* Hamburger hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 32px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+/* Normal menu */
+.nav-menu {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.icon{
+    text-decoration: none;
+    color: brown;
+    text-align: center;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 110px;
+    left: 0;
+    width: 100%;
+    background-color: blanchedalmond;
+    padding: 20px 0;
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .icon {
+    margin: 10px 0;
+  }
+}
