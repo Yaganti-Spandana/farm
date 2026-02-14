@@ -75,16 +75,16 @@ export default function AnimalForm() {
       </button>
 
       <form onSubmit={handleSubmit} className="form2">
-        <input name="animal_id" placeholder="Animal ID" onChange={handleChange} /><br />
-        <input name="name" placeholder="Name" onChange={handleChange} /><br />
-        <input name="breed" placeholder="Breed" onChange={handleChange} /><br />
-        <input name="age" type="number" placeholder="Age" onChange={handleChange} /><br />
-        <input name="purchase_date" type="date" onChange={handleChange} /><br />
-        <input name="purchase_price" placeholder="Price" onChange={handleChange} /><br />
-        <textarea name="health_records" placeholder="Health Records" onChange={handleChange} /><br />
-        <input name="milk_per_day" placeholder="Milk per day (L)" onChange={handleChange} /><br />
+        <input name="animal_id" value={animal.animal_id} onChange={handleChange} />
+<input name="name" value={animal.name} onChange={handleChange} />
+<input name="breed" value={animal.breed} onChange={handleChange} />
+<input name="age" type="number" value={animal.age} onChange={handleChange} />
+<input name="purchase_date" type="date" value={animal.purchase_date} onChange={handleChange} />
+<input name="purchase_price" value={animal.purchase_price} onChange={handleChange} />
+<textarea name="health_records" value={animal.health_records} onChange={handleChange} />
+<input name="milk_per_day" value={animal.milk_per_day} onChange={handleChange} />
 
-        <select name="status" onChange={handleChange}>
+<select name="status" value={animal.status} onChange={handleChange}>
           <option value="active">Active</option>
           <option value="sold">Sold</option>
           <option value="dead">Dead</option>
