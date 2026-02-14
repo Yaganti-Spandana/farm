@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfitLoss() {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     total_income: 0,
     total_expenses: 0,
