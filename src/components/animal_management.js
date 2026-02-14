@@ -38,11 +38,12 @@ export default function AnimalForm() {
       milk_per_day: "",
       status: "active",
     });
-    catch (error) {
-  console.log(error.response.data);
-}
+   
     navigate("/animal");   // go back to animal list
   };
+   catch (error) {
+  console.log(error.response.data);
+}
 
   return (
     <>
