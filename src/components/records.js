@@ -66,4 +66,3 @@ export default function AccountDashboard() {
       {e.category}: ₹{e.total}
     </div>
   ))}
-</div>
