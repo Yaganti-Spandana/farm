@@ -1,8 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function SaleForm() {
+  const navigate = useNavigate();
+
   const [sale, setSale] = useState({
     date: "",
     quantity_sold: "",
@@ -24,30 +27,86 @@ export default function SaleForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("https://farm-pgi5.onrender.com/api/sales/", sale);
-    alert("Sale recorded!");
+
+    try {
+      await axios.post("https://farm-pgi5.onrender.com/api/sales/", sale);
+      alert("Sale recorded!");
+
+      // reset form
+      setSale({
+        date: "",
+        quantity_sold: "",
+        price_per_liter: "",
+        buyer: "",
+        payment_received: false,
+      });
+
+      // optional: go back to sales list
+      navigate("/sales");
+
+    } catch (error) {
+      console.log(error.response?.data);
+      alert("Error saving sale");
+    }
   };
 
   return (
-    <><Navbar></Navbar>
-    <form onSubmit={handleSubmit} className="form2">
-      <input type="date" name="date" onChange={handleChange} />
-      <input name="quantity_sold" placeholder="Quantity Sold (L)" onChange={handleChange} />
-      <input name="price_per_liter" placeholder="Price per Liter" onChange={handleChange} />
-      <input name="buyer" placeholder="Buyer (optional)" onChange={handleChange} />
+    <>
+      <Navbar />
 
-      <label className="lab">
-        Payment Received?
-        <input type="checkbox" name="payment_received" onChange={handleChange} />
-      </label>
+      {/* Back button */}
+      <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px" }}
+      >
+        ← Back
+      </button>
 
+      <form onSubmit={handleSubmit} className="form2">
+        <input 
+          type="date" 
+          name="date" 
+          value={sale.date}
+          onChange={handleChange} 
+        />
 
-      <h3 className="h3">
-        Daily Milk Income = {totalIncome} 
-      </h3>
+        <input 
+          name="quantity_sold" 
+          value={sale.quantity_sold}
+          placeholder="Quantity Sold (L)" 
+          onChange={handleChange} 
+        />
 
-      <button type="submit">Save Sale</button>
-    </form></>
+        <input 
+          name="price_per_liter" 
+          value={sale.price_per_liter}
+          placeholder="Price per Liter" 
+          onChange={handleChange} 
+        />
+
+        <input 
+          name="buyer" 
+          value={sale.buyer}
+          placeholder="Buyer (optional)" 
+          onChange={handleChange} 
+        />
+
+        <label className="lab">
+          Payment Received?
+          <input 
+            type="checkbox" 
+            name="payment_received" 
+            checked={sale.payment_received}
+            onChange={handleChange} 
+          />
+        </label>
+
+        <h3 className="h3">
+          Daily Milk Income = {totalIncome}
+        </h3>
+
+        <button type="submit">Save Sale</button>
+      </form>
+    </>
   );
 }
-
