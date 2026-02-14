@@ -27,6 +27,17 @@ export default function AnimalForm() {
     e.preventDefault();
     await axios.post("https://farm-pgi5.onrender.com/api/animals/", animal);
     alert("Animal added!");
+    setAnimal({
+      animal_id: "",
+      name: "",
+      breed: "",
+      age: "",
+      purchase_date: "",
+      purchase_price: "",
+      health_records: "",
+      milk_per_day: "",
+      status: "active",
+    });
     navigate("/animal");   // go back to animal list
   };
 
