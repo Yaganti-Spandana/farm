@@ -86,7 +86,7 @@ export default function AnimalForm() {
     <>
       <Navbar />
 
-      <button onClick={() => navigate(-1)} className="back-btn">
+      <button onClick={() => navigate(-1)} style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}>
         ← Back
       </button>
 
