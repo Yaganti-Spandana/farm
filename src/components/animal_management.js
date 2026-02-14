@@ -38,7 +38,7 @@ export default function AnimalForm() {
 
  useEffect(() => {
   async function fetchAnimals() {
-    const res = await fetch("/api/animals");
+    const res = await fetch("https://farm-pgi5.onrender.com/api/animals/")
     const data = await res.json();
     setAnimals(data);
   }
