@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-import './records.css'
+import "./records.css";
+
 export default function AccountDashboard() {
   const [report, setReport] = useState({});
   const [animals, setAnimals] = useState([]);
@@ -32,15 +33,17 @@ export default function AccountDashboard() {
 
       {/* Filters */}
       <div className="filters">
-        <input type="date"
-          onChange={e => setFilters({...filters, from: e.target.value})}
+        <input
+          type="date"
+          onChange={e => setFilters({ ...filters, from: e.target.value })}
         />
-        <input type="date"
-          onChange={e => setFilters({...filters, to: e.target.value})}
+        <input
+          type="date"
+          onChange={e => setFilters({ ...filters, to: e.target.value })}
         />
 
         <select
-          onChange={e => setFilters({...filters, animal: e.target.value})}
+          onChange={e => setFilters({ ...filters, animal: e.target.value })}
         >
           <option value="">All Animals</option>
           {animals.map(a => (
@@ -53,18 +56,28 @@ export default function AccountDashboard() {
         <button onClick={fetchReport}>Apply</button>
       </div>
 
+      {/* Summary */}
       <div className="dashboard">
-  <div>Total Milk: {report.total_milk} L</div>
-  <div>Milk Sold: {report.milk_sold} L</div>
-  <div>Total Income: ₹{report.total_income}</div>
-  <div>Total Expenses: ₹{report.total_expenses}</div>
-  <div><b>Profit: ₹{report.profit}</b></div>
+        <div>Total Milk: {report.total_milk} L</div>
+        <div>Milk Sold: {report.milk_sold} L</div>
+        <div>Total Income: ₹{report.total_income}</div>
+        <div>Total Expenses: ₹{report.total_expenses}</div>
+        <div><b>Profit: ₹{report.profit}</b></div>
+      </div>
 
-  <h3>Expenses by Category</h3>
-  {report.expenses_by_category?.map((e, i) => (
-    <div key={i}>
-      {e.category}: ₹{e.total}
-    </div>
-  ))}
-  </div>
-</>
+      {/* Category Breakdown */}
+      <div className="dashboard">
+        <h3>Expenses by Category</h3>
+
+        {report.expenses_by_category?.map((e, i) => (
+          <div key={i}>
+            {e.category.toUpperCase()} : ₹{e.total} (
+            {((e.total / report.total_expenses) * 100).toFixed(1)}%
+            )
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
