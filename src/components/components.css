@@ -252,7 +252,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 4px;
+    padding: 6px 0px;
+    margin-left:0px;
     border: none;
     font-size: 0.85rem;
   }
@@ -261,5 +262,6 @@
     content: attr(data-label);
     font-weight: 600;
     color: #334155;
+      margin-left:0px
   }
 }
