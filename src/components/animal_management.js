@@ -2,7 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import './components.css'
+import { useNavigate } from "react-router-dom";
+
 export default function AnimalForm() {
+  const navigate = useNavigate();
+
   const [animal, setAnimal] = useState({
     animal_id: "",
     name: "",
@@ -23,28 +27,40 @@ export default function AnimalForm() {
     e.preventDefault();
     await axios.post("https://farm-pgi5.onrender.com/api/animals/", animal);
     alert("Animal added!");
+    navigate("/animal");   // go back to animal list
   };
 
   return (
     <>
-    <Navbar></Navbar>
-    <form onSubmit={handleSubmit} className="form2">
-      <input name="animal_id" placeholder="Animal ID" onChange={handleChange} /><br></br>
-      <input name="name" placeholder="Name" onChange={handleChange} /><br></br>
-      <input name="breed" placeholder="Breed" onChange={handleChange} /><br></br>
-      <input name="age" type="number" placeholder="Age" onChange={handleChange} /><br></br>
-      <input name="purchase_date" type="date" onChange={handleChange} /><br></br>
-      <input name="purchase_price" placeholder="Price" onChange={handleChange} /><br></br>
-      <textarea name="health_records" placeholder="Health Records" onChange={handleChange} /><br></br>
-      <input name="milk_per_day" placeholder="Milk per day (L)" onChange={handleChange} /><br></br>
+      <Navbar />
 
-      <select name="status" onChange={handleChange}>
-        <option value="active">Active</option>
-        <option value="sold">Sold</option>
-        <option value="dead">Dead</option>
-      </select><br></br>
+      {/* Back button */}
+      <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px" }}
+      >
+        ← Back
+      </button>
 
-      <button type="submit">Save</button>
-    </form></>
+      <form onSubmit={handleSubmit} className="form2">
+        <input name="animal_id" placeholder="Animal ID" onChange={handleChange} /><br />
+        <input name="name" placeholder="Name" onChange={handleChange} /><br />
+        <input name="breed" placeholder="Breed" onChange={handleChange} /><br />
+        <input name="age" type="number" placeholder="Age" onChange={handleChange} /><br />
+        <input name="purchase_date" type="date" onChange={handleChange} /><br />
+        <input name="purchase_price" placeholder="Price" onChange={handleChange} /><br />
+        <textarea name="health_records" placeholder="Health Records" onChange={handleChange} /><br />
+        <input name="milk_per_day" placeholder="Milk per day (L)" onChange={handleChange} /><br />
+
+        <select name="status" onChange={handleChange}>
+          <option value="active">Active</option>
+          <option value="sold">Sold</option>
+          <option value="dead">Dead</option>
+        </select><br />
+
+        <button type="submit">Save</button>
+      </form>
+    </>
   );
 }
+
