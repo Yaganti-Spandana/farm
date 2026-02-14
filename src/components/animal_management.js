@@ -24,9 +24,23 @@ export default function AnimalForm() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    await axios.post("https://farm-pgi5.onrender.com/api/animals/", animal);
+  e.preventDefault();
+
+  const payload = {
+    ...animal,
+    age: Number(animal.age),
+    purchase_price: Number(animal.purchase_price),
+    milk_per_day: Number(animal.milk_per_day),
+  };
+
+  try {
+    await axios.post(
+      "https://farm-pgi5.onrender.com/api/animals/",
+      payload
+    );
+
     alert("Animal added!");
+
     setAnimal({
       animal_id: "",
       name: "",
@@ -38,9 +52,14 @@ export default function AnimalForm() {
       milk_per_day: "",
       status: "active",
     });
-   
-    navigate("/animal");   // go back to animal list
-  };
+
+    navigate("/animal");
+  } catch (error) {
+    console.log(error.response.data);
+    alert(JSON.stringify(error.response.data));
+  }
+};
+
    
 
   return (
