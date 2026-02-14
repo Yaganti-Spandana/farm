@@ -13,7 +13,7 @@ export default function AnimalForm() {
     breed: "",
     age: "",
     purchase_date: "",
-    purchase_price: "",
+    purchase_price: "0",
     health_records: "",
     milk_per_day: "",
     status: "active",
