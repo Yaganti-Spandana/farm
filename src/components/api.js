@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "http://127.0.0.1:8000/api/";
+const API = "https://farm-pgi5.onrender.com/api/";
 
 export const signup = (data) => axios.post(API + "register/", data);
 export const login = (data) => axios.post(API + "login/", data);
@@ -10,7 +10,7 @@ export const logout = () => {
 };
 
 export const getProducts = () =>
-  axios.get("http://127.0.0.1:8000/api/products/");
+  axios.get("https://farm-pgi5.onrender.com/api/products/");
 
 export const addToWishlist = (id) =>
   axios.post(API + "wishlist/add/", 
