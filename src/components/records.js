@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-
+import './records.css'
 export default function AccountDashboard() {
   const [report, setReport] = useState({});
   const [animals, setAnimals] = useState([]);
