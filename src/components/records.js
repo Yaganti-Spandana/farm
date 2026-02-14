@@ -53,14 +53,17 @@ export default function AccountDashboard() {
         <button onClick={fetchReport}>Apply</button>
       </div>
 
-      {/* Dashboard */}
       <div className="dashboard">
-        <div>Total Milk: {report.total_milk} L</div>
-        <div>Milk Sold: {report.milk_sold} L</div>
-        <div>Total Income: ₹{report.total_income}</div>
-        <div>Total Expenses: ₹{report.total_expenses}</div>
-        <div><b>Profit: ₹{report.profit}</b></div>
-      </div>
-    </>
-  );
-}
+  <div>Total Milk: {report.total_milk} L</div>
+  <div>Milk Sold: {report.milk_sold} L</div>
+  <div>Total Income: ₹{report.total_income}</div>
+  <div>Total Expenses: ₹{report.total_expenses}</div>
+  <div><b>Profit: ₹{report.profit}</b></div>
+
+  <h3>Expenses by Category</h3>
+  {report.expenses_by_category?.map((e, i) => (
+    <div key={i}>
+      {e.category}: ₹{e.total}
+    </div>
+  ))}
+</div>
