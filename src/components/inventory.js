@@ -55,6 +55,13 @@ export default function FeedInventory() {
   return (
     <>
     <Navbar></Navbar>
+    <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
+
+      >
+        ← Back
+      </button>
     <h1 className="f1">Feed Inventory Dashboard</h1>
     <div className="feed">
         <div>
