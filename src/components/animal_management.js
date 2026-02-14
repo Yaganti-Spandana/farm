@@ -38,9 +38,9 @@ export default function AnimalForm() {
 
   // Load all animals on page load
   useEffect(() => {
-  fetchAnimals();
-}, [fetchAnimals]);
-  
+    fetchAnimals();
+  }, []);
+
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
   };
@@ -165,3 +165,4 @@ export default function AnimalForm() {
     </>
   );
 }
+
