@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Navbar(){
     const isLoggedIn = localStorage.getItem("token");
     const [showDropdown, setShowDropdown] = useState(false);
-    const [menuOpen, setMenuOpen] = useState(false); // hamburger
+    const [menuOpen, setMenuOpen] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem("token");
@@ -19,50 +19,55 @@ function Navbar(){
     return(
         <div className='navbar'>
 
-            {/* Hamburger (mobile only) */}
+            {/* Hamburger */}
             <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
                 ☰
             </div>
 
-            {/* Menu */}
             <div className={`nav-menu ${menuOpen ? "open" : ""}`}>
 
+                {/* Home - always visible */}
                 <Link to='/' className="icon">
                     <HomeIcon style={{ color: "brown", fontSize: "32px"}} />
                     <p>Home</p>
                 </Link>
 
-                <Link to='/animal' className="icon">
-                    <GiCow style={{ color: "brown", fontSize: "32px" }} />
-                    <p>Animal</p>
-                </Link>
+                {/* Only show after login */}
+                {isLoggedIn && (
+                    <>
+                        <Link to='/animal' className="icon">
+                            <GiCow style={{ color: "brown", fontSize: "32px" }} />
+                            <p>Animal</p>
+                        </Link>
 
-                <Link to='/milk' className="icon">
-                    <GiMilkCarton style={{ color: "brown", fontSize: "32px" }} />
-                    <p>Milk</p>
-                </Link>
+                        <Link to='/milk' className="icon">
+                            <GiMilkCarton style={{ color: "brown", fontSize: "32px" }} />
+                            <p>Milk</p>
+                        </Link>
 
-                <Link to='/sales' className="icon">
-                    <FaMoneyBill style={{ color: "brown", fontSize: "32px" }} />
-                    <p>Sales</p>
-                </Link>
+                        <Link to='/sales' className="icon">
+                            <FaMoneyBill style={{ color: "brown", fontSize: "32px" }} />
+                            <p>Sales</p>
+                        </Link>
 
-                <Link to='/expense' className="icon">
-                    <FaReceipt style={{ color: "brown", fontSize: "32px" }} />
-                    <p>Expense</p>
-                </Link>
+                        <Link to='/expense' className="icon">
+                            <FaReceipt style={{ color: "brown", fontSize: "32px" }} />
+                            <p>Expense</p>
+                        </Link>
 
-                <Link to='/inventory' className="icon">
-                    <FaBox style={{ color: "brown", fontSize: "32px" }} />
-                    <p>Inventory</p>
-                </Link>
+                        <Link to='/inventory' className="icon">
+                            <FaBox style={{ color: "brown", fontSize: "32px" }} />
+                            <p>Inventory</p>
+                        </Link>
 
-                <Link to='/profit' className="icon">
-                    <FaBox style={{ color: "brown", fontSize: "32px" }} />
-                    <p>Profit/Loss</p>
-                </Link>
+                        <Link to='/profit' className="icon">
+                            <FaBox style={{ color: "brown", fontSize: "32px" }} />
+                            <p>Profit/Loss</p>
+                        </Link>
+                    </>
+                )}
 
-                {/* Account */}
+                {/* Account - always visible */}
                 <div 
                   className="account-wrapper"
                   onClick={() => setShowDropdown(!showDropdown)}
@@ -89,23 +94,4 @@ function Navbar(){
     )
 }
 
-export default Navbar
-
-
-
-
-
-
-
-
-
-
-/*   <div class='navbar'>
-            <Link to='/logo' className="navimg"><img src="./pictures/logo.png"></img></Link>
-            <input type="textarea"></input>
-            <button onClick="submit">search</button>
-            <Link to='/' className="icon"><HomeIcon style={{ color: "brown", fontSize: "32px" }} /></Link>
-            <Link to='/' className="icon"><FavoriteBorderIcon style={{ color: "brown", fontSize: "32px" }} ></FavoriteBorderIcon></Link>
-            <Link to='/' className="icon"><ShoppingBagIcon style={{ color: "brown", fontSize: "32px" }} ></ShoppingBagIcon></Link>
-            <Link to='/' className="icon"><AccountCircleIcon style={{ color: "brown", fontSize: "32px" }} ></AccountCircleIcon></Link>
-        </div>  */
+export default Navbar;
