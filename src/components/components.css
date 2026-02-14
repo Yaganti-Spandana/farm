@@ -224,6 +224,7 @@
   .animal-filters select,
   .animal-filters button {
     width: 100%;
+      margin-left:0px;
   }
 
   .animal-table thead {
