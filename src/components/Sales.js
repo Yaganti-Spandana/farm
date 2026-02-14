@@ -24,7 +24,7 @@ export default function SaleForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/sales/", sale);
+    await axios.post("https://farm-pgi5.onrender.com/api/sales/", sale);
     alert("Sale recorded!");
   };
 
