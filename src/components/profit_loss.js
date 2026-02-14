@@ -16,6 +16,13 @@ export default function ProfitLoss() {
 
   return (
     <><Navbar></Navbar>
+    <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
+
+      >
+        ← Back
+      </button>
     <div style={{ padding: 0}} className="profit">
       <h1 className="head">Profit & Loss Report</h1>
       <div className="rep">
