@@ -36,10 +36,14 @@ export default function AnimalForm() {
     setAnimals(res.data);
   };
 
-  // Load all animals on page load
-  useEffect(() => {
-    fetchAnimals();
-  }, []);
+ useEffect(() => {
+  async function fetchAnimals() {
+    const res = await fetch("/api/animals");
+    const data = await res.json();
+    setAnimals(data);
+  }
+  fetchAnimals();
+}, []);
 
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
