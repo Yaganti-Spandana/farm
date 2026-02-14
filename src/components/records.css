@@ -1,0 +1,63 @@
+/* Page container */
+h2 {
+  text-align: center;
+  margin: 20px 0;
+  color: #5a2e0f;
+}
+
+/* Filter section */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.filters input,
+.filters select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.filters button {
+  background: brown;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters button:hover {
+  background: #5a2e0f;
+}
+
+/* Dashboard cards */
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.dashboard div {
+  background: #fff7f2;
+  border-left: 6px solid brown;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Profit highlight */
+.dashboard div:last-child {
+  background: #e8ffe8;
+  border-left-color: green;
+  font-size: 20px;
+  font-weight: bold;
+}
