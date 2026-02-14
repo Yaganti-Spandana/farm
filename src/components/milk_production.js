@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import './components.css'
+import { useNavigate } from "react-router-dom";
+
 export default function MilkForm() {
+  const navigate = useNavigate();
+
   const [animals, setAnimals] = useState([]);
   const [record, setRecord] = useState({
     date: "",
@@ -27,31 +31,76 @@ export default function MilkForm() {
     e.preventDefault();
     await axios.post("https://farm-pgi5.onrender.com/api/milk/", record);
     alert("Milk record saved!");
+    navigate("/milk");   // go back to milk list
   };
 
   return (
     <>
-    <Navbar></Navbar>
-    <form onSubmit={handleSubmit} className="form2">
-      <input type="date" name="date" onChange={handleChange} />
+      <Navbar />
 
-      <select name="animal" onChange={handleChange}>
-        <option>Select Animal</option>
-        {animals.map(a => (
-          <option key={a.id} value={a.id}>
-            {a.animal_id} - {a.name}
-          </option>
-        ))}
-      </select>
+      {/* Back button */}
+      <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px" }}
+      >
+        ← Back
+      </button>
 
-      <input name="morning_milk" placeholder="Morning Milk (L)" onChange={handleChange} />
-      <input name="evening_milk" placeholder="Evening Milk (L)" onChange={handleChange} />
+      <form onSubmit={handleSubmit} className="form2">
+        <input 
+          type="date" 
+          name="date" 
+          value={record.date}
+          onChange={handleChange} 
+        />
 
-      <input name="milk_home" placeholder="Milk Used at Home" onChange={handleChange} />
-      <input name="milk_sold" placeholder="Milk Sold" onChange={handleChange} />
-      <input name="milk_wasted" placeholder="Milk Wasted" onChange={handleChange} />
+        <select 
+          name="animal" 
+          value={record.animal}
+          onChange={handleChange}
+        >
+          <option value="">Select Animal</option>
+          {animals.map(a => (
+            <option key={a.id} value={a.id}>
+              {a.animal_id} - {a.name}
+            </option>
+          ))}
+        </select>
 
-      <button type="submit">Save</button>
-    </form></>
+        <input 
+          name="morning_milk" 
+          value={record.morning_milk}
+          placeholder="Morning Milk (L)" 
+          onChange={handleChange} 
+        />
+        <input 
+          name="evening_milk" 
+          value={record.evening_milk}
+          placeholder="Evening Milk (L)" 
+          onChange={handleChange} 
+        />
+
+        <input 
+          name="milk_home" 
+          value={record.milk_home}
+          placeholder="Milk Used at Home" 
+          onChange={handleChange} 
+        />
+        <input 
+          name="milk_sold" 
+          value={record.milk_sold}
+          placeholder="Milk Sold" 
+          onChange={handleChange} 
+        />
+        <input 
+          name="milk_wasted" 
+          value={record.milk_wasted}
+          placeholder="Milk Wasted" 
+          onChange={handleChange} 
+        />
+
+        <button type="submit">Save</button>
+      </form>
+    </>
   );
 }
