@@ -23,6 +23,7 @@ function App() {
         <Route path="/expense" element={<ExpenseForm></ExpenseForm>}/>
         <Route path="/inventory" element={<FeedInventory/>}/>
         <Route path="/profit" element={<ProfitLoss/>}/>
+  <Route path="/accounts" element={<AccountDashboard />} />
       </Routes>
       </BrowserRouter></div>
   );
