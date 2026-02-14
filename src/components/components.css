@@ -237,6 +237,8 @@
   .animal-table td {
     display: block;
     width: 100%;
+  overflow: visible;
+
   }
 
   .animal-table tr {
