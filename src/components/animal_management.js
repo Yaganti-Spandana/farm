@@ -21,7 +21,7 @@ export default function AnimalForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/animals/", animal);
+    await axios.post("https://farm-pgi5.onrender.com/api/animals/", animal);
     alert("Animal added!");
   };
 
