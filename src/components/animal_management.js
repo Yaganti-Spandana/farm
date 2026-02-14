@@ -152,15 +152,15 @@ export default function AnimalForm() {
             ) : (
               animals.map(a => (
                 <tr key={a.id}>
-                  <td>{a.animal_id}</td>
-                  <td>{a.name}</td>
-                  <td>{a.breed}</td>
-                  <td>{a.age}</td>
-                  <td>{a.milk_per_day} L</td>
-                  <td>{a.status}</td>
-                  <td>{a.purchase_date}</td>
-                  <td>₹{a.purchase_price}</td>
-                </tr>
+  <td data-label="ID">{a.animal_id}</td>
+  <td data-label="Name">{a.name}</td>
+  <td data-label="Breed">{a.breed}</td>
+  <td data-label="Age">{a.age}</td>
+  <td data-label="Milk/Day">{a.milk_per_day} L</td>
+  <td data-label="Status">{a.status}</td>
+  <td data-label="Purchase Date">{a.purchase_date}</td>
+  <td data-label="Price">₹{a.purchase_price}</td>
+</tr>
               ))
             )}
           </tbody>
