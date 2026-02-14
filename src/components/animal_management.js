@@ -124,8 +124,8 @@ export default function AnimalForm() {
       </div>
 
       {/* Animal List */}
+      <h3>Animals</h3>
       <div className="animal-list">
-        <h3>Animals</h3>
         {animals.map(a => (
           <div className="animal-card" key={a.id}>
             <b>{a.animal_id}</b> - {a.name} ({a.breed})  
