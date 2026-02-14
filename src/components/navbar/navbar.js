@@ -80,7 +80,7 @@ function Navbar(){
                         <div className="dropdown">
                             {isLoggedIn ? (
                                 <>
-                                <Link to='/accounts' className="icon">Records</Link>
+                                <Link to='/accounts' className="icon">Records</Link><br/>
                                 <button onClick={handleLogout}>Logout</button>
                         </>
                             ) : (
