@@ -9,6 +9,7 @@ import SaleForm from './components/Sales';
 import ExpenseForm from './components/Expense';
 import FeedInventory from './components/inventory';
 import ProfitLoss from './components/profit_loss';
+import AccountDashboard from './components/records';
 function App() {
   return (
     <div className='app'>
