@@ -43,14 +43,14 @@ export default function AnimalForm() {
 
     setAnimal({
       animal_id: "",
-      name: "",
-      breed: "",
-      age: "",
-      purchase_date: "",
-      purchase_price: "",
-      health_records: "",
-      milk_per_day: "",
-      status: "active",
+    name: "",
+    breed: "",
+    age: "",
+    purchase_date: "",
+    purchase_price: "0",
+    health_records: "",
+    milk_per_day: "",
+    status: "active",
     });
 
     navigate("/animal");
