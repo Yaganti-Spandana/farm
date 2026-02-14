@@ -57,7 +57,7 @@ export default function SaleForm() {
       {/* Back button */}
       <button 
         onClick={() => navigate(-1)} 
-        style={{ margin: "10px" }}
+        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
       >
         ← Back
       </button>
