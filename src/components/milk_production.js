@@ -15,7 +15,7 @@ export default function MilkForm() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/animals/")
+    axios.get("https://farm-pgi5.onrender.com/api/animals/")
       .then(res => setAnimals(res.data));
   }, []);
 
@@ -25,7 +25,7 @@ export default function MilkForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/milk/", record);
+    await axios.post("https://farm-pgi5.onrender.com/api/milk/", record);
     alert("Milk record saved!");
   };
 
