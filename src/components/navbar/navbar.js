@@ -79,6 +79,7 @@ function Navbar(){
                     {showDropdown && (
                         <div className="dropdown">
                             {isLoggedIn ? (
+                                <Link to='/accounts' className="icon">Records</Link>
                                 <button onClick={handleLogout}>Logout</button>
                             ) : (
                                 <>
