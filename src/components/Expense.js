@@ -16,7 +16,7 @@ export default function ExpenseForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/expenses/", expense);
+    await axios.post("https://farm-pgi5.onrender.com/api/expenses/", expense);
     alert("Expense recorded!");
   };
 
