@@ -32,6 +32,15 @@ export default function MilkForm() {
     await axios.post("https://farm-pgi5.onrender.com/api/milk/", record);
     alert("Milk record saved!");
     navigate("/milk");   // go back to milk list
+    setRecord({
+    date: "",
+    animal: "",
+    morning_milk: "",
+    evening_milk: "",
+    milk_home: "",
+    milk_sold: "",
+    milk_wasted: "",
+  });
   };
 
   return (
