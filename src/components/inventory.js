@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-
+import { useNavigate } from "react-router-dom";
 export default function FeedInventory() {
+  const navigate = useNavigate();
+
   const [stock, setStock] = useState({
     date: "",
     feed_type: "",
