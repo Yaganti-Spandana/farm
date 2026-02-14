@@ -223,7 +223,7 @@
   .animal-filters input,
   .animal-filters select,
   .animal-filters button {
-    width: 100%;
+    width: 90%;
       margin-left:0px;
   }
 
