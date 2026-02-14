@@ -36,8 +36,8 @@ export default function AnimalForm() {
   };
 
   useEffect(() => {
-    fetchAnimals();
-  }, []);
+  fetchAnimals();
+}, []);
 
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
