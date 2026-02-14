@@ -10,7 +10,7 @@ export default function ProfitLoss() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/profit-loss/")
+    axios.get("https://farm-pgi5.onrender.com/api/profit-loss/")
       .then(res => setData(res.data));
   }, []);
 
