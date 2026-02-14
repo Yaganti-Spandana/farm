@@ -27,6 +27,7 @@ export default function AnimalForm() {
     to: "",
   });
 
+  // 🔥 Single source of truth for fetching
   const fetchAnimals = async () => {
     const res = await axios.get(
       "https://farm-pgi5.onrender.com/api/animals/",
@@ -35,15 +36,10 @@ export default function AnimalForm() {
     setAnimals(res.data);
   };
 
+  // Load all animals on page load
   useEffect(() => {
-  const fetchAnimals = async () => {
-    const res = await fetch('/api/animals');
-    const data = await res.json();
-    setAnimals(data);
-  };
-
-  fetchAnimals();
-}, []);
+    fetchAnimals();
+  }, []);
 
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
@@ -65,6 +61,7 @@ export default function AnimalForm() {
     );
 
     alert("Animal added!");
+
     setAnimal({
       animal_id: "",
       name: "",
@@ -77,6 +74,7 @@ export default function AnimalForm() {
       status: "active",
     });
 
+    // Refresh table
     fetchAnimals();
   };
 
@@ -123,18 +121,46 @@ export default function AnimalForm() {
         <button onClick={fetchAnimals}>Apply Filters</button>
       </div>
 
-      {/* Animal List */}
-      <h3>Animals</h3>
-      <div className="animal-list">
-        {animals.map(a => (
-          <div className="animal-card" key={a.id}>
-            <b>{a.animal_id}</b> - {a.name} ({a.breed})  
-            <div>Age: {a.age}</div>
-            <div>Milk/Day: {a.milk_per_day} L</div>
-            <div>Status: {a.status}</div>
-            <div>Purchased: {a.purchase_date}</div>
-          </div>
-        ))}
+      {/* Animal Table */}
+      <div className="animal-table-wrapper">
+        <h3>Animals</h3>
+
+        <table className="animal-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Breed</th>
+              <th>Age</th>
+              <th>Milk/Day</th>
+              <th>Status</th>
+              <th>Purchase Date</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {animals.length === 0 ? (
+              <tr>
+                <td colSpan="8" style={{ textAlign: "center" }}>
+                  No animals found
+                </td>
+              </tr>
+            ) : (
+              animals.map(a => (
+                <tr key={a.id}>
+                  <td>{a.animal_id}</td>
+                  <td>{a.name}</td>
+                  <td>{a.breed}</td>
+                  <td>{a.age}</td>
+                  <td>{a.milk_per_day} L</td>
+                  <td>{a.status}</td>
+                  <td>{a.purchase_date}</td>
+                  <td>₹{a.purchase_price}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </>
   );
