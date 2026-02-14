@@ -13,9 +13,9 @@ export default function MilkForm() {
     animal: "",
     morning_milk: "",
     evening_milk: "",
-    milk_home: 0,
-    milk_sold: 0,
-    milk_wasted: 0,
+    milk_home: "",
+    milk_sold: "",
+    milk_wasted: "",
   });
 
   useEffect(() => {
