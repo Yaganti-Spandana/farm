@@ -66,17 +66,20 @@ export default function AccountDashboard() {
       </div>
 
       {/* Category Breakdown */}
-      <div className="dashboard">
-        <h3>Expenses by Category</h3>
+<div className="category-breakdown">
+  <h3>Expense Breakdown by Category</h3>
 
-        {report.expenses_by_category?.map((e, i) => (
-          <div key={i}>
-            {e.category.toUpperCase()} : ₹{e.total} (
-            {((e.total / report.total_expenses) * 100).toFixed(1)}%
-            )
-          </div>
-        ))}
-      </div>
+  {report.expenses_by_category?.map((e, i) => (
+    <div className="category-item" key={i}>
+      <span className="cat-name">{e.category.toUpperCase()}</span>
+      <span className="cat-amount">₹{e.total}</span>
+      <span className="cat-percent">
+        {((e.total / report.total_expenses) * 100).toFixed(1)}%
+      </span>
+    </div>
+  ))}
+</div>
+
     </>
   );
 }
