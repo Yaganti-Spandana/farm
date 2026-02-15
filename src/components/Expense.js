@@ -33,7 +33,7 @@ export default function ExpenseForm() {
       });
 
       // optional: go back to expense list
-      navigate("/expenses");
+      navigate("/expense");
 
     } catch (error) {
       console.log(error.response?.data);
