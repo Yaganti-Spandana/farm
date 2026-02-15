@@ -5,22 +5,30 @@ import Navbar from "../navbar/navbar"
 
 function Login() {
   const [form, setForm] = useState({username:"", password:""});
+  const [error, setError] = useState("");   // 🔥 error state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await login(form);
+    try {
+      const res = await login(form);
 
-    // store JWT + username
-    localStorage.setItem("token", res.data.access);
-    localStorage.setItem("username", res.data.username);
+      localStorage.setItem("token", res.data.access);
+      localStorage.setItem("username", res.data.username);
 
-    window.location.href = "/";
+      window.location.href = "/";
+    } catch (err) {
+      // 🔥 handles wrong password / user
+      setError("Invalid username or password");
+    }
   };
 
   return (
     <>
       <Navbar />
       <form onSubmit={handleSubmit} className="login_form">
+
+        {error && <p className="error">{error}</p>} {/* popup/message */}
+
         <input 
           placeholder="Username"
           value={form.username}
@@ -41,4 +49,3 @@ function Login() {
 }
 
 export default Login;
-
