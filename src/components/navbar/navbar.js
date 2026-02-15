@@ -8,11 +8,14 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Navbar(){
     const isLoggedIn = localStorage.getItem("token");
+    const username = localStorage.getItem("username");
+
     const [showDropdown, setShowDropdown] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("username");
         window.location.href = "/login";
     };
 
@@ -26,13 +29,11 @@ function Navbar(){
 
             <div className={`nav-menu ${menuOpen ? "open" : ""}`}>
 
-                {/* Home - always visible */}
                 <Link to='/' className="icon">
                     <HomeIcon style={{ color: "brown", fontSize: "32px"}} />
                     <p>Home</p>
                 </Link>
 
-                {/* Only show after login */}
                 {isLoggedIn && (
                     <>
                         <Link to='/animal' className="icon">
@@ -67,7 +68,7 @@ function Navbar(){
                     </>
                 )}
 
-                {/* Account - always visible */}
+                {/* Account */}
                 <div 
                   className="account-wrapper"
                   onClick={() => setShowDropdown(!showDropdown)}
@@ -76,13 +77,19 @@ function Navbar(){
                       style={{ color: "brown", fontSize: "32px", cursor: "pointer" }} 
                     />
 
+                    {isLoggedIn && (
+                        <span className="username-text">
+                            {username}
+                        </span>
+                    )}
+
                     {showDropdown && (
                         <div className="dropdown">
                             {isLoggedIn ? (
                                 <>
-                                <Link to='/accounts' className="icon">Records</Link><br/>
-                                <button onClick={handleLogout}>Logout</button>
-                        </>
+                                    <Link to='/accounts'>Records</Link><br/>
+                                    <button onClick={handleLogout}>Logout</button>
+                                </>
                             ) : (
                                 <>
                                     <Link to="/login">Login</Link>
