@@ -1,5 +1,5 @@
 .home{
-  background-image: url('../public/pictures/logo.png');
+  background-image: url('.../public/pictures/logo.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
