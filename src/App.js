@@ -10,6 +10,7 @@ import ExpenseForm from './components/Expense';
 import FeedInventory from './components/inventory';
 import ProfitLoss from './components/profit_loss';
 import AccountDashboard from './components/records';
+import Overview from './components/Overview';
 function App() {
   return (
     <div className='app'>
@@ -18,6 +19,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/overview" element={<Overview/>}/>
         <Route path="/animal" element={<AnimalForm/>}/>
         <Route path="/milk" element={<MilkForm/>}/>
         <Route path="/sales" element={<SaleForm></SaleForm>}/>

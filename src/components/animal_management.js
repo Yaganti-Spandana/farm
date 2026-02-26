@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import './components.css'
+import { useNavigate } from "react-router-dom";
 export default function AnimalForm() {
   const [animal, setAnimal] = useState({
     animal_id: "",
@@ -18,7 +19,7 @@ export default function AnimalForm() {
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
   };
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post("https://farm-pgi5.onrender.com/api/animals/", animal);
