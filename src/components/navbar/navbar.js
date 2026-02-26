@@ -32,14 +32,14 @@ function Navbar(){
 
                 {/* Home */}
                 <Link to='/' className="icon">
-                    <HomeIcon style={{ color: "brown", fontSize: "32px"}} />
+                    <HomeIcon style={{ color: "white", fontSize: "30px"}} />
                     <p>Home</p>
                 </Link>
 
                 {/* NEW Overview component */}
                 {isLoggedIn && (
                     <Link to='/overview' className="icon">
-                        <DashboardIcon style={{ color: "brown", fontSize: "32px" }} />
+                        <DashboardIcon style={{ color: "white", fontSize: "30px"}} />
                         <p>Overview</p>
                     </Link>
                 )}
@@ -47,32 +47,32 @@ function Navbar(){
                 {isLoggedIn && (
                     <>
                         <Link to='/animal' className="icon">
-                            <GiCow style={{ color: "brown", fontSize: "32px" }} />
+                            <GiCow style={{ color: "white", fontSize: "30px"}} />
                             <p>Animal</p>
                         </Link>
 
                         <Link to='/milk' className="icon">
-                            <GiMilkCarton style={{ color: "brown", fontSize: "32px" }} />
+                            <GiMilkCarton style={{ color: "white", fontSize: "30px"}} />
                             <p>Milk</p>
                         </Link>
 
                         <Link to='/sales' className="icon">
-                            <FaMoneyBill style={{ color: "brown", fontSize: "32px" }} />
+                            <FaMoneyBill style={{ color: "white", fontSize: "30px"}} />
                             <p>Sales</p>
                         </Link>
 
                         <Link to='/expense' className="icon">
-                            <FaReceipt style={{ color: "brown", fontSize: "32px" }} />
+                            <FaReceipt style={{ color: "white", fontSize: "30px"}} />
                             <p>Expense</p>
                         </Link>
 
                         <Link to='/inventory' className="icon">
-                            <FaBox style={{ color: "brown", fontSize: "32px" }} />
+                            <FaBox style={{ color: "white", fontSize: "30px"}} />
                             <p>Inventory</p>
                         </Link>
 
                         <Link to='/profit' className="icon">
-                            <FaBox style={{ color: "brown", fontSize: "32px" }} />
+                            <FaBox style={{ color: "white", fontSize: "30px"}} />
                             <p>Profit/Loss</p>
                         </Link>
                     </>
@@ -84,7 +84,7 @@ function Navbar(){
                   onClick={() => setShowDropdown(!showDropdown)}
                 >
                     <AccountCircleIcon 
-                      style={{ color: "brown", fontSize: "32px", cursor: "pointer" }} 
+                      style={{ color: "white", fontSize: "30px", cursor: "pointer" }} 
                     />
 
                     {isLoggedIn && (
