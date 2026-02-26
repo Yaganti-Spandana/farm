@@ -23,8 +23,7 @@ function Login() {
       <div className="auth-page">
         {/* LEFT HERO */}
         <div className="auth-left">
-          <h1>Welcome to Net Banking</h1>
-          <p>Secure • Fast • Reliable</p>
+          <h1>Welcome to Dairy Farm Management System!</h1>
         </div>
 
         {/* RIGHT CARD */}
