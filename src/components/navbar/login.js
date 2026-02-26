@@ -1,49 +1,58 @@
 import { login } from "../api";
 import { useState } from "react";
-import './login.css'
-import Navbar from "../navbar/navbar"
+import "./login.css";
+import Navbar from "../navbar/navbar";
 
 function Login() {
-  const [form, setForm] = useState({username:"", password:""});
-  const [error, setError] = useState("");   // 🔥 error state
+  const [form, setForm] = useState({ username: "", password: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await login(form);
-
-      localStorage.setItem("token", res.data.access);
-      localStorage.setItem("username", res.data.username);
-
-      window.location.href = "/";
-    } catch (err) {
-      // 🔥 handles wrong password / user
-      setError("Invalid username or password");
-    }
+    const res = await login(form);
+    localStorage.setItem("token", res.data.access);
+    window.location.href = "/";
   };
 
   return (
     <>
       <Navbar />
-      <form onSubmit={handleSubmit} className="login_form">
+      <div className="auth-page">
+        {/* LEFT HERO */}
+        <div className="auth-left">
+          <h1>Welcome to Net Banking</h1>
+          <p>Secure • Fast • Reliable</p>
+        </div>
 
-        {error && <p className="error">{error}</p>} {/* popup/message */}
+        {/* RIGHT CARD */}
+        <div className="auth-right">
+          <form onSubmit={handleSubmit} className="auth-card">
+            <h2>Login to Internet Banking</h2>
 
-        <input 
-          placeholder="Username"
-          value={form.username}
-          onChange={e=>setForm({...form, username:e.target.value})}
-        /><br/>
+            <input
+              placeholder="User ID"
+              onChange={(e) =>
+                setForm({ ...form, username: e.target.value })
+              }
+              required
+            />
 
-        <input 
-          type="password" 
-          placeholder="Password"
-          value={form.password}
-          onChange={e=>setForm({...form, password:e.target.value})}
-        /><br/>
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) =>
+                setForm({ ...form, password: e.target.value })
+              }
+              required
+            />
 
-        <button>Login</button>
-      </form>
+            <button type="submit">Login</button>
+
+            <p className="switch-text">
+              New user? <a href="/signup">Register</a>
+            </p>
+          </form>
+        </div>
+      </div>
     </>
   );
 }
