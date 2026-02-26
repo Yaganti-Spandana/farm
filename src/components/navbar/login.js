@@ -1,4 +1,5 @@
-import { useState,useEffect } from "react";
+import React from "react";
+import { useState } from "react";
 import { login } from "../api";
 import "./login.css";
 import Navbar from "../navbar/navbar";
