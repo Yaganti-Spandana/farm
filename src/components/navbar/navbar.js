@@ -2,6 +2,7 @@ import './navbar.css'
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import HomeIcon from '@mui/icons-material/Home'
+import DashboardIcon from '@mui/icons-material/Dashboard'
 import { FaMoneyBill, FaReceipt, FaBox } from "react-icons/fa";
 import { GiMilkCarton, GiCow } from "react-icons/gi";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -29,10 +30,19 @@ function Navbar(){
 
             <div className={`nav-menu ${menuOpen ? "open" : ""}`}>
 
+                {/* Home */}
                 <Link to='/' className="icon">
                     <HomeIcon style={{ color: "brown", fontSize: "32px"}} />
                     <p>Home</p>
                 </Link>
+
+                {/* NEW Overview component */}
+                {isLoggedIn && (
+                    <Link to='/overview' className="icon">
+                        <DashboardIcon style={{ color: "brown", fontSize: "32px" }} />
+                        <p>Overview</p>
+                    </Link>
+                )}
 
                 {isLoggedIn && (
                     <>
@@ -105,3 +115,4 @@ function Navbar(){
 }
 
 export default Navbar;
+
