@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
+import { useNavigate } from "react-router-dom";
 
 export default function ProfitLoss() {
+  const navigate = useNavigate();
+
   const [data, setData] = useState({
     total_income: 0,
     total_expenses: 0,
@@ -10,12 +13,19 @@ export default function ProfitLoss() {
   });
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/profit-loss/")
+    axios.get("https://farm-pgi5.onrender.com/api/profit-loss/")
       .then(res => setData(res.data));
   }, []);
 
   return (
     <><Navbar></Navbar>
+    <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
+
+      >
+        ← Back
+      </button>
     <div style={{ padding: 0}} className="profit">
       <h1 className="head">Profit & Loss Report</h1>
       <div className="rep">

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes,Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes,Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
 import Login from './components/navbar/login';
@@ -9,6 +9,7 @@ import SaleForm from './components/Sales';
 import ExpenseForm from './components/Expense';
 import FeedInventory from './components/inventory';
 import ProfitLoss from './components/profit_loss';
+import AccountDashboard from './components/records';
 function App() {
   return (
     <div className='app'>
@@ -23,6 +24,7 @@ function App() {
         <Route path="/expense" element={<ExpenseForm></ExpenseForm>}/>
         <Route path="/inventory" element={<FeedInventory/>}/>
         <Route path="/profit" element={<ProfitLoss/>}/>
+  <Route path="/accounts" element={<AccountDashboard />} />
       </Routes>
       </BrowserRouter></div>
   );

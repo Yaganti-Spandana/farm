@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-
+import { useNavigate } from "react-router-dom";
 export default function FeedInventory() {
+  const navigate = useNavigate();
+
   const [stock, setStock] = useState({
     date: "",
     feed_type: "",
@@ -55,6 +57,13 @@ export default function FeedInventory() {
   return (
     <>
     <Navbar></Navbar>
+    <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
+
+      >
+        ← Back
+      </button>
     <h1 className="f1">Feed Inventory Dashboard</h1>
     <div className="feed">
         <div>
