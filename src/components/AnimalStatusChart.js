@@ -21,9 +21,11 @@ export default function AnimalStatusChart() {
   // ✅ wrap in useCallback
   const fetchData = useCallback(async () => {
     const [year, mon] = month.split("-");
-    const from = `${year}-${mon}-01`;
-    const to = `${year}-${mon}-31`;
+const from = `${year}-${mon}-01`;
 
+// ✅ correct last day of month
+const lastDay = new Date(year, mon, 0).getDate();
+const to = `${year}-${mon}-${lastDay}`;
     const res = await axios.get(
       `https://farm-pgi5.onrender.com/api/animals/?from=${from}&to=${to}`
     );
