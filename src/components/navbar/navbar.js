@@ -19,6 +19,9 @@ function Navbar(){
         localStorage.removeItem("username");
         window.location.href = "/login";
     };
+    useEffect(() => {
+  document.body.style.overflow = menuOpen ? "hidden" : "auto";
+}, [menuOpen]);
 
     return(
         <div className='navbar'>
