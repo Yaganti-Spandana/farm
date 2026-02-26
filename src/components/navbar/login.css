@@ -117,7 +117,7 @@
 .eye-icon {
   position: absolute;
   right: 12px;
-  top: 25%;
+  top: 40%;
   transform: translateY(-50%);
   cursor: pointer;
   color: #888;
