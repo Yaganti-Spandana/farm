@@ -151,5 +151,8 @@
   .dropdown button {
   margin-bottom:50px;
 }
+  .icon {
+    margin-left:30px;
+  }
 
 }
