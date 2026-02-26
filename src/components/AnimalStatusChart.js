@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import {
   PieChart,
@@ -9,21 +9,17 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const COLORS = ["#28a745", "#ffc107", "#dc3545"]; // active, sold, dead
+const COLORS = ["#28a745", "#ffc107", "#dc3545"];
 
 export default function AnimalStatusChart() {
   const [data, setData] = useState([]);
   const [month, setMonth] = useState(() => {
-    // ✅ default current month
     const now = new Date();
     return now.toISOString().slice(0, 7);
   });
 
-  useEffect(() => {
-    fetchData();
-  }, [month]);
-
-  const fetchData = async () => {
+  // ✅ wrap in useCallback
+  const fetchData = useCallback(async () => {
     const [year, mon] = month.split("-");
     const from = `${year}-${mon}-01`;
     const to = `${year}-${mon}-31`;
@@ -34,7 +30,6 @@ export default function AnimalStatusChart() {
 
     const animals = res.data;
 
-    // ✅ count by status
     const counts = {
       active: 0,
       sold: 0,
@@ -50,13 +45,17 @@ export default function AnimalStatusChart() {
       { name: "Sold", value: counts.sold },
       { name: "Dead", value: counts.dead },
     ]);
-  };
+  }, [month]); // ✅ depends on month
+
+  // ✅ now ESLint is happy
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   return (
     <div style={{ width: "100%", height: 420 }}>
       <h2 style={{ textAlign: "center" }}>Animal Status (Monthly)</h2>
 
-      {/* ✅ Month Filter */}
       <div style={{ textAlign: "center", marginBottom: 20 }}>
         <input
           type="month"
@@ -65,7 +64,6 @@ export default function AnimalStatusChart() {
         />
       </div>
 
-      {/* ✅ Pie Chart */}
       <ResponsiveContainer>
         <PieChart>
           <Pie
