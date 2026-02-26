@@ -1,55 +1,158 @@
-.navbar{
-    display: flex;
-    align-items: center;
-    background-color: blanchedalmond;
-    height: 110px;
-    padding: 0 20px;
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #e86f1c, #d35400);
+  height: 90px;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1000;
 }
 
-/* Hamburger hidden on desktop */
-.hamburger {
-  display: none;
-  font-size: 32px;
-  cursor: pointer;
-  margin-left: auto;
-}
-
-/* Normal menu */
+/* ===== MENU ===== */
 .nav-menu {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  align-items: center;
+  gap: 38px; /* 🔥 space between icons */
+  border-radius:15px;
+  padding:20px 13px 20px 30px;
 }
 
-.icon{
-    text-decoration: none;
-    color: brown;
-    text-align: center;
+/* ===== ICON LINK ===== */
+.icon {
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  transition: all 0.25s ease;
+  margin-left:50px;
 }
 
-/* ---------- MOBILE ---------- */
+.icon p {
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* hover */
+.icon:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* ===== ACCOUNT ===== */
+.account-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom:20px;
+}
+
+.username-text {
+  color: white;
+  font-weight: 600;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  margin-left:80px;
+  padding: 5px 2px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align:center;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #d35400;
+  font-weight: 500;
+}
+
+.dropdown button {
+  background: #d35400;
+  color: white;
+  border: none;
+  padding: 0px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom:20px;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  margin-left: auto; /* 🔥 pushes to right */
+}
+
+/* ================================================= */
+/* ================= MOBILE ======================== */
+/* ================================================= */
+
+/* ================================================= */
+/* ================= MOBILE ======================== */
+/* ================================================= */
+
 @media (max-width: 768px) {
 
   .hamburger {
     display: block;
   }
 
+  /* 🔥 RIGHT SLIDE DRAWER — FIXED */
   .nav-menu {
-    display: none;
+    position: fixed;
+    top: 90px;
+    right: -260px;
+    width: 260px;
+    height: calc(100vh - 90px);
+
+    background: linear-gradient(180deg, #e86f1c, #d35400);
+
     flex-direction: column;
-    position: absolute;
-    top: 110px;
-    left: 0;
-    width: 100%;
-    background-color: blanchedalmond;
-    padding: 20px 0;
+    align-items: center;
+    padding: 25px 10px;
+    gap: 22px;
+
+    transition: right 0.3s ease;
+    box-shadow: -6px 0 20px rgba(0,0,0,0.25);
+
+    /* ✅ THE MAGIC FIX */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
   }
 
   .nav-menu.open {
-    display: flex;
+    right: 0;
   }
 
-  .icon {
-    margin: 10px 0;
+  /* optional smooth scroll */
+  .nav-menu::-webkit-scrollbar {
+    width: 6px;
   }
+
+  .nav-menu::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.5);
+    border-radius: 10px;
+  }
+  .dropdown button {
+  margin-bottom:50px;
+}
+  .icon {
+    margin-left:30px;
+  }
+
 }
