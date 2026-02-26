@@ -21,13 +21,20 @@ export default function AnimalForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/animals/", animal);
+    await axios.post("https://farm-pgi5.onrender.com/api/animals/", animal);
     alert("Animal added!");
   };
 
   return (
     <>
     <Navbar></Navbar>
+    {/* Back button */}
+      <button 
+        onClick={() => navigate(-1)} 
+        style={{ margin: "10px" }}
+      >
+        ← Back
+      </button>
     <form onSubmit={handleSubmit} className="form2">
       <input name="animal_id" placeholder="Animal ID" onChange={handleChange} /><br></br>
       <input name="name" placeholder="Name" onChange={handleChange} /><br></br>

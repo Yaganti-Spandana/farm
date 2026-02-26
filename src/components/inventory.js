@@ -20,7 +20,7 @@ export default function FeedInventory() {
 
   // Load remaining feed
   const loadRemaining = () => {
-    axios.get("http://localhost:8000/api/feed-remaining/")
+    axios.get("https://farm-pgi5.onrender.com/api/feed-remaining/")
       .then(res => setRemaining(res.data));
   };
 
@@ -38,7 +38,7 @@ export default function FeedInventory() {
 
   const submitStock = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/feed-stock/", stock);
+    await axios.post("https://farm-pgi5.onrender.com/api/feed-stock/", stock);
     alert("Feed stock added");
     setStock({ date: "", feed_type: "", quantity_in: "", notes: "" });
     loadRemaining();
@@ -46,7 +46,7 @@ export default function FeedInventory() {
 
   const submitUsage = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8000/api/feed-usage/", usage);
+    await axios.post("https://farm-pgi5.onrender.com/api/feed-usage/", usage);
     alert("Feed usage saved");
     setUsage({ date: "", feed_type: "", quantity_used: "" });
     loadRemaining();
