@@ -105,7 +105,26 @@
   font-weight: 600;
   text-decoration: none;
 }
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
 
+.password-wrapper input {
+  width: 100%;
+  padding-right: 45px; /* space for eye */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
+  display: flex;
+  align-items: center;
+}
 /* ===== MOBILE ===== */
 
 @media (max-width: 768px) {
