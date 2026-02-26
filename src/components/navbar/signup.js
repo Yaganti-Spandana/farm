@@ -21,8 +21,7 @@ function Signup() {
       <Navbar />
       <div className="auth-page">
         <div className="auth-left">
-          <h1>Create Your Account</h1>
-          <p>Join our secure banking platform</p>
+          <h1>Welcome to Dairy Farm Management System!</h1>
         </div>
 
         <div className="auth-right">
