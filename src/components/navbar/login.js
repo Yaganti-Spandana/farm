@@ -2,7 +2,6 @@ import { login } from "../api";
 import { useState } from "react";
 import "./login.css";
 import Navbar from "../navbar/navbar";
-import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 function Login() {
