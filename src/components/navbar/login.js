@@ -2,16 +2,21 @@ import { login } from "../api";
 import { useState } from "react";
 import "./login.css";
 import Navbar from "../navbar/navbar";
-
+import { useState } from "react";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
-
+  const [showPassword, setShowPassword] = useState(false);
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await login(form);
-    localStorage.setItem("token", res.data.access);
-    window.location.href = "/";
-  };
+  e.preventDefault();
+  const res = await login(form);
+
+  localStorage.setItem("token", res.data.access);
+  localStorage.setItem("username", res.data.username); // ⭐ ADD THIS
+
+  window.location.href = "/";
+};
 
   return (
     <>
@@ -36,15 +41,23 @@ function Login() {
               required
             />
 
-            <input
-              type="password"
-              placeholder="Password"
-              onChange={(e) =>
-                setForm({ ...form, password: e.target.value })
-              }
-              required
-            />
+            <div className="password-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Password"
+    onChange={(e) =>
+      setForm({ ...form, password: e.target.value })
+    }
+    required
+  />
 
+  <span
+    className="eye-icon"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? <VisibilityOff /> : <Visibility />}
+  </span>
+</div>
             <button type="submit">Login</button>
 
             <p className="switch-text">
