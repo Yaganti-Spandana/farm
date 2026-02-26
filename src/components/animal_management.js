@@ -26,7 +26,7 @@ export default function AnimalForm() {
   const [saving, setSaving] = useState(false);
 
   // =========================
-  // FORM HANDLERS
+  // FORM HANDLER
   // =========================
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
@@ -44,7 +44,6 @@ export default function AnimalForm() {
 
       alert("Animal added!");
 
-      // ✅ reset form
       setAnimal({
         animal_id: "",
         name: "",
@@ -57,7 +56,6 @@ export default function AnimalForm() {
         status: "active",
       });
 
-      // ✅ refresh table
       fetchAnimals();
     } catch (err) {
       console.error(err);
@@ -100,37 +98,36 @@ export default function AnimalForm() {
       <Navbar />
 
       <div style={{ padding: 20 }}>
-        <h2>Animal Management</h2>
+        <h2 className="head">🐄 Animal Management</h2>
 
         {/* ================= FORM ================= */}
         <form onSubmit={handleSubmit} className="form2">
           <h3>Add Animal</h3>
 
-          <input name="animal_id" value={animal.animal_id} placeholder="Animal ID" onChange={handleChange} /><br/>
-          <input name="name" value={animal.name} placeholder="Name" onChange={handleChange} /><br/>
-          <input name="breed" value={animal.breed} placeholder="Breed" onChange={handleChange} /><br/>
-          <input name="age" type="number" value={animal.age} placeholder="Age" onChange={handleChange} /><br/>
-          <input name="purchase_date" type="date" value={animal.purchase_date} onChange={handleChange} /><br/>
-          <input name="purchase_price" value={animal.purchase_price} placeholder="Price" onChange={handleChange} /><br/>
-          <textarea name="health_records" value={animal.health_records} placeholder="Health Records" onChange={handleChange} /><br/>
-          <input name="milk_per_day" value={animal.milk_per_day} placeholder="Milk per day (L)" onChange={handleChange} /><br/>
+          <input name="animal_id" value={animal.animal_id} placeholder="Animal ID" onChange={handleChange} />
+          <input name="name" value={animal.name} placeholder="Name" onChange={handleChange} />
+          <input name="breed" value={animal.breed} placeholder="Breed" onChange={handleChange} />
+          <input name="age" type="number" value={animal.age} placeholder="Age" onChange={handleChange} />
+          <input name="purchase_date" type="date" value={animal.purchase_date} onChange={handleChange} />
+          <input name="purchase_price" value={animal.purchase_price} placeholder="Price" onChange={handleChange} />
+          <textarea name="health_records" value={animal.health_records} placeholder="Health Records" onChange={handleChange} />
+          <input name="milk_per_day" value={animal.milk_per_day} placeholder="Milk per day (L)" onChange={handleChange} />
 
           <select name="status" value={animal.status} onChange={handleChange}>
             <option value="active">Active</option>
             <option value="sold">Sold</option>
             <option value="dead">Dead</option>
-          </select><br/>
+          </select>
 
           <button type="submit" disabled={saving}>
             {saving ? "Saving..." : "Save Animal"}
           </button>
         </form>
 
-        <hr style={{ margin: "30px 0" }} />
-
         {/* ================= FILTERS ================= */}
-        <h3>Filter Animals</h3>
-        <div style={{ marginBottom: 20, display: "flex", gap: 10 }}>
+        <h3 className="f1">Filter Animals</h3>
+
+        <div className="animal-filters">
           <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
             <option value="">All Status</option>
             <option value="active">Active</option>
@@ -145,46 +142,50 @@ export default function AnimalForm() {
         </div>
 
         {/* ================= TABLE ================= */}
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <table border="1" cellPadding="8" width="100%">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Animal ID</th>
-                <th>Name</th>
-                <th>Breed</th>
-                <th>Age</th>
-                <th>Purchase Date</th>
-                <th>Price</th>
-                <th>Milk/Day</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {animals.length === 0 ? (
+        <div className="animal-table-wrapper">
+          {loading ? (
+            <p style={{ textAlign: "center" }}>Loading...</p>
+          ) : (
+            <table className="animal-table">
+              <thead>
                 <tr>
-                  <td colSpan="9" align="center">No animals found</td>
+                  <th>ID</th>
+                  <th>Animal ID</th>
+                  <th>Name</th>
+                  <th>Breed</th>
+                  <th>Age</th>
+                  <th>Purchase Date</th>
+                  <th>Price</th>
+                  <th>Milk/Day</th>
+                  <th>Status</th>
                 </tr>
-              ) : (
-                animals.map((a) => (
-                  <tr key={a.id}>
-                    <td>{a.id}</td>
-                    <td>{a.animal_id}</td>
-                    <td>{a.name}</td>
-                    <td>{a.breed}</td>
-                    <td>{a.age}</td>
-                    <td>{a.purchase_date}</td>
-                    <td>{a.purchase_price}</td>
-                    <td>{a.milk_per_day}</td>
-                    <td>{a.status}</td>
+              </thead>
+              <tbody>
+                {animals.length === 0 ? (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: "center" }}>
+                      No animals found
+                    </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        )}
+                ) : (
+                  animals.map((a) => (
+                    <tr key={a.id}>
+                      <td data-label="ID">{a.id}</td>
+                      <td data-label="Animal ID">{a.animal_id}</td>
+                      <td data-label="Name">{a.name}</td>
+                      <td data-label="Breed">{a.breed}</td>
+                      <td data-label="Age">{a.age}</td>
+                      <td data-label="Purchase Date">{a.purchase_date}</td>
+                      <td data-label="Price">{a.purchase_price}</td>
+                      <td data-label="Milk/Day">{a.milk_per_day}</td>
+                      <td data-label="Status">{a.status}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          )}
+        </div>
       </div>
     </>
   );
