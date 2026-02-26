@@ -1,33 +1,99 @@
-.navbar{
-    display: flex;
-    align-items: center;
-    background-color: blanchedalmond;
-    height: 110px;
-    padding: 0 20px;
+/* ===== NAVBAR CONTAINER ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: blanchedalmond;
+  height: 110px;
+  padding: 0 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 1000;
 }
 
-/* Hamburger hidden on desktop */
+/* ===== HAMBURGER ===== */
 .hamburger {
   display: none;
-  font-size: 32px;
+  font-size: 30px;
   cursor: pointer;
-  margin-left: auto;
+  color: brown;
 }
 
-/* Normal menu */
+/* ===== MENU WRAPPER ===== */
 .nav-menu {
   display: flex;
+  align-items: center;
+  gap: 28px;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
 }
 
-.icon{
-    text-decoration: none;
-    color: brown;
-    text-align: center;
+/* ===== NAV ITEMS ===== */
+.icon {
+  text-decoration: none;
+  color: brown;
+  text-align: center;
+  font-size: 14px;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-/* ---------- MOBILE ---------- */
+.icon p {
+  margin: 4px 0 0 0;
+  font-weight: 500;
+}
+
+/* hover effect like modern UI */
+.icon:hover {
+  transform: translateY(-3px);
+  color: #5a1f1f;
+}
+
+/* ===== ACCOUNT SECTION ===== */
+.account-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.username-text {
+  color: brown;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: white;
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: brown;
+  font-weight: 500;
+}
+
+.dropdown button {
+  background-color: brown;
+  color: blanchedalmond;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
 
   .hamburger {
@@ -42,14 +108,15 @@
     left: 0;
     width: 100%;
     background-color: blanchedalmond;
-    padding: 20px 0;
+    padding: 25px 0;
+    gap: 18px;
   }
 
   .nav-menu.open {
     display: flex;
   }
 
-  .icon {
-    margin: 10px 0;
+  .account-wrapper {
+    justify-content: center;
   }
 }
