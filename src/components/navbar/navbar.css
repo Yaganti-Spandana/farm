@@ -16,7 +16,7 @@
   align-items: center;
   gap: 38px; /* 🔥 space between icons */
   border-radius:15px;
-  padding:10px;
+  padding:10px 10px 40px 10px;
 }
 
 /* ===== ICON LINK ===== */
