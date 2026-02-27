@@ -1,112 +1,184 @@
-/* ===== NAVBAR ===== */ 
-.navbar { 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  background: linear-gradient(90deg, #e86f1c, #d35400); 
-  height: 90px; 
-  padding: 0 28px; 
-  position: relative; 
-  z-index: 1000; } 
-/* ===== MENU ===== */ 
-.nav-menu { 
-  display: flex; 
-  align-items: center; 
+/* ===== NAVBAR ===== */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #e86f1c, #d35400);
+  height: 90px;
+  padding: 0 28px;
+  position: relative;
+  z-index: 1000;
+}
+
+/* ===== MENU ===== */
+.nav-menu {
+  display: flex;
+  align-items: center;
   gap: 38px;
-  /* 🔥 space between icons */ 
-  border-radius:15px; 
-  padding:20px 13px 20px 30px; } 
-/* ===== ICON LINK ===== */ 
-.icon { text-decoration: none; 
-       color: white; 
-       text-align: center; 
-       font-size: 13px; 
-       transition: all 0.25s ease; 
-       margin-left:50px; } 
-.icon p { margin-top: 4px; 
-         font-weight: 500; } 
-/* hover */ 
-.icon:hover { 
-  transform: translateY(-3px); 
-  opacity: 0.9; } 
-/* ===== ACCOUNT ===== */ 
-.account-wrapper { 
-  display: flex; 
-  align-items: center; 
-  gap: 8px; 
-  cursor: pointer; 
-  position: relative; 
-  margin-bottom:20px; 
-} 
-.username-text { 
-  color: white; 
-  font-weight: 600; } 
-/* ===== DROPDOWN ===== */ 
-.dropdown { 
-  position: absolute; 
-  top: 60px; right: 0; 
-  background: white; 
-  border-radius: 12px; 
-  margin-left:80px; 
-  padding: 5px 2px; 
-  box-shadow: 0 12px 30px rgba(0,0,0,0.2); 
-  min-width: 150px; 
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
-  text-align:center; } 
-.dropdown a { 
-  text-decoration: none; 
-  color: #d35400; 
-  font-weight: 500; } 
-.dropdown Link{ 
-  color:#d35400; } 
-.dropdown button { 
-  background: #d35400; 
-  color: white; 
-  border: none; 
-  padding: 0px 10px; 
-  border-radius: 6px; 
-  cursor: pointer; 
-  margin-bottom:20px; 
-  height:30px; } 
-/* ===== HAMBURGER ===== */ 
-.hamburger { 
-  display: none; 
-  font-size: 30px; 
-  cursor: pointer; 
-  color: white; 
-  margin-left: auto; 
-  /* 🔥 pushes to right */ }
-/* ================================================= */ /* ================= MOBILE ======================== */ /* ================================================= */ /* ================================================= */ /* ================= MOBILE ======================== */ /* ================================================= */ 
-@media (max-width: 768px) { 
-  .hamburger { display: block; } 
-  /* 🔥 RIGHT SLIDE DRAWER — FIXED */ 
-  .nav-menu { position: fixed; 
-             top: 90px; 
-             right: -260px; 
-             width: 260px; 
-             height: calc(100vh - 90px);
-             background: linear-gradient(180deg, #e86f1c, #d35400); 
-             flex-direction: column; 
-             align-items: center; 
-             padding: 25px 10px; 
-             gap: 22px; 
-             transition: right 0.3s ease; 
-             box-shadow: -6px 0 20px rgba(0,0,0,0.25); 
-  /* ✅ THE MAGIC FIX */ 
-             overflow-y: auto; 
-             overflow-x: hidden; 
-             scrollbar-width: thin; } 
-  .nav-menu.open { right: 0; } 
-  /* optional smooth scroll */ 
-  .nav-menu::-webkit-scrollbar { width: 6px; } 
-  .nav-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.5); 
-                border-radius: 10px; } 
-  .dropdown button { margin-bottom:50px; } 
-  .icon { margin-left:30px; } }
-.nav-arrow {
+  border-radius: 15px;
+  padding: 20px 13px 20px 30px;
+}
+
+/* ===== ICON ===== */
+.icon {
+  text-decoration: none;
   color: white;
-  opacity: 0.8;
-  margin-left:70px;
+  text-align: center;
+  font-size: 13px;
+  transition: all 0.25s ease;
+  margin-left: 50px;
+}
+
+.icon:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* left group */
+.menu-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-icon {
+  color: white;
+  font-size: 30px;
+}
+
+.icon p {
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ===== ACCOUNT ===== */
+.account-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.account-icon {
+  color: white;
+  font-size: 30px;
+}
+
+.username-text {
+  color: white;
+  font-weight: 600;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  padding: 8px 6px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.dropdown a {
+  text-decoration: none;
+  color: #d35400;
+  font-weight: 500;
+}
+
+.dropdown button {
+  background: #d35400;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  margin-left: auto;
+}
+
+/* ================================================= */
+/* ================= MOBILE ======================== */
+/* ================================================= */
+
+@media (max-width: 768px) {
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 90px;
+    right: -260px;
+    width: 260px;
+    height: calc(100vh - 90px);
+    background: linear-gradient(180deg, #e86f1c, #d35400);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 20px 12px;
+    gap: 14px;
+    transition: right 0.3s ease;
+    box-shadow: -6px 0 20px rgba(0,0,0,0.25);
+    overflow-y: auto;
+  }
+
+  .nav-menu.open {
+    right: 0;
+  }
+
+  /* 🔥 ICICI style rows */
+  .icon {
+    width: 100%;
+    margin-left: 0;
+    padding: 14px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-left {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .menu-icon {
+    font-size: 24px;
+  }
+
+  .icon p {
+    margin: 0;
+    font-size: 15px;
+  }
+
+  .nav-arrow {
+    color: white;
+    opacity: 0.85;
+    font-size: 22px;
+  }
+
+  .icon:active {
+    background: rgba(255,255,255,0.18);
+  }
+
+  .dropdown button {
+    margin-bottom: 40px;
+  }
 }
