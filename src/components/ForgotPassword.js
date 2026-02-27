@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Navbar from "../navbar/navbar";
+import Navbar from "./navbar/navbar";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ function ForgotPassword() {
 
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <div className="auth-page">
         <form onSubmit={handleSubmit} className="auth-card">
           <h2>Forgot Password</h2>

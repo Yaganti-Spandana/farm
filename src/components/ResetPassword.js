@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Navbar from "../navbar/navbar";
+import Navbar from "./navbar/navbar";
 
 function ResetPassword() {
   const { token } = useParams();
