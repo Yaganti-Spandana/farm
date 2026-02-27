@@ -13,30 +13,45 @@ export default function ProfitLoss() {
   });
 
   useEffect(() => {
-    axios.get("https://farm-pgi5.onrender.com/api/profit-loss/")
-      .then(res => setData(res.data));
+    axios
+      .get("https://farm-pgi5.onrender.com/api/profit-loss/")
+      .then((res) => setData(res.data));
   }, []);
 
   return (
-    <><Navbar></Navbar>
-    <button 
-        onClick={() => navigate(-1)} 
-        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
+    <>
+      <Navbar />
 
-      >
-        ← Back
-      </button>
-    <div style={{ padding: 0}} className="profit">
-      <h1 className="head">Profit & Loss Report</h1>
-      <div className="rep">
-      <h2>Total Income: ₹ {data.total_income}</h2>
-      <h2>Total Expenses: ₹ {data.total_expenses}</h2>
-      <h2 style={{ 
-        color: data.profit >= 0 ? "green" : "red" 
-      }} className="head1">
-        Profit: ₹ {data.profit}
-      </h2></div>
+      <div className="page-container">
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
 
-    </div></>
+        <h1 className="head">Profit & Loss Report</h1>
+
+        <div className="summary-grid">
+          <div className="card">
+            <h3>Total Income</h3>
+            <p>₹ {data.total_income}</p>
+          </div>
+
+          <div className="card">
+            <h3>Total Expenses</h3>
+            <p>₹ {data.total_expenses}</p>
+          </div>
+
+          <div className="card">
+            <h3>Profit / Loss</h3>
+            <p
+              style={{
+                color: data.profit >= 0 ? "#16a34a" : "#dc2626",
+              }}
+            >
+              ₹ {data.profit}
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
