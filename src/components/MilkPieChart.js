@@ -22,7 +22,7 @@ export default function MilkPieChart({ summary }) {
     <div style={{ width: "100%", height: 360 }}>
       <h2 style={{ textAlign: "center",color:"orange"  }}>Milk Distribution</h2>
 
-      <ResponsiveContainer width="110%" height="300">
+      <ResponsiveContainer width="100%" height="300">
         <PieChart>
           <Pie
             data={data}
