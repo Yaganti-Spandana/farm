@@ -69,7 +69,7 @@ export default function AnimalStatusChart({ month }) {
             outerRadius={100}
             innerRadius={80}   // ✅ donut hole
             paddingAngle={3}
-            label={renderlabel}
+            label={renderLabel}
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
