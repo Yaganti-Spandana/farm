@@ -10,6 +10,9 @@ import {
 } from "recharts";
 
 const COLORS = ["#28a745", "#ffc107", "#dc3545"];
+const renderLabel = ({ name, value }) => {
+  return `${name}: ₹${value}`;
+};
 
 export default function AnimalStatusChart({ month }) {
   const [data, setData] = useState([]);
@@ -66,7 +69,7 @@ export default function AnimalStatusChart({ month }) {
             outerRadius={100}
             innerRadius={80}   // ✅ donut hole
             paddingAngle={3}
-            label
+            label={renderlabel}
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
