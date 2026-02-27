@@ -101,7 +101,7 @@ function Navbar(){
                         <div className="dropdown">
                             {isLoggedIn ? (
                                 <>
-                                    <Link to='/accounts'>Records</Link><br/>
+                                    <Link to='/accounts'style={{ color: "orange", fontSize: "30px", cursor: "pointer" }}>Records</Link><br/>
                                     <button onClick={handleLogout}>Logout</button>
                                 </>
                             ) : (
