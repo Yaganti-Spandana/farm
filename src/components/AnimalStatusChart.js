@@ -11,7 +11,7 @@ import {
 
 const COLORS = ["#28a745", "#ffc107", "#dc3545"];
 
-export default function AnimalStatusChart() {
+export default function AnimalStatusChart({ month }) {
   const [data, setData] = useState([]);
   const [month, setMonth] = useState(() => {
     const now = new Date();
