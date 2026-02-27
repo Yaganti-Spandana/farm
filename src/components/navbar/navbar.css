@@ -85,6 +85,35 @@
 .nav-arrow {
   opacity: 0.8;
 }
+/* ===== MOBILE MENU ROW STYLE ===== */
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+  text-decoration: none;
+}
+
+/* left side (icon + text) */
+.icon-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* icon size */
+.nav-icon {
+  color: white;
+  font-size: 26px !important;
+}
+
+/* arrow right */
+.nav-arrow {
+  color: white;
+  opacity: 0.8;
+}
 
 /* ===== BACKDROP ===== */
 
@@ -110,6 +139,20 @@
   .menu-btn {
     display: block;
   }
+}
+@media (max-width: 768px) {
+
+  .icon {
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-left: 0; /* 🔥 remove old spacing */
+  }
+
+  .icon:hover {
+    background: rgba(255,255,255,0.12);
+    transform: none;
+  }
+
 }
 
 /* =========================================
