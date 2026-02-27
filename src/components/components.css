@@ -380,3 +380,64 @@
     color: #334155;
   }
 }
+
+.overview-container {
+  padding: 30px;
+  background: #f4f6f9;
+  min-height: calc(100vh - 90px);
+}
+
+/* ===== SUMMARY GRID ===== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 26px;
+  font-weight: bold;
+  color: #e86f1c;
+}
+
+/* ===== CHART CARD ===== */
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
