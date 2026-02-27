@@ -28,8 +28,8 @@ export default function MilkPieChart({ summary }) {
             data={data}
             dataKey="value"
             nameKey="name"
-            outerRadius={90}
-            innerRadius={70}   // ✅ donut style
+            outerRadius={80}
+            innerRadius={60}   // ✅ donut style
             paddingAngle={3}
             label={renderLabel}
             labelLine={false}
