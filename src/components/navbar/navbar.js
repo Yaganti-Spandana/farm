@@ -37,5 +37,5 @@ function Navbar(){
 {showDropdown && ( <div className="dropdown"> {isLoggedIn ? ( <> 
   <Link to='/accounts'style={{ color: "#d35400", fontSize: "20px", cursor: "pointer" }}>Records</Link><br/>
   <button onClick={handleLogout}>Logout</button> </> ) : 
-  ( <> <Link to="/login" style={{ color: "#d35400", fontSize: "20px", cursor: "pointer" }}>Login</Link> <Link to="/signup">Register</Link> </> )} </div> )} </div> </div> </div> ) } 
+  ( <> <Link to="/login" style={{ color: "#d35400", fontSize: "20px", cursor: "pointer" }}>Login</Link> <Link to="/signup" style={{ color: "#d35400", fontSize: "20px", cursor: "pointer" }}>Register</Link> </> )} </div> )} </div> </div> </div> ) } 
   export default Navbar;
