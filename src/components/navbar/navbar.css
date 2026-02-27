@@ -74,9 +74,10 @@
 
 /* ===== DROPDOWN ===== */
 .dropdown {
-  position: absolute;
-  top: 60px;
-  right: 0;
+  position: fixed;
+    top: 100px;
+    right: 10px;
+    z-index: 2000;
   background: white;
   border-radius: 12px;
   padding: 8px 6px;
@@ -86,6 +87,7 @@
   flex-direction: column;
   gap: 10px;
   text-align: center;
+  
 }
 
 .dropdown a {
@@ -187,6 +189,6 @@
     margin-bottom: 40px;
   }
   .account-wrapper{
-    margin-bottom:70px;
+    margin-top: auto;
   }
 }
