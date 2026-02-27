@@ -72,8 +72,8 @@ const to = `${year}-${mon}-${lastDay}`;
   data={data}
   dataKey="value"
   nameKey="name"
-  outerRadius={130}
-  innerRadius={100}   // ⭐ THIS creates the hollow center
+  outerRadius={100}
+  innerRadius={80}   // ⭐ THIS creates the hollow center
   paddingAngle={3}
   label
 >
