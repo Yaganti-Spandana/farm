@@ -27,6 +27,7 @@
   font-size: 13px;
   transition: all 0.25s ease;
   margin-left: 50px;
+  display: inline-block;
 }
 
 .icon:hover {
@@ -111,7 +112,7 @@
   margin-left: auto;
 }
 .nav-arrow {
-  display: none;
+  display: none !important;
 }
 
 /* ================================================= */
@@ -172,10 +173,11 @@
   }
 
   .nav-arrow {
-    display: block;
+    display: block !important;
     color: white;
     opacity: 0.85;
     font-size: 22px;
+    flex-shrink: 0;
   }
 
   .icon:active {
