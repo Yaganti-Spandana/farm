@@ -41,8 +41,8 @@ function FinancePieChart({ summary }) {
           <Pie
             data={data}
             dataKey="value"
-            innerRadius={70}
-            outerRadius={90}
+            innerRadius={60}
+            outerRadius={80}
             paddingAngle={3}
             label={renderLabel}   // ✅ numbers ON chart
             labelLine={false}     // ✅ cleaner look
