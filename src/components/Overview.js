@@ -4,7 +4,7 @@ import AnimalStatusChart from "./AnimalStatusChart";
 import Navbar from "./navbar/navbar";
 import "./components.css";
 import MilkPieChart from "./MilkPieChart";
-
+import FinancePieChart from "./FinancePieChart";
 function Overview() {
   // ✅ default = current month
   const [month, setMonth] = useState(() => {
@@ -87,8 +87,7 @@ function Overview() {
 
         </div>
 
-        {/* ===== DONUT CHART ===== */}
-        <div className="charts-grid">
+       <div className="charts-grid">
 
   <div className="chart-card">
     <AnimalStatusChart month={month} />
@@ -96,6 +95,10 @@ function Overview() {
 
   <div className="chart-card">
     <MilkPieChart summary={summary} />
+  </div>
+
+  <div className="chart-card">
+    <FinancePieChart summary={summary} />
   </div>
 
 </div>
