@@ -7,6 +7,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard'
 import { FaMoneyBill, FaReceipt, FaBox } from "react-icons/fa"; 
 import { GiMilkCarton, GiCow } from "react-icons/gi"; 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 function Navbar(){ 
   const isLoggedIn = localStorage.getItem("token"); 
   const username = localStorage.getItem("username"); 
@@ -22,7 +23,7 @@ function Navbar(){
   return( <div className='navbar'> {/* Hamburger */} 
     <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}> ☰ </div> 
   <div className={`nav-menu ${menuOpen ? "open" : ""}`}> {/* Home */} 
-<Link to='/' className="icon"> <HomeIcon style={{ color: "white", fontSize: "30px"}} /> <span>Home</span> </Link> 
+<Link to='/' className="icon"> <HomeIcon style={{ color: "white", fontSize: "30px"}} /> <span>Home</span><ChevronRightIcon className="nav-arrow" /> </Link> 
 {/* NEW Overview component */} {isLoggedIn && ( <Link to='/overview' className="icon"> <DashboardIcon style={{ color: "white", fontSize: "30px"}} /> <p>Overview</p> </Link> )} 
 {isLoggedIn && ( <> <Link to='/animal' className="icon"> <GiCow style={{ color: "white", fontSize: "30px"}} /> <p>Animal</p> </Link> 
   <Link to='/milk' className="icon"> <GiMilkCarton style={{ color: "white", fontSize: "30px"}} /> <p>Milk</p> </Link> 
