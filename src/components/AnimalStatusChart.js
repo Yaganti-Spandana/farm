@@ -69,16 +69,18 @@ const to = `${year}-${mon}-${lastDay}`;
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
-            data={data}
-            dataKey="value"
-            nameKey="name"
-            outerRadius={130}
-            label
-          >
-            {data.map((entry, index) => (
-              <Cell key={index} fill={COLORS[index]} />
-            ))}
-          </Pie>
+  data={data}
+  dataKey="value"
+  nameKey="name"
+  outerRadius={130}
+  innerRadius={70}   // ⭐ THIS creates the hollow center
+  paddingAngle={3}
+  label
+>
+  {data.map((entry, index) => (
+    <Cell key={index} fill={COLORS[index]} />
+  ))}
+</Pie>
 
           <Tooltip />
           <Legend />
