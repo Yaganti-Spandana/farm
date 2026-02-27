@@ -30,7 +30,7 @@ function Login() {
         {/* RIGHT CARD */}
         <div className="auth-right">
           <form onSubmit={handleSubmit} className="auth-card">
-            <h2>Login to Internet Banking</h2>
+            <h2>Login</h2>
 
             <input
               placeholder="User ID"
