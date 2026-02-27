@@ -98,9 +98,7 @@ export default function AnimalForm() {
       <Navbar />
 
       <div style={{ padding: 20 }}>
-  <button className="back-btn" onClick={() => navigate(-1)}>
-          ← Back
-        </button>
+ 
         <h2 className="head">🐄 Animal Management</h2>
 
         {/* ================= FORM ================= */}
