@@ -21,7 +21,7 @@ function Navbar(){
             [menuOpen]); 
   return( <div className='navbar'> {/* Hamburger */} 
     <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}> ☰ </div> 
-  <div className={nav-menu ${menuOpen ? "open" : ""}}> {/* Home */} 
+  <div className={`nav-menu ${menuOpen ? "active" : ""}`}> {/* Home */} 
 <Link to='/' className="icon"> <HomeIcon style={{ color: "white", fontSize: "30px"}} /> <p>Home</p> </Link> 
 {/* NEW Overview component */} {isLoggedIn && ( <Link to='/overview' className="icon"> <DashboardIcon style={{ color: "white", fontSize: "30px"}} /> <p>Overview</p> </Link> )} 
 {isLoggedIn && ( <> <Link to='/animal' className="icon"> <GiCow style={{ color: "white", fontSize: "30px"}} /> <p>Animal</p> </Link> 
