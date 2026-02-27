@@ -75,7 +75,9 @@ function Login() {
             {error && <p className="error-text">{error}</p>}
 
             <button type="submit">Login</button>
-
+            <p className="switch-text">
+  <a href="/forgot-password">Forgot password?</a>
+</p>
             <p className="switch-text">
               New user? <a href="/signup">Register</a>
             </p>

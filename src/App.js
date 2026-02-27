@@ -11,6 +11,8 @@ import FeedInventory from './components/inventory';
 import ProfitLoss from './components/profit_loss';
 import AccountDashboard from './components/records';
 import Overview from './components/Overview';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 function App() {
   return (
     <div className='app'>
@@ -26,6 +28,8 @@ function App() {
         <Route path="/expense" element={<ExpenseForm></ExpenseForm>}/>
         <Route path="/inventory" element={<FeedInventory/>}/>
         <Route path="/profit" element={<ProfitLoss/>}/>
+        <Route path="/forgot-password" element={<ForgotPassword/>} />
+<Route path="/reset-password/:token" element={<ResetPassword />} />
   <Route path="/accounts" element={<AccountDashboard />} />
       </Routes>
       </BrowserRouter></div>
