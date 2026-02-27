@@ -130,13 +130,13 @@ function Navbar() {
             <div className="dropdown">
               {isLoggedIn ? (
                 <>
-                  <Link to='/accounts'>Records</Link>
+                  <Link to='/accounts' style={{color:"#d35400"}}>Records</Link>
                   <button onClick={handleLogout}>Logout</button>
                 </>
               ) : (
                 <>
-                  <Link to="/login">Login</Link>
-                  <Link to="/signup">Register</Link>
+                  <Link to="/login" style={{color:"#d35400"}}>Login</Link>
+                  <Link to="/signup" style={{color:"#d35400"}}>Register</Link>
                 </>
               )}
             </div>
@@ -147,5 +147,4 @@ function Navbar() {
     </div>
   )
 }
-
 export default Navbar
