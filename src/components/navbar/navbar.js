@@ -14,20 +14,27 @@ import "./navbar.css";
 function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
-
-  const closeDrawer = () => {
-    setOpen(false);
-  };
+  const toggleDrawer = () => setOpen(!open);
+  const closeDrawer = () => setOpen(false);
 
   return (
     <>
-      {/* ===== TOP NAVBAR ===== */}
-      <div className="navbar">
-        <MenuIcon className="menu-btn" onClick={toggleDrawer} />
+      {/* ===== DESKTOP NAVBAR ===== */}
+      <div className="navbar desktop-nav">
         <h2 className="logo">Dairy Dashboard</h2>
+
+        <div className="desktop-menu">
+          <Link to="/">Home</Link>
+          <Link to="/overview">Overview</Link>
+          <Link to="/animal">Animal</Link>
+          <Link to="/milk">Milk</Link>
+          <Link to="/sales">Sales</Link>
+          <Link to="/expense">Expense</Link>
+          <Link to="/inventory">Inventory</Link>
+          <Link to="/profitloss">Profit/Loss</Link>
+        </div>
+
+        <MenuIcon className="menu-btn" onClick={toggleDrawer} />
       </div>
 
       {/* ===== MOBILE DRAWER ===== */}
@@ -97,7 +104,6 @@ function Navbar() {
         </Link>
       </div>
 
-      {/* ===== BACKDROP ===== */}
       {open && <div className="backdrop" onClick={closeDrawer}></div>}
     </>
   );
