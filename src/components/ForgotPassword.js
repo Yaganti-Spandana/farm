@@ -10,14 +10,15 @@ function ForgotPassword() {
     e.preventDefault();
 
     try {
-      await axios.post("https://farm-pgi5.onrender.com/api/password_reset/", {
-        email,
-      });
-
-      setMsg("Password reset link sent to your email.");
-    } catch (err) {
-      setMsg("Something went wrong.");
-    }
+    const res = await axios.post(
+      "https://farm-pgi5.onrender.com/api/password_reset/",
+      { email }, // must be an object with "email" key
+      { headers: { "Content-Type": "application/json" } }
+    );
+    console.log(res.data);
+  } catch (err) {
+    console.error(err.response.data); // check why 400
+  }
   };
 
   return (
