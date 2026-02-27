@@ -9,8 +9,12 @@ import {
 
 const COLORS = ["#22c55e", "#ef4444", "#3b82f6"];
 
+// ✅ label formatter
+const renderLabel = ({ name, value }) => {
+  return `${name}: ₹${value}`;
+};
+
 function FinancePieChart({ summary }) {
-  // ✅ prepare data safely
   const data = [
     {
       name: "Sales",
@@ -37,9 +41,11 @@ function FinancePieChart({ summary }) {
           <Pie
             data={data}
             dataKey="value"
-            innerRadius={80}   // ✅ no color inside (donut)
-            outerRadius={100}
+            innerRadius={60}
+            outerRadius={110}
             paddingAngle={3}
+            label={renderLabel}   // ✅ numbers ON chart
+            labelLine={false}     // ✅ cleaner look
           >
             {data.map((entry, index) => (
               <Cell
@@ -51,7 +57,7 @@ function FinancePieChart({ summary }) {
             ))}
           </Pie>
 
-          <Tooltip />
+          <Tooltip formatter={(v) => `₹${v}`} />
           <Legend />
         </PieChart>
       </ResponsiveContainer>
