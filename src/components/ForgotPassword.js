@@ -8,7 +8,6 @@ function ForgotPassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
     const res = await axios.post(
       "https://farm-pgi5.onrender.com/api/password_reset/",
@@ -16,7 +15,9 @@ function ForgotPassword() {
       { headers: { "Content-Type": "application/json" } }
     );
     console.log(res.data);
-  } catch (err) {
+
+      setMsg("Password reset link sent to your email.");
+    } catch (err) {
     console.error(err.response.data); // check why 400
   }
   };
