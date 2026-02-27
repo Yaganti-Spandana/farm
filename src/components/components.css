@@ -1,460 +1,264 @@
-.form2{
-    background-color: brown;
-    margin:100px 400px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 20px;
-    box-shadow: 0 8px 24px blanchedalmond;
+/* ========================================= */
+/* ============== GLOBAL =================== */
+/* ========================================= */
+
+body {
+  background: #f5f7fb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
 }
-.form2 input,textarea,select{
-    margin: 5px 150px;
-    background-color: blanchedalmond;
-    border-radius: 5px;
-    width: 200px;
-    height: 25px;
-    color: brown;
+
+/* page heading */
+.head {
+  color: #e86f1c;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 20px;
 }
-.form2 input::placeholder{
-    color: brown;
+
+/* ========================================= */
+/* ============ NAVBAR FIX ================= */
+/* ========================================= */
+
+.navbar {
+  background: linear-gradient(90deg, #e86f1c, #d35400);
+  padding: 12px 24px;
+  color: white;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
-.form2 textarea::placeholder{
-    color: brown;
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
 }
-.form2 button{
-    margin: 5px 200px;
-    background-color: blanchedalmond;
-    border-radius: 5px;
-    color: brown;
-    width: 100px;
-    height: 25px;
+
+.navbar a:hover {
+  opacity: 0.85;
 }
-.form2 label{
-    margin: 15px 150px;
-    color:blanchedalmond;
-}
-.form2 h3{
-    margin: 15px 150px;
-    color:blanchedalmond;
-}
-.feed{
-    display: flex;
-}
-.form1{
-    margin:10px 50px;
-    padding: 10px 20px;
-    width:300px;
-    background-color: brown;
-    color: blanchedalmond;
-    text-align: center;
-    border-radius: 20px;
-}
-.form1 input{
-    margin-left: 30px;
-    margin-top: 5px;
-    text-align: center;
-    background-color: blanchedalmond;
-    color: brown;
-    border-radius: 10px;
-}
-.form1 input::placeholder{
-    color: brown;
-}
-.form1 button{
-    margin-left: 40px;
-    margin-top: 5px;
-    background-color: blanchedalmond;
-    color: brown;
-    border-radius: 10px;
-}
-.f1{
-    color: brown;
-    text-align: center;
-}
-.feed h2{
-    margin-top: 10px;
-}
-.lab{
-    display: flex;
-    width:500px
-}
-.lab input{
-    margin-left: -80px;
-    background-color: blanchedalmond;
-    border-radius: 10px;
-}
-.h3{
-    width: 400px;
-}
-.head{
-    color: brown;
-    text-align: center;
-}
-.rep{
-    display: flex;
-}
-.rep h2{
-    margin-left: 150px;
-}
+
+/* ========================================= */
+/* ============ FILTER BAR ================= */
+/* ========================================= */
+
 .animal-filters {
-  margin: 20px auto;
   display: flex;
   gap: 10px;
   justify-content: center;
-}
-
-.animal-filters input,
-.animal-filters select {
-  padding: 6px;
-  border-radius: 6px;
-}
-
-.animal-table-wrapper {
-  max-width: 1100px;
-  margin: 30px auto;
-  padding: 10px;
-}
-
-.animal-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.animal-table th,
-.animal-table td {
-  padding: 10px 12px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 0.9rem;
-}
-
-.animal-table th {
-  background: #0f172a;
-  color: white;
-}
-
-.animal-table tr:hover {
-  background: #f1f5f9;
-}
-
-
-
-
-/* Mobile devices */
-@media (max-width: 768px) {
-
-  .form2 {
-    margin: 40px auto;
-    width: 90%;
-    padding: 20px;
-  }
-
-  .form2 input,
-  .form2 textarea,
-  .form2 select {
-    margin: 10px auto;
-    width: 90%;
-    height: 35px;
-    display: block;
-  }
-
-  .form2 button {
-    margin: 15px auto;
-    display: block;
-    width: 120px;
-    height: 35px;
-  }
-
-  .form2 label,
-  .form2 h3 {
-    margin: 10px 0;
-    text-align: center;
-    display: block;
-  }
-
-  .feed {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .form1 {
-    width: 90%;
-    margin: 10px auto;
-  }
-
-  .form1 input,
-  .form1 button {
-    margin: 10px auto;
-    width: 80%;
-    display: block;
-  }
-
-  .lab {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .lab input {
-    margin-left: 0;
-    width: 90%;
-  }
-
-  .h3 {
-    width: 100%;
-  }
-
-  .rep {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .rep h2 {
-    margin-left: 0;
-    margin-top: 10px;
-  }
-     .animal-filters {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .animal-filters input,
-  .animal-filters select,
-  .animal-filters button {
-    width: 90%;
-      margin-left:0px;
-  }
-
-  .animal-table thead {
-    display: none;
-  }
-
-  .animal-table,
-  .animal-table tbody,
-  .animal-table tr,
-  .animal-table td {
-    display: block;
-    width: 100%;
-  overflow: visible;
-
-  }
-
-  .animal-table tr {
-    margin-bottom: 15px;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 10px;
-    background: #ffffff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-
-  .animal-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 0px;
-    margin-left:0px;
-    border: none;
-    font-size: 0.85rem;
-  }
-
-  .animal-table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #334155;
-      margin-left:0px
-  }
-}
-
-/* ================= FILTERS ================= */
-.animal-filters {
   margin: 20px auto;
-  display: flex;
-  gap: 12px;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
 .animal-filters input,
-.animal-filters select,
-.animal-filters button {
-  padding: 8px 10px;
+.animal-filters select {
+  padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  font-size: 0.9rem;
+  border: 1px solid #e2e8f0;
+  background: white;
 }
 
 .animal-filters button {
-  background: #0f172a;
+  background: linear-gradient(90deg, #e86f1c, #d35400);
   color: white;
   cursor: pointer;
+  border: none;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: 0.25s ease;
 }
 
-/* ================= TABLE ================= */
-.animal-table-wrapper {
-  max-width: 1100px;
-  margin: 30px auto;
+.animal-filters button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(232, 111, 28, 0.35);
 }
+
+/* ========================================= */
+/* ============== FORM CARD ================ */
+/* ========================================= */
+
+.form2 {
+  background: white;
+  max-width: 720px;
+  margin: 30px auto;
+  padding: 28px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* form title */
+.form2 h3 {
+  grid-column: span 2;
+  text-align: center;
+  color: #e86f1c;
+  margin-bottom: 10px;
+}
+
+/* inputs */
+.form2 input,
+.form2 textarea,
+.form2 select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  background: #f8fafc;
+  transition: all 0.25s ease;
+}
+
+/* focus */
+.form2 input:focus,
+.form2 textarea:focus,
+.form2 select:focus {
+  outline: none;
+  border-color: #e86f1c;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(232, 111, 28, 0.15);
+}
+
+/* textarea full width */
+.form2 textarea {
+  grid-column: span 2;
+  min-height: 80px;
+}
+
+/* button */
+.form2 button {
+  grid-column: span 2;
+  background: linear-gradient(90deg, #e86f1c, #d35400);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.form2 button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(232, 111, 28, 0.35);
+}
+
+/* ========================================= */
+/* ================ TABLE ================== */
+/* ========================================= */
 
 .animal-table {
-  width: 100%;
+  width: 95%;
+  margin: 20px auto;
   border-collapse: collapse;
   background: white;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-  border-radius: 10px;
+  border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.animal-table th,
-.animal-table td {
-  padding: 10px 12px;
-  text-align: left;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 0.9rem;
-}
-
+/* header */
 .animal-table th {
-  background: #0f172a;
+  background: linear-gradient(90deg, #e86f1c, #d35400);
   color: white;
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
 }
 
-.animal-table tr:hover {
-  background: #f1f5f9;
+/* cells */
+.animal-table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #f1f5f9;
 }
 
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-
-  .form2 {
-    margin: 20px auto;
-    width: 95%;
-    padding: 20px 15px;
-  }
-
-  .form2 input,
-  .form2 textarea,
-  .form2 select {
-    margin: 8px auto;
-    width: 95%;
-    height: 38px;
-    display: block;
-  }
-
-  .animal-filters {
-    flex-direction: column;
-    width: 95%;
-  }
-
-  .animal-table thead {
-    display: none;
-  }
-
-  .animal-table,
-  .animal-table tbody,
-  .animal-table tr,
-  .animal-table td {
-    display: block;
-    width: 100%;
-  }
-
-  .animal-table tr {
-    margin-bottom: 16px;
-    border-radius: 12px;
-    padding: 12px;
-    background: #ffffff;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-  }
-
-  .animal-table td {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    border: none;
-  }
-
-  .animal-table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #334155;
-  }
+/* row hover */
+.animal-table tbody tr {
+  transition: 0.2s ease;
 }
+
+.animal-table tbody tr:hover {
+  background: #fff7ed;
+  transform: scale(1.002);
+}
+
+/* ========================================= */
+/* ============ OVERVIEW CARDS ============= */
+/* ========================================= */
 
 .overview-container {
-  padding: 30px;
-  background: #f4f6f9;
-  min-height: calc(100vh - 90px);
+  padding: 20px;
 }
 
-/* ===== SUMMARY GRID ===== */
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 25px;
 }
 
-/* ===== CARD ===== */
 .card {
   background: white;
-  border-radius: 14px;
-  padding: 25px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  padding: 18px;
+  border-radius: 16px;
   text-align: center;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
   transition: 0.25s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
 .card h3 {
-  color: #777;
+  margin: 0;
   font-size: 16px;
-  margin-bottom: 10px;
+  color: #64748b;
 }
 
 .card p {
-  font-size: 26px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 700;
   color: #e86f1c;
+  margin-top: 6px;
 }
 
-/* ===== CHART CARD ===== */
+/* ========================================= */
+/* ============== CHART CARDS ============== */
+/* ========================================= */
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
 .chart-card {
   background: white;
+  padding: 16px;
   border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 900px) {
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+/* ========================================= */
+/* ============== MONTH FILTER ============= */
+/* ========================================= */
 
-@media (max-width: 500px) {
-  .summary-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.overview-container {
-  padding: 30px;
-  background: #f4f6f9;
-  min-height: calc(100vh - 90px);
-}
-
-/* ===== FILTER BOX (DASHBOARD STYLE) ===== */
 .filter-box {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 12px;
   margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.filter-box label {
+  font-weight: 600;
+  color: #475569;
 }
 
 .filter-box input[type="month"] {
@@ -463,77 +267,34 @@
   padding: 10px 14px;
   border-radius: 10px;
   font-size: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
-/* hover */
 .filter-box input[type="month"]:hover {
   border-color: #e86f1c;
-  box-shadow: 0 6px 18px rgba(232,111,28,0.15);
+  box-shadow: 0 6px 18px rgba(232, 111, 28, 0.15);
 }
 
-/* focus */
 .filter-box input[type="month"]:focus {
   outline: none;
   border-color: #e86f1c;
-  box-shadow: 0 0 0 3px rgba(232,111,28,0.15);
-}
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
+  box-shadow: 0 0 0 3px rgba(232, 111, 28, 0.15);
 }
 
-.card {
-  background: white;
-  border-radius: 14px;
-  padding: 25px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  text-align: center;
-}
+/* ========================================= */
+/* ============== RESPONSIVE =============== */
+/* ========================================= */
 
-.card h3 {
-  color: #777;
-  font-size: 15px;
-  margin-bottom: 8px;
-}
-
-.card p {
-  font-size: 24px;
-  font-weight: bold;
-  color: #e86f1c;
-}
-
-.chart-card {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-/* mobile */
-@media (max-width: 900px) {
-  .summary-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .summary-grid {
+@media (max-width: 768px) {
+  .form2 {
     grid-template-columns: 1fr;
   }
-}
-.charts-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-}
 
-@media (max-width: 900px) {
-  .charts-grid {
-    grid-template-columns: 1fr;
+  .form2 textarea,
+  .form2 button,
+  .form2 h3 {
+    grid-column: span 1;
   }
 }
