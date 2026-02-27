@@ -31,8 +31,8 @@ export default function MilkPieChart({ summary }) {
             outerRadius={100}
             innerRadius={80}   // ✅ donut style
             paddingAngle={3}
-            label=renderLabel
-  
+            label={renderLabel}
+            labelLine={false}
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
