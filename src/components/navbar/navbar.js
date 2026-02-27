@@ -117,9 +117,12 @@ function Navbar() {
 
         {/* account */}
         <div
-          className="account-wrapper"
-          onClick={() => setShowDropdown(!showDropdown)}
-        >
+  className="account-wrapper"
+  onClick={(e) => {
+    e.stopPropagation()
+    setShowDropdown(!showDropdown)
+  }}
+>
           <AccountCircleIcon className="account-icon" />
 
           {isLoggedIn && (
