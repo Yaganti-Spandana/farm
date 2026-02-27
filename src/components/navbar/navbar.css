@@ -1,4 +1,4 @@
-/* ===== TOP NAVBAR ===== */
+/* ===== NAVBAR ===== */
 
 .navbar {
   height: 60px;
@@ -7,18 +7,36 @@
   display: flex;
   align-items: center;
   padding: 0 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  justify-content: space-between;
 }
 
 .logo {
-  margin-left: 12px;
   font-size: 20px;
   font-weight: 600;
 }
 
+/* ===== DESKTOP MENU ===== */
+
+.desktop-menu {
+  display: flex;
+  gap: 22px;
+}
+
+.desktop-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.desktop-menu a:hover {
+  color: #38bdf8;
+}
+
+/* ===== MENU BUTTON ===== */
+
 .menu-btn {
   cursor: pointer;
-  font-size: 30px !important;
+  display: none;
 }
 
 /* ===== MOBILE DRAWER ===== */
@@ -39,24 +57,20 @@
   left: 0;
 }
 
-/* ===== MENU ITEM ROW ===== */
+/* ===== MENU ITEM ===== */
 
 .icon {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
   color: white;
   text-decoration: none;
   padding: 12px 16px;
-  border-radius: 10px;
 }
 
 .icon:hover {
   background: rgba(255,255,255,0.12);
 }
-
-/* left side */
 
 .icon-left {
   display: flex;
@@ -64,17 +78,11 @@
   gap: 12px;
 }
 
-/* icon style */
-
 .nav-icon {
-  color: white;
   font-size: 26px !important;
 }
 
-/* arrow */
-
 .nav-arrow {
-  color: white;
   opacity: 0.8;
 }
 
@@ -90,16 +98,27 @@
   z-index: 999;
 }
 
-/* ===== DESKTOP ===== */
+/* =========================================
+   📱 MOBILE ONLY
+========================================= */
 
-@media (min-width: 769px) {
-  .menu-btn {
+@media (max-width: 768px) {
+  .desktop-menu {
     display: none;
   }
 
+  .menu-btn {
+    display: block;
+  }
+}
+
+/* =========================================
+   💻 DESKTOP ONLY
+========================================= */
+
+@media (min-width: 769px) {
   .mobile-drawer {
-    left: 0;
-    width: 220px;
+    display: none;
   }
 
   .backdrop {
