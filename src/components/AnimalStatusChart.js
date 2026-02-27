@@ -11,7 +11,7 @@ import {
 
 const COLORS = ["#28a745", "#ffc107", "#dc3545"];
 const renderLabel = ({ name, value }) => {
-  return `${name}: ₹${value}`;
+  return `${name}: ${value}`;
 };
 
 export default function AnimalStatusChart({ month }) {
@@ -67,8 +67,7 @@ export default function AnimalStatusChart({ month }) {
             dataKey="value"
             nameKey="name"
             outerRadius={100}
-            innerRadius={80}   // ✅ donut hole
-            paddingAngle={3}
+            innerRadius={80}   
             label={renderLabel}
           >
             {data.map((entry, index) => (
