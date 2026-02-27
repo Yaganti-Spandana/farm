@@ -110,6 +110,9 @@
   color: white;
   margin-left: auto;
 }
+.nav-arrow {
+  display: none;
+}
 
 /* ================================================= */
 /* ================= MOBILE ======================== */
@@ -169,6 +172,7 @@
   }
 
   .nav-arrow {
+    display: block;
     color: white;
     opacity: 0.85;
     font-size: 22px;
