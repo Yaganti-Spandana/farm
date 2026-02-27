@@ -3,6 +3,7 @@ import axios from "axios";
 import AnimalStatusChart from "./AnimalStatusChart";
 import Navbar from "./navbar/navbar";
 import "./components.css";
+import MilkPieChart from "./MilkPieChart";
 
 function Overview() {
   // ✅ default = current month
@@ -87,9 +88,17 @@ function Overview() {
         </div>
 
         {/* ===== DONUT CHART ===== */}
-        <div className="chart-card">
-          <AnimalStatusChart month={month} />
-        </div>
+        <div className="charts-grid">
+
+  <div className="chart-card">
+    <AnimalStatusChart month={month} />
+  </div>
+
+  <div className="chart-card">
+    <MilkPieChart summary={summary} />
+  </div>
+
+</div>
 
       </div>
     </>
