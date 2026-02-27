@@ -23,7 +23,7 @@ function Navbar(){
     <div className='navbar'> 
   {/* Hamburger */} 
     <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}> ☰ </div> 
-  <div className={nav-menu ${menuOpen ? "open" : ""}}> {/* Home */} 
+  <div className={`nav-menu ${menuOpen ? "open" : ""}`}> {/* Home */} 
 <Link to='/' className="icon">
   <div className="icon-left">
     <HomeIcon className="nav-icon" />
