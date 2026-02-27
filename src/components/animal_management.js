@@ -2,8 +2,11 @@ import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import "./components.css";
+import { useNavigate } from "react-router-dom";
 
 export default function AnimalForm() {
+  const navigate = useNavigate();
+
   // ✅ form state
   const [animal, setAnimal] = useState({
     animal_id: "",
@@ -97,36 +100,44 @@ export default function AnimalForm() {
     <>
       <Navbar />
 
-      <div style={{ padding: 20 }}>
- 
+      <div className="page-container">
+        {/* ✅ NEW BACK BUTTON */}
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
+
         <h2 className="head">🐄 Animal Management</h2>
 
         {/* ================= FORM ================= */}
-        <form onSubmit={handleSubmit} className="form2">
-          <h3>Add Animal</h3>
+        <div className="chart-card">
+          <form onSubmit={handleSubmit} className="modern-form">
+            <h3 className="section-title">Add Animal</h3>
 
-          <input name="animal_id" value={animal.animal_id} placeholder="Animal ID" onChange={handleChange} />
-          <input name="name" value={animal.name} placeholder="Name" onChange={handleChange} />
-          <input name="breed" value={animal.breed} placeholder="Breed" onChange={handleChange} />
-          <input name="age" type="number" value={animal.age} placeholder="Age" onChange={handleChange} />
-          <input name="purchase_date" type="date" value={animal.purchase_date} onChange={handleChange} />
-          <input name="purchase_price" value={animal.purchase_price} placeholder="Price" onChange={handleChange} />
-          <textarea name="health_records" value={animal.health_records} placeholder="Health Records" onChange={handleChange} />
-          <input name="milk_per_day" value={animal.milk_per_day} placeholder="Milk per day (L)" onChange={handleChange} />
+            <input name="animal_id" value={animal.animal_id} placeholder="Animal ID" onChange={handleChange} />
+            <input name="name" value={animal.name} placeholder="Name" onChange={handleChange} />
+            <input name="breed" value={animal.breed} placeholder="Breed" onChange={handleChange} />
+            <input name="age" type="number" value={animal.age} placeholder="Age" onChange={handleChange} />
+            <input name="purchase_date" type="date" value={animal.purchase_date} onChange={handleChange} />
+            <input name="purchase_price" value={animal.purchase_price} placeholder="Price" onChange={handleChange} />
+            <textarea name="health_records" value={animal.health_records} placeholder="Health Records" onChange={handleChange} />
+            <input name="milk_per_day" value={animal.milk_per_day} placeholder="Milk per day (L)" onChange={handleChange} />
 
-          <select name="status" value={animal.status} onChange={handleChange}>
-            <option value="active">Active</option>
-            <option value="sold">Sold</option>
-            <option value="dead">Dead</option>
-          </select>
+            <select name="status" value={animal.status} onChange={handleChange}>
+              <option value="active">Active</option>
+              <option value="sold">Sold</option>
+              <option value="dead">Dead</option>
+            </select>
 
-          <button type="submit" disabled={saving}>
-            {saving ? "Saving..." : "Save Animal"}
-          </button>
-        </form>
+            <button type="submit" disabled={saving}>
+              {saving ? "Saving..." : "Save Animal"}
+            </button>
+          </form>
+        </div>
 
         {/* ================= FILTERS ================= */}
-        <h3 className="f1">Filter Animals</h3>
+        <h3 className="section-title" style={{ marginTop: 25 }}>
+          Filter Animals
+        </h3>
 
         <div className="animal-filters">
           <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
