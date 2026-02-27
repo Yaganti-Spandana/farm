@@ -148,10 +148,13 @@ body {
 /* ========================================= */
 /* ================ TABLE ================== */
 /* ========================================= */
-
+.animal-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
 .animal-table {
-  width: 95%;
-  margin: 20px auto;
+  width: 100%;
+  margin: 20px 0;      /* remove auto centering */
   border-collapse: collapse;
   background: white;
   border-radius: 14px;
