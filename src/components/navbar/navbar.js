@@ -7,7 +7,6 @@ import DashboardIcon from '@mui/icons-material/Dashboard'
 import { FaMoneyBill, FaReceipt, FaBox } from "react-icons/fa"; 
 import { GiMilkCarton, GiCow } from "react-icons/gi"; 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 function Navbar(){ 
   const isLoggedIn = localStorage.getItem("token"); 
   const username = localStorage.getItem("username"); 
