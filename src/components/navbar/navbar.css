@@ -135,7 +135,7 @@
     background: linear-gradient(180deg, #e86f1c, #d35400);
     flex-direction: column;
     align-items: stretch;
-    padding: 20px 12px;
+    padding: 20px 12px 80px 12px;
     gap: 14px;
     transition: right 0.3s ease;
     box-shadow: -6px 0 20px rgba(0,0,0,0.25);
