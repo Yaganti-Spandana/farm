@@ -32,7 +32,7 @@ function FinancePieChart({ summary }) {
 
   return (
     <div>
-      <h3 style={{ marginBottom: "10px" }}>
+      <h3 style={{ marginBottom: "10px",textAlign:"center }}>
         Sales vs Expenses vs Profit/Loss
       </h3>
 
