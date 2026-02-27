@@ -66,8 +66,8 @@ export default function AnimalStatusChart({ month }) {
             data={data}
             dataKey="value"
             nameKey="name"
-            outerRadius={100}
-            innerRadius={80}   
+            outerRadius={80}
+            innerRadius={60}   
             label={renderLabel}
             labelLine={false}
           >
