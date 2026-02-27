@@ -55,7 +55,7 @@ const to = `${year}-${mon}-${lastDay}`;
   }, [fetchData]);
 
   return (
-    <div style={{ width: "100%", height: 420 }}>
+    <div style={{ width: "100%", height: 360 }}>
       <h2 style={{ textAlign: "center" }}>Animal Status (Monthly)</h2>
 
       <div style={{ textAlign: "center", marginBottom: 20 }}>
@@ -66,7 +66,7 @@ const to = `${year}-${mon}-${lastDay}`;
         />
       </div>
 
-      <ResponsiveContainer>
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie
             data={data}
