@@ -50,13 +50,9 @@ export default function ExpenseForm() {
       <Navbar />
 
       {/* Back button */}
-      <button 
-        onClick={() => navigate(-1)} 
-        style={{ margin: "10px",backgroundColor:"brown",color:"bisque",borderRadius:"10px" }}
-
-      >
-        ← Back
-      </button>
+      <button className="back-btn" onClick={() => navigate(-1)}>
+  ← Back
+</button>
 
       <form onSubmit={handleSubmit} className="form2">
         <input 
