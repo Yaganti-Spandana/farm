@@ -124,7 +124,8 @@
   .hamburger {
     display: block;
   }
-
+  .dropdown{
+    margin-bottom:100px;}
   .nav-menu {
     position: fixed;
     top: 90px;
