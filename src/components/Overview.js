@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import AnimalStatusChart from "./AnimalStatusChart";
 import Navbar from "./navbar/navbar";
-import "./overview.css";
+import "./components.css";
 
 function Overview() {
   // ✅ default = current month
