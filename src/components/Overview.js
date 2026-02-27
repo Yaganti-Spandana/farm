@@ -1,6 +1,6 @@
 import AnimalStatusChart from "./AnimalStatusChart";
 import Navbar from "./navbar/navbar";
-import "./overview.css";
+import "./components.css";
 
 function Overview() {
   return (
