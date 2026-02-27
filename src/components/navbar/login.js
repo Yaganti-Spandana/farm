@@ -1,33 +1,46 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { login } from "../api";
 import "./login.css";
 import Navbar from "../navbar/navbar";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 function Login() {
   const [form, setForm] = useState({ username: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  const res = await login(form);
+    e.preventDefault();
+    setError("");
 
-  localStorage.setItem("token", res.data.access);
-  localStorage.setItem("username", res.data.username); // ⭐ ADD THIS
+    try {
+      const res = await login(form);
 
-  window.location.href = "/";
-};
+      localStorage.setItem("token", res.data.access);
+      localStorage.setItem("username", res.data.username);
+
+      window.location.href = "/";
+    } catch (err) {
+      console.log(err);
+
+      if (err.response?.data?.detail) {
+        setError(err.response.data.detail);
+      } else {
+        setError("Login failed. Please try again.");
+      }
+    }
+  };
 
   return (
     <>
       <Navbar />
+
       <div className="auth-page">
-        {/* LEFT HERO */}
         <div className="auth-left">
           <h1>Welcome to Dairy Farm Management System!</h1>
         </div>
 
-        {/* RIGHT CARD */}
         <div className="auth-right">
           <form onSubmit={handleSubmit} className="auth-card">
             <h2>Login</h2>
@@ -41,22 +54,26 @@ function Login() {
             />
 
             <div className="password-wrapper">
-  <input
-    type={showPassword ? "text" : "password"}
-    placeholder="Password"
-    onChange={(e) =>
-      setForm({ ...form, password: e.target.value })
-    }
-    required
-  />
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                onChange={(e) =>
+                  setForm({ ...form, password: e.target.value })
+                }
+                required
+              />
 
-  <span
-    className="eye-icon"
-    onClick={() => setShowPassword(!showPassword)}
-  >
-    {showPassword ? <VisibilityOff /> : <Visibility />}
-  </span>
-</div>
+              <span
+                className="eye-icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </span>
+            </div>
+
+            {/* 🔴 ERROR MESSAGE */}
+            {error && <p className="error-text">{error}</p>}
+
             <button type="submit">Login</button>
 
             <p className="switch-text">
