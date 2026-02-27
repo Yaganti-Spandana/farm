@@ -60,14 +60,14 @@ export default function AnimalStatusChart({ month }) {
     <div style={{ width: "100%", height: 360 }}>
       <h2 style={{ textAlign: "center",color:"orange"  }}>Animal Status</h2>
 
-      <ResponsiveContainer width="80%" height={300}>
+      <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
             data={data}
             dataKey="value"
             nameKey="name"
             outerRadius={80}
-            innerRadius={60}   
+            innerRadius={70}   
             label={renderLabel}
             labelLine={false}
           >
