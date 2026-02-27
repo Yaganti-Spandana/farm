@@ -44,12 +44,16 @@ function Overview() {
 
         {/* ===== MONTH FILTER ===== */}
         <div className="filter-box">
-          <input
-            type="month"
-            value={month}
-            onChange={(e) => setMonth(e.target.value)}
-          />
-        </div>
+  <label style={{ fontWeight: 600, color: "#555" }}>
+    Select Month:
+  </label>
+
+  <input
+    type="month"
+    value={month}
+    onChange={(e) => setMonth(e.target.value)}
+  />
+</div>
 
         {/* ===== SUMMARY CARDS ===== */}
         <div className="summary-grid">
