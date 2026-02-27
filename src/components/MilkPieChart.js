@@ -13,8 +13,8 @@ const renderLabel = ({ name, value }) => {
 };
 export default function MilkPieChart({ summary }) {
   const data = [
-    { name: "Milk Sold", value: summary.milk_sold || 0 },
-    { name: "Home Use", value: summary.milk_home || 0 },
+    { name: "Sold", value: summary.milk_sold || 0 },
+    { name: "Used", value: summary.milk_home || 0 },
     { name: "Wasted", value: summary.milk_wasted || 0 },
   ];
 
