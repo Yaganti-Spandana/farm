@@ -22,7 +22,7 @@ function Navbar(){
   return( <div className='navbar'> {/* Hamburger */} 
     <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}> ☰ </div> 
   <div className={`nav-menu ${menuOpen ? "open" : ""}`}> {/* Home */} 
-<Link to='/' className="icon"> <HomeIcon style={{ color: "white", fontSize: "30px"}} /> <p>Home</p> </Link> 
+<Link to='/' className="icon"> <HomeIcon style={{ color: "white", fontSize: "30px"}} /> <span>Home</span> </Link> 
 {/* NEW Overview component */} {isLoggedIn && ( <Link to='/overview' className="icon"> <DashboardIcon style={{ color: "white", fontSize: "30px"}} /> <p>Overview</p> </Link> )} 
 {isLoggedIn && ( <> <Link to='/animal' className="icon"> <GiCow style={{ color: "white", fontSize: "30px"}} /> <p>Animal</p> </Link> 
   <Link to='/milk' className="icon"> <GiMilkCarton style={{ color: "white", fontSize: "30px"}} /> <p>Milk</p> </Link> 
