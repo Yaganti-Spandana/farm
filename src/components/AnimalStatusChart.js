@@ -63,8 +63,8 @@ export default function AnimalStatusChart({ month }) {
             data={data}
             dataKey="value"
             nameKey="name"
-            outerRadius={130}
-            innerRadius={70}   // ✅ donut hole
+            outerRadius={100}
+            innerRadius={80}   // ✅ donut hole
             paddingAngle={3}
             label
           >
