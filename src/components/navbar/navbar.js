@@ -21,7 +21,6 @@ function Navbar() {
     <>
       {/* ===== DESKTOP NAVBAR ===== */}
       <div className="navbar desktop-nav">
-        <h2 className="logo">Dairy Dashboard</h2>
 
         <div className="desktop-menu">
           <Link to="/">Home</Link>
@@ -103,7 +102,14 @@ function Navbar() {
           <ChevronRightIcon className="nav-arrow" />
         </Link>
       </div>
-
+{/* Account */} 
+<div className="account-wrapper" onClick={() => setShowDropdown(!showDropdown)} > 
+  <AccountCircleIcon style={{ color: "white", fontSize: "30px", cursor: "pointer" }} />
+{isLoggedIn && ( <span className="username-text"> {username} </span> )} 
+{showDropdown && ( <div className="dropdown"> {isLoggedIn ?
+  ( <> <Link to='/accounts'style={{ color: "#d35400", fontSize: "20px", cursor: "pointer" }}>Records</Link><br/> 
+  <button onClick={handleLogout}>Logout</button> </> ) : ( <> <Link to="/login">Login</Link> 
+  <Link to="/signup">Register</Link> </> )} </div> )} </div>
       {open && <div className="backdrop" onClick={closeDrawer}></div>}
     </>
   );
