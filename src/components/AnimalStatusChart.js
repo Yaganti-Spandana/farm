@@ -69,6 +69,7 @@ export default function AnimalStatusChart({ month }) {
             outerRadius={100}
             innerRadius={80}   
             label={renderLabel}
+            labelLine={false}
           >
             {data.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
