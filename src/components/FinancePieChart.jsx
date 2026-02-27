@@ -36,7 +36,7 @@ function FinancePieChart({ summary }) {
         Sales vs Expenses vs Profit/Loss
       </h3>
 
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="80%" height={320}>
         <PieChart>
           <Pie
             data={data}
