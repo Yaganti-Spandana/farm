@@ -155,49 +155,69 @@ export default function AnimalForm() {
 
         {/* ================= TABLE ================= */}
         <div className="animal-table-wrapper">
-          {loading ? (
-            <p style={{ textAlign: "center" }}>Loading...</p>
-          ) : (
-            <table className="animal-table">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Animal ID</th>
-                  <th>Name</th>
-                  <th>Breed</th>
-                  <th>Age</th>
-                  <th>Purchase Date</th>
-                  <th>Price</th>
-                  <th>Milk/Day</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {animals.length === 0 ? (
-                  <tr>
-                    <td colSpan="9" style={{ textAlign: "center" }}>
-                      No animals found
-                    </td>
-                  </tr>
-                ) : (
-                  animals.map((a) => (
-                    <tr key={a.id}>
-                      <td data-label="ID">{a.id}</td>
-                      <td data-label="Animal ID">{a.animal_id}</td>
-                      <td data-label="Name">{a.name}</td>
-                      <td data-label="Breed">{a.breed}</td>
-                      <td data-label="Age">{a.age}</td>
-                      <td data-label="Purchase Date">{a.purchase_date}</td>
-                      <td data-label="Price">{a.purchase_price}</td>
-                      <td data-label="Milk/Day">{a.milk_per_day}</td>
-                      <td data-label="Status">{a.status}</td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          )}
-        </div>
+  {loading ? (
+    <p style={{ textAlign: "center" }}>Loading...</p>
+  ) : animals.length === 0 ? (
+    <p style={{ textAlign: "center" }}>No animals found</p>
+  ) : (
+    <>
+      {/* ================= DESKTOP TABLE ================= */}
+      <table className="animal-table desktop-only">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Animal ID</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>Age</th>
+            <th>Purchase Date</th>
+            <th>Price</th>
+            <th>Milk/Day</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {animals.map((a) => (
+            <tr key={a.id}>
+              <td>{a.id}</td>
+              <td>{a.animal_id}</td>
+              <td>{a.name}</td>
+              <td>{a.breed}</td>
+              <td>{a.age}</td>
+              <td>{a.purchase_date}</td>
+              <td>{a.purchase_price}</td>
+              <td>{a.milk_per_day}</td>
+              <td>{a.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* ================= MOBILE CARDS ================= */}
+      <div className="animal-cards mobile-only">
+        {animals.map((a) => (
+          <div key={a.id} className="animal-card">
+            <div className="card-header">
+              <strong>{a.name}</strong>
+              <span className={`status-badge ${a.status}`}>
+                {a.status}
+              </span>
+            </div>
+
+            <div className="card-grid">
+              <div><b>ID:</b> {a.animal_id}</div>
+              <div><b>Breed:</b> {a.breed}</div>
+              <div><b>Age:</b> {a.age}</div>
+              <div><b>Milk/Day:</b> {a.milk_per_day} L</div>
+              <div><b>Price:</b> ₹{a.purchase_price}</div>
+              <div><b>Purchase:</b> {a.purchase_date}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  )}
+</div>
       </div>
     </>
   );
