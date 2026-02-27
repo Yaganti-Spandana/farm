@@ -37,8 +37,8 @@ function FinancePieChart({ summary }) {
           <Pie
             data={data}
             dataKey="value"
-            innerRadius={60}   // ✅ no color inside (donut)
-            outerRadius={110}
+            innerRadius={80}   // ✅ no color inside (donut)
+            outerRadius={100}
             paddingAngle={3}
           >
             {data.map((entry, index) => (
