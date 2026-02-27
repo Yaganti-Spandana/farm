@@ -1,78 +1,164 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
+import "./components.css";
 import { useNavigate } from "react-router-dom";
-import './components.css'
-export default function AnimalManagement() {
+
+export default function AnimalForm() {
   const navigate = useNavigate();
 
+  // ✅ form state
+  const [animal, setAnimal] = useState({
+    animal_id: "",
+    name: "",
+    breed: "",
+    age: "",
+    purchase_date: "",
+    purchase_price: "",
+    health_records: "",
+    milk_per_day: "",
+    status: "active",
+  });
+
+  // ✅ table/filter state
   const [animals, setAnimals] = useState([]);
+  const [statusFilter, setStatusFilter] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
   const [loading, setLoading] = useState(false);
+  const [saving, setSaving] = useState(false);
 
-  // ✅ default month filter
-  const today = new Date();
-  const defaultMonth = today.toISOString().slice(0, 7);
+  // =========================
+  // FORM HANDLER
+  // =========================
+  const handleChange = (e) => {
+    setAnimal({ ...animal, [e.target.name]: e.target.value });
+  };
 
-  const [filterMonth, setFilterMonth] = useState(defaultMonth);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSaving(true);
 
-  // ================= FETCH DATA =================
-  const fetchAnimals = async () => {
-    setLoading(true);
     try {
-      const res = await axios.get(
-        "https://farm-pgi5.onrender.com/api/animals/"
+      await axios.post(
+        "https://farm-pgi5.onrender.com/api/animals/",
+        animal
       );
-      setAnimals(res.data);
+
+      alert("Animal added!");
+
+      setAnimal({
+        animal_id: "",
+        name: "",
+        breed: "",
+        age: "",
+        purchase_date: "",
+        purchase_price: "",
+        health_records: "",
+        milk_per_day: "",
+        status: "active",
+      });
+
+      fetchAnimals();
     } catch (err) {
       console.error(err);
+      alert("Failed to add animal");
+    } finally {
+      setSaving(false);
     }
-    setLoading(false);
   };
+
+  // =========================
+  // FETCH ANIMALS
+  // =========================
+  const fetchAnimals = useCallback(async () => {
+    setLoading(true);
+    try {
+      let url = "https://farm-pgi5.onrender.com/api/animals/?";
+
+      if (statusFilter) url += `status=${statusFilter}&`;
+      if (fromDate) url += `from=${fromDate}&`;
+      if (toDate) url += `to=${toDate}&`;
+
+      const res = await axios.get(url);
+      setAnimals(res.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [statusFilter, fromDate, toDate]);
 
   useEffect(() => {
     fetchAnimals();
-  }, []);
+  }, [fetchAnimals]);
 
-  // ================= FILTER LOGIC =================
-  const filteredAnimals = animals.filter((a) => {
-    if (!filterMonth) return true;
-    if (!a.purchase_date) return true;
-    return a.purchase_date.startsWith(filterMonth);
-  });
-
+  // =========================
+  // UI
+  // =========================
   return (
     <>
       <Navbar />
 
-      <button
-        onClick={() => navigate(-1)}
-        className="back-btn"
-      >
-        ← Back
-      </button>
+      <div className="page-container">
+        {/* ✅ NEW BACK BUTTON */}
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
 
-      <h1 className="page-title">Animal Management</h1>
+        <h2 className="head">🐄 Animal Management</h2>
 
-      {/* ================= FILTER ================= */}
-      <div className="filter-bar">
-        <label>Filter by Month:</label>
-        <input
-          type="month"
-          value={filterMonth}
-          onChange={(e) => setFilterMonth(e.target.value)}
-        />
-      </div>
+        {/* ================= FORM ================= */}
+        <div className="chart-card">
+          <form onSubmit={handleSubmit} className="modern-form">
+            <h3 className="section-title">Add Animal</h3>
 
-      {/* ================= DATA VIEW ================= */}
-      <div className="animal-table-wrapper">
-        {loading ? (
-          <p className="center-text">Loading...</p>
-        ) : filteredAnimals.length === 0 ? (
-          <p className="center-text">No animals found</p>
-        ) : (
-          <>
-            {/* ================= DESKTOP TABLE ================= */}
-            <table className="animal-table desktop-only">
+            <input name="animal_id" value={animal.animal_id} placeholder="Animal ID" onChange={handleChange} />
+            <input name="name" value={animal.name} placeholder="Name" onChange={handleChange} />
+            <input name="breed" value={animal.breed} placeholder="Breed" onChange={handleChange} />
+            <input name="age" type="number" value={animal.age} placeholder="Age" onChange={handleChange} />
+            <input name="purchase_date" type="date" value={animal.purchase_date} onChange={handleChange} />
+            <input name="purchase_price" value={animal.purchase_price} placeholder="Price" onChange={handleChange} />
+            <textarea name="health_records" value={animal.health_records} placeholder="Health Records" onChange={handleChange} />
+            <input name="milk_per_day" value={animal.milk_per_day} placeholder="Milk per day (L)" onChange={handleChange} />
+
+            <select name="status" value={animal.status} onChange={handleChange}>
+              <option value="active">Active</option>
+              <option value="sold">Sold</option>
+              <option value="dead">Dead</option>
+            </select>
+
+            <button type="submit" disabled={saving}>
+              {saving ? "Saving..." : "Save Animal"}
+            </button>
+          </form>
+        </div>
+
+        {/* ================= FILTERS ================= */}
+        <h3 className="section-title" style={{ marginTop: 25 }}>
+          Filter Animals
+        </h3>
+
+        <div className="animal-filters">
+          <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+            <option value="">All Status</option>
+            <option value="active">Active</option>
+            <option value="sold">Sold</option>
+            <option value="dead">Dead</option>
+          </select>
+
+          <input type="date" value={fromDate} onChange={(e) => setFromDate(e.target.value)} />
+          <input type="date" value={toDate} onChange={(e) => setToDate(e.target.value)} />
+
+          <button onClick={fetchAnimals}>Search</button>
+        </div>
+
+        {/* ================= TABLE ================= */}
+        <div className="animal-table-wrapper">
+          {loading ? (
+            <p style={{ textAlign: "center" }}>Loading...</p>
+          ) : (
+            <table className="animal-table">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -87,50 +173,31 @@ export default function AnimalManagement() {
                 </tr>
               </thead>
               <tbody>
-                {filteredAnimals.map((a) => (
-                  <tr key={a.id}>
-                    <td>{a.id}</td>
-                    <td>{a.animal_id}</td>
-                    <td>{a.name}</td>
-                    <td>{a.breed}</td>
-                    <td>{a.age}</td>
-                    <td>{a.purchase_date}</td>
-                    <td>₹{a.purchase_price}</td>
-                    <td>{a.milk_per_day} L</td>
-                    <td>
-                      <span className={`status-badge ${a.status}`}>
-                        {a.status}
-                      </span>
+                {animals.length === 0 ? (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: "center" }}>
+                      No animals found
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  animals.map((a) => (
+                    <tr key={a.id}>
+                      <td data-label="ID">{a.id}</td>
+                      <td data-label="Animal ID">{a.animal_id}</td>
+                      <td data-label="Name">{a.name}</td>
+                      <td data-label="Breed">{a.breed}</td>
+                      <td data-label="Age">{a.age}</td>
+                      <td data-label="Purchase Date">{a.purchase_date}</td>
+                      <td data-label="Price">{a.purchase_price}</td>
+                      <td data-label="Milk/Day">{a.milk_per_day}</td>
+                      <td data-label="Status">{a.status}</td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
-
-            {/* ================= MOBILE CARDS ================= */}
-            <div className="animal-cards mobile-only">
-              {filteredAnimals.map((a) => (
-                <div key={a.id} className="animal-card">
-                  <div className="card-header">
-                    <strong>{a.name}</strong>
-                    <span className={`status-badge ${a.status}`}>
-                      {a.status}
-                    </span>
-                  </div>
-
-                  <div className="card-grid">
-                    <div><b>ID:</b> {a.animal_id}</div>
-                    <div><b>Breed:</b> {a.breed}</div>
-                    <div><b>Age:</b> {a.age}</div>
-                    <div><b>Milk/Day:</b> {a.milk_per_day} L</div>
-                    <div><b>Price:</b> ₹{a.purchase_price}</div>
-                    <div><b>Purchase:</b> {a.purchase_date}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
+          )}
+        </div>
       </div>
     </>
   );
