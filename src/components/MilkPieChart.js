@@ -9,7 +9,7 @@ import {
 
 const COLORS = ["#28a745", "#007bff", "#dc3545"];
 const renderLabel = ({ name, value }) => {
-  return `${name}: ${value}Ltrs`;
+  return `${name}: ${value} L`;
 };
 export default function MilkPieChart({ summary }) {
   const data = [
