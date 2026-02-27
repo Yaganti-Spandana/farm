@@ -57,7 +57,7 @@ export default function AnimalStatusChart({ month }) {
     <div style={{ width: "100%", height: 360 }}>
       <h2 style={{ textAlign: "center",color:"orange"  }}>Animal Status</h2>
 
-      <ResponsiveContainer width="100%" height={350}>
+      <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
             data={data}
