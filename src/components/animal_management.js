@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import { useNavigate } from "react-router-dom";
-
+import './components.css'
 export default function AnimalManagement() {
   const navigate = useNavigate();
 
