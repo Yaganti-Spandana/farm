@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Navbar from "./navbar/navbar";
-
+import "./ForgotPassword.css";
 function ResetPassword() {
   const { token } = useParams();
   const [password, setPassword] = useState("");

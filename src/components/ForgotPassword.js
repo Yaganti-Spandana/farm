@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-
+import "./ForgotPassword.css";
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [msg, setMsg] = useState("");      // Success or error message
