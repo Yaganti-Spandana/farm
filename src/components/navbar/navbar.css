@@ -8,7 +8,6 @@
   padding: 0 28px;
   position: relative;
   z-index: 1000;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 /* ===== MENU ===== */
@@ -18,7 +17,6 @@
   gap: 38px;
   border-radius: 15px;
   padding: 20px 13px 20px 30px;
-  flex-wrap: wrap; /* wrap on smaller desktops */
 }
 
 /* ===== ICON ===== */
@@ -29,10 +27,7 @@
   font-size: 13px;
   transition: all 0.25s ease;
   margin-left: 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
+  display: inline-block;
 }
 
 .icon:hover {
@@ -40,31 +35,21 @@
   opacity: 0.9;
 }
 
+/* left group */
 .menu-left {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
 }
 
 .menu-icon {
   color: white;
   font-size: 30px;
-  transition: transform 0.2s ease;
 }
 
 .icon p {
   margin-top: 4px;
   font-weight: 500;
-  white-space: nowrap;
-}
-
-/* Hover animation */
-.icon:hover .menu-icon {
-  transform: scale(1.1);
-}
-.icon:hover p {
-  color: #ffecd1;
 }
 
 /* ===== ACCOUNT ===== */
@@ -90,9 +75,9 @@
 /* ===== DROPDOWN ===== */
 .dropdown {
   position: fixed;
-  top: 100px;
-  right: 10px;
-  z-index: 2000;
+    top: 100px;
+    right: 10px;
+    z-index: 2000;
   background: white;
   border-radius: 12px;
   padding: 8px 6px;
@@ -102,16 +87,13 @@
   flex-direction: column;
   gap: 10px;
   text-align: center;
+  
 }
 
 .dropdown a {
   text-decoration: none;
   color: #d35400;
   font-weight: 500;
-  transition: color 0.2s ease;
-}
-.dropdown a:hover {
-  color: #e86f1c;
 }
 
 .dropdown button {
@@ -121,10 +103,6 @@
   padding: 6px 10px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s ease;
-}
-.dropdown button:hover {
-  background: #e86f1c;
 }
 
 /* ===== HAMBURGER ===== */
@@ -135,46 +113,19 @@
   color: white;
   margin-left: auto;
 }
-
 .nav-arrow {
   display: none !important;
 }
 
-/* ===== DESKTOP / LAPTOP FIX ===== */
-@media (min-width: 769px) {
-  .nav-menu {
-    justify-content: center; /* center icons horizontally */
-    gap: 50px; /* space between icons */
-    padding-left: 0; /* remove extra left padding */
-    padding-right: 0; /* optional symmetry */
-  }
-
-  .icon {
-    margin-left: 0; /* remove left margin */
-  }
-
-  .menu-left {
-    gap: 6px;
-  }
-
-  .menu-icon {
-    font-size: 28px;
-  }
-
-  .icon p {
-    font-size: 13px;
-  }
-}
-
 /* ================================================= */
-/* ================= MOBILE / TABLET ======================== */
+/* ================= MOBILE ======================== */
 /* ================================================= */
+
 @media (max-width: 768px) {
 
   .hamburger {
     display: block;
   }
-  
   .nav-menu {
     position: fixed;
     top: 90px;
@@ -195,12 +146,14 @@
     right: 0;
   }
 
+  /* 🔥 ICICI style rows */
   .icon {
     width: 100%;
     margin-left: 0;
     padding: 14px 12px;
     border-radius: 10px;
     background: rgba(255,255,255,0.08);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -235,44 +188,8 @@
   .dropdown button {
     margin-bottom: 40px;
   }
-  
-  .account-wrapper {
+  .account-wrapper{
     margin-top: auto;
-    margin-bottom: 80px;
-  }
-}
-@media (max-width: 1020px) {
-  .nav-menu {
-    justify-content: center; /* center icons horizontally */
-    gap: 50px; /* spacing between icons */
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  .icon {
-    margin-left: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .menu-left {
-    gap: 6px;
-  }
-
-  .menu-icon {
-    font-size: 28px; /* slightly bigger icons for desktop */
-  }
-
-  .icon p {
-    font-size: 13px;
-  }
-
-  .hamburger {
-    display: none; /* hide hamburger on desktop mode */
-  }
-
-  .nav-arrow {
-    display: none !important; /* hide arrows on desktop mode */
+    margin-bottom:80px;
   }
 }
