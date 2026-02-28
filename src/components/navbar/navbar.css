@@ -140,15 +140,17 @@
   display: none !important;
 }
 
-/* ===== DESKTOP / LARGE SCREEN STYLING ===== */
+/* ===== DESKTOP / LAPTOP FIX ===== */
 @media (min-width: 769px) {
   .nav-menu {
-    justify-content: flex-start;
-    gap: 40px;
+    justify-content: center; /* center icons horizontally */
+    gap: 50px; /* space between icons */
+    padding-left: 0; /* remove extra left padding */
+    padding-right: 0; /* optional symmetry */
   }
 
   .icon {
-    margin-left: 0;
+    margin-left: 0; /* remove left margin */
   }
 
   .menu-left {
