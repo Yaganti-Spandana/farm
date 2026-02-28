@@ -241,7 +241,7 @@
     margin-bottom: 80px;
   }
 }
-@media (min-width: 769px) {
+@media (max-width: 1020px) {
   .nav-menu {
     justify-content: center; /* center icons horizontally */
     gap: 50px; /* spacing between icons */
