@@ -193,3 +193,40 @@
     margin-bottom:80px;
   }
 }
+
+/* ================= Tablet / Small Desktop (769px–1024px) ================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-menu {
+    justify-content: space-around; /* spread icons nicely */
+    gap: 0; /* spacing handled by space-around */
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .icon {
+    margin-left: 0; /* remove left margin */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-left {
+    gap: 5px;
+  }
+
+  .menu-icon {
+    font-size: 26px; /* slightly smaller than laptop/desktop */
+  }
+
+  .icon p {
+    font-size: 13px;
+  }
+
+  .hamburger {
+    display: none; /* hide hamburger on tablet/desktop */
+  }
+
+  .nav-arrow {
+    display: none !important;
+  }
+}
