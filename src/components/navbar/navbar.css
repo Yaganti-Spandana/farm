@@ -18,7 +18,7 @@
   gap: 38px;
   border-radius: 15px;
   padding: 20px 13px 20px 30px;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* wrap on smaller desktops */
 }
 
 /* ===== ICON ===== */
@@ -28,6 +28,7 @@
   text-align: center;
   font-size: 13px;
   transition: all 0.25s ease;
+  margin-left: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,13 +140,41 @@
   display: none !important;
 }
 
+/* ===== DESKTOP / LAPTOP FIX ===== */
+@media (min-width: 769px) {
+  .nav-menu {
+    justify-content: center; /* center icons horizontally */
+    gap: 50px; /* space between icons */
+    padding-left: 0; /* remove extra left padding */
+    padding-right: 0; /* optional symmetry */
+  }
+
+  .icon {
+    margin-left: 0; /* remove left margin */
+  }
+
+  .menu-left {
+    gap: 6px;
+  }
+
+  .menu-icon {
+    font-size: 28px;
+  }
+
+  .icon p {
+    font-size: 13px;
+  }
+}
+
 /* ================================================= */
-/* ================= MOBILE VIEW (≤768px) ================= */
+/* ================= MOBILE / TABLET ======================== */
+/* ================================================= */
 @media (max-width: 768px) {
+
   .hamburger {
     display: block;
   }
-
+  
   .nav-menu {
     position: fixed;
     top: 90px;
@@ -206,15 +235,12 @@
   .dropdown button {
     margin-bottom: 40px;
   }
-
+  
   .account-wrapper {
     margin-top: auto;
     margin-bottom: 80px;
   }
 }
-
-/* ================================================= */
-/* ===== MOBILE CHROME DESKTOP SITE MODE & LAPTOP (≥769px) ===== */
 @media (min-width: 769px) {
   .nav-menu {
     justify-content: center; /* center icons horizontally */
