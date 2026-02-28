@@ -18,8 +18,8 @@ function ForgotPassword() {
 
       setMsg("Password reset link sent to your email.");
     } catch (err) {
-    console.error(err.response.data); // check why 400
-  }
+  console.error(err.response?.data || err.message);
+}
   };
 
   return (
