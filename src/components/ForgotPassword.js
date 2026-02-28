@@ -4,53 +4,56 @@ import Navbar from "./navbar/navbar";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
-  const [msg, setMsg] = useState(""); // Success or error message
-  const [error, setError] = useState(""); // Detailed error
-  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("");      // Success or error message
+  const [errorType, setErrorType] = useState(""); // "network" or "server"
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMsg("");
-    setError("");
-    setLoading(true);
+    setErrorType("");
+
+    if (!email) {
+      setMsg("Please enter your email.");
+      return;
+    }
 
     try {
       const res = await axios.post(
         "https://farm-pgi5.onrender.com/api/password_reset/",
-        { email }, // Must be object with "email" key
+        { email },
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, // Needed if server sends cookies
+          headers: { "Content-Type": "application/json" },
+          timeout: 15000, // 15 seconds timeout
         }
       );
 
-      if (res.status === 200) {
-        setMsg(
-          "If this email exists in our system, a password reset link has been sent."
-        );
-      } else {
-        setError("Unexpected server response. Please try again later.");
-      }
+      // If backend returns 200
+      setMsg("✅ Password reset link sent to your email!");
+      setErrorType("success");
+
     } catch (err) {
-      // Handle network/CORS errors separately
+      console.error(err);
+
+      // Axios network error (server not reachable, CORS blocked)
       if (!err.response) {
-        setError(
-          "Network error: unable to reach the server. Please check your internet connection or try again later."
+        setMsg(
+          "⚠️ Network error: unable to reach the server. Check your internet or try again later."
         );
+        setErrorType("network");
       } else if (err.response.status >= 400 && err.response.status < 500) {
-        setError(
-          "There was a problem with your request. Please check your email and try again."
+        // Client errors like invalid email
+        setMsg(
+          err.response.data?.email?.[0] ||
+          "⚠️ Invalid request. Please check your email and try again."
         );
-      } else {
-        setError(
-          "Server error: something went wrong. Please try again later."
+        setErrorType("client");
+      } else if (err.response.status >= 500) {
+        // Server errors
+        setMsg(
+          "⚠️ Server error: password reset email could not be sent. Try again later."
         );
+        setErrorType("server");
       }
-      console.error("ForgotPassword error:", err.response || err.message);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -69,13 +72,20 @@ function ForgotPassword() {
             required
           />
 
-          <button type="submit" disabled={loading}>
-            {loading ? "Sending..." : "Send Reset Link"}
-          </button>
+          <button type="submit">Send Reset Link</button>
 
-          {/* Display messages */}
-          {msg && <p className="success-text">{msg}</p>}
-          {error && <p className="error-text">{error}</p>}
+          {/* Message display */}
+          {msg && (
+            <p
+              className={
+                errorType === "success"
+                  ? "success-text"
+                  : "error-text"
+              }
+            >
+              {msg}
+            </p>
+          )}
         </form>
       </div>
     </>
