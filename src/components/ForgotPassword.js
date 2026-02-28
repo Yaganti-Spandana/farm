@@ -18,14 +18,11 @@ function ForgotPassword() {
     }
 
     try {
-      const res = await axios.post(
-        "https://farm-pgi5.onrender.com/api/password_reset/",
-        { email },
-        {
-          headers: { "Content-Type": "application/json" },
-          timeout: 15000, // 15 seconds timeout
-        }
-      );
+      await axios.post(
+  "https://farm-pgi5.onrender.com/api/password_reset/",
+  { email },
+  { headers: { "Content-Type": "application/json" }, timeout: 15000 }
+);
 
       // If backend returns 200
       setMsg("✅ Password reset link sent to your email!");
