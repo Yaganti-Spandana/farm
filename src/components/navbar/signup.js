@@ -2,8 +2,9 @@ import { signup } from "../api";
 import { useState } from "react";
 import "./login.css";
 import Navbar from "../navbar/navbar";
-
+import { useNavigate } from "react-router-dom";
 function Signup() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -14,8 +15,8 @@ function Signup() {
     e.preventDefault();
     await signup(form);
     alert("Account created");
+    navigate("/login");
   };
-
   return (
     <>
       <Navbar />
