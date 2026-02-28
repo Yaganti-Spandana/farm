@@ -23,12 +23,12 @@ function Navbar() {
     window.location.href = "/login"
   }
 
-  // Lock body scroll when menu open (mobile)
+  // lock body scroll when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto"
   }, [menuOpen])
 
-  // Close menu on click
+  // 🔥 auto close menu on click (mobile)
   const handleMenuClick = () => {
     setMenuOpen(false)
   }
@@ -36,7 +36,7 @@ function Navbar() {
   return (
     <div className='navbar'>
 
-      {/* Hamburger (mobile only) */}
+      {/* hamburger */}
       <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
         ☰
       </div>
@@ -63,7 +63,6 @@ function Navbar() {
           </Link>
         )}
 
-        {/* Other links */}
         {isLoggedIn && (
           <>
             <Link to='/animal' className="icon" onClick={handleMenuClick}>
@@ -116,28 +115,31 @@ function Navbar() {
           </>
         )}
 
-        {/* Account */}
+        {/* account */}
         <div
-          className="account-wrapper"
-          onClick={(e) => {
-            e.stopPropagation()
-            setShowDropdown(!showDropdown)
-          }}
-        >
+  className="account-wrapper"
+  onClick={(e) => {
+    e.stopPropagation()
+    setShowDropdown(!showDropdown)
+  }}
+>
           <AccountCircleIcon className="account-icon" />
-          {isLoggedIn && <span className="username-text">{username}</span>}
+
+          {isLoggedIn && (
+            <span className="username-text">{username}</span>
+          )}
 
           {showDropdown && (
             <div className="dropdown">
               {isLoggedIn ? (
                 <>
-                  <Link to='/accounts'>Records</Link>
+                  <Link to='/accounts' style={{color:"#d35400"}}>Records</Link>
                   <button onClick={handleLogout}>Logout</button>
                 </>
               ) : (
                 <>
-                  <Link to="/login">Login</Link>
-                  <Link to="/signup">Register</Link>
+                  <Link to="/login" style={{color:"#d35400"}}>Login</Link>
+                  <Link to="/signup" style={{color:"#d35400"}}>Register</Link>
                 </>
               )}
             </div>
@@ -148,5 +150,4 @@ function Navbar() {
     </div>
   )
 }
-
 export default Navbar
