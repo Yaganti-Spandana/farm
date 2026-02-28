@@ -204,7 +204,7 @@
   }
 
   .icon {
-    margin-left: 0; /* remove left margin */
+    margin-left: 30; /* remove left margin */
     display: flex;
     flex-direction: column;
     align-items: center;
