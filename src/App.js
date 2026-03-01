@@ -13,6 +13,7 @@ import AccountDashboard from './components/records';
 import Overview from './components/Overview';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
+import Footer from './components/Footer';
 function App() {
   return (
     <div className='app'>
@@ -32,7 +33,8 @@ function App() {
 <Route path="/reset-password/:token" element={<ResetPassword />} />
   <Route path="/accounts" element={<AccountDashboard />} />
       </Routes>
-      </BrowserRouter></div>
+      </BrowserRouter>
+      <Footer/></div>
   );
 }
 

@@ -1,0 +1,64 @@
+/* ===== FOOTER ===== */
+.footer {
+  background: linear-gradient(90deg, #e86f1c, #d35400);
+  color: white;
+  padding: 18px 20px;
+  margin-top: 40px;
+}
+
+/* layout */
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* text */
+.footer-text {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.footer-dev {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.footer-dev span {
+  font-weight: 700;
+}
+
+/* WhatsApp button */
+.whatsapp-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #25d366;
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .whatsapp-btn {
+    justify-content: center;
+  }
+}
