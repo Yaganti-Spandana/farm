@@ -9,6 +9,9 @@ function Footer() {
 
         <p className="footer-text">
           © {year} All Rights Reserved
+        </p><br></br>
+        <p className="footer-dev">
+          Developed by 
         </p>
         <a
           href="https://yaganti-spandana.netlify.app/"
@@ -17,7 +20,7 @@ function Footer() {
           className="whatsapp-btn"
         >
         <p className="footer-dev">
-          Developed by <span>SPANDANA YAGANTI</span>
+         <span>SPANDANA YAGANTI</span>
         </p>
         </a>
 
