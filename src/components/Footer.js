@@ -7,22 +7,17 @@ function Footer() {
     <footer className="footer">
       <div className="footer-content">
 
-        <p className="footer-text">
-          © {year} All Rights Reserved
-        </p><br></br>
-        <p className="footer-dev">
-          Developed by 
+        <p className="footer-line">
+          © {year} All Rights Reserved | Developed by{" "}
+          <a
+            href="https://yaganti-spandana.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="dev-link"
+          >
+            SPANDANA YAGANTI
+          </a>
         </p>
-        <a
-          href="https://yaganti-spandana.netlify.app/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="whatsapp-btn"
-        >
-        <p className="footer-dev">
-         <span>SPANDANA YAGANTI</span>
-        </p>
-        </a>
 
       </div>
     </footer>
