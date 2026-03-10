@@ -188,14 +188,12 @@ body {
   background: linear-gradient(90deg, #e86f1c, #d35400);
   color: white;
   font-weight: 600;
-  padding: 10px 30px;
   text-align: center;
   width:10%;
 }
 
 /* cells */
 .animal-table td {
-  padding: 8px 30px;
   text-align: center;
   border-bottom: 1px solid #f1f5f9;
   width:10%;
