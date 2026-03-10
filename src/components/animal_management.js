@@ -34,39 +34,78 @@ export default function AnimalForm() {
   const handleChange = (e) => {
     setAnimal({ ...animal, [e.target.name]: e.target.value });
   };
-
+  const [editingId, setEditingId] = useState(null);
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSaving(true);
+  e.preventDefault();
+  setSaving(true);
 
-    try {
+  try {
+    if (editingId) {
+      await axios.put(
+        `https://farm-pgi5.onrender.com/api/animals/${editingId}/`,
+        animal
+      );
+      alert("Animal updated!");
+      setEditingId(null);
+    } else {
       await axios.post(
         "https://farm-pgi5.onrender.com/api/animals/",
         animal
       );
-
       alert("Animal added!");
-
-      setAnimal({
-        animal_id: "",
-        name: "",
-        breed: "",
-        age: "",
-        purchase_date: "",
-        purchase_price: "",
-        health_records: "",
-        milk_per_day: "",
-        status: "active",
-      });
-
-      fetchAnimals();
-    } catch (err) {
-      console.error(err);
-      alert("Failed to add animal");
-    } finally {
-      setSaving(false);
     }
-  };
+
+    setAnimal({
+      animal_id: "",
+      name: "",
+      breed: "",
+      age: "",
+      purchase_date: "",
+      purchase_price: "",
+      health_records: "",
+      milk_per_day: "",
+      status: "active",
+    });
+
+    fetchAnimals();
+  } catch (err) {
+    console.error(err);
+    alert("Save failed");
+  } finally {
+    setSaving(false);
+  }
+};
+
+const handleEdit = (a) => {
+  setAnimal({
+    animal_id: a.animal_id,
+    name: a.name,
+    breed: a.breed,
+    age: a.age,
+    purchase_date: a.purchase_date,
+    purchase_price: a.purchase_price,
+    health_records: a.health_records,
+    milk_per_day: a.milk_per_day,
+    status: a.status,
+  });
+
+  setEditingId(a.id);
+};
+
+const handleDelete = async (id) => {
+  if (!window.confirm("Delete this animal?")) return;
+
+  try {
+    await axios.delete(
+      `https://farm-pgi5.onrender.com/api/animals/${id}/`
+    );
+    alert("Animal deleted");
+    fetchAnimals();
+  } catch (err) {
+    console.error(err);
+    alert("Delete failed");
+  }
+};
 
   // =========================
   // FETCH ANIMALS
@@ -174,6 +213,7 @@ export default function AnimalForm() {
             <th>Price</th>
             <th>Milk/Day</th>
             <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -188,6 +228,21 @@ export default function AnimalForm() {
               <td>{a.purchase_price}</td>
               <td>{a.milk_per_day}</td>
               <td>{a.status}</td>
+              <td>
+  <button
+    className="edit-btn"
+    onClick={() => handleEdit(a)}
+  >
+    Edit
+  </button>
+
+  <button
+    className="delete-btn"
+    onClick={() => handleDelete(a.id)}
+  >
+    Delete
+  </button>
+</td>
             </tr>
           ))}
         </tbody>
@@ -212,7 +267,12 @@ export default function AnimalForm() {
               <div><b>Price:</b> ₹{a.purchase_price}</div>
               <div><b>Purchase:</b> {a.purchase_date}</div>
             </div>
+            <div className="card-actions">
+  <button onClick={() => handleEdit(a)}>Edit</button>
+  <button onClick={() => handleDelete(a.id)}>Delete</button>
+</div>
           </div>
+          
         ))}
       </div>
     </>

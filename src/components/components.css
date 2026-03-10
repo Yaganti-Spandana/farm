@@ -37,7 +37,28 @@ body {
 .navbar a:hover {
   opacity: 0.85;
 }
+.edit-btn{
+  background:#4CAF50;
+  color:white;
+  border:none;
+  padding:5px 10px;
+  margin-right:5px;
+  cursor:pointer;
+}
 
+.delete-btn{
+  background:#e53935;
+  color:white;
+  border:none;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+.card-actions{
+  margin-top:10px;
+  display:flex;
+  gap:10px;
+}
 /* ========================================= */
 /* ============ FILTER BAR ================= */
 /* ========================================= */
