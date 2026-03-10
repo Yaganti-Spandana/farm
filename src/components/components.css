@@ -190,7 +190,8 @@ body {
   font-weight: 600;
   text-align: center;
   width:10%;
-  padding: 10px 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /* cells */
@@ -198,7 +199,8 @@ body {
   text-align: center;
   border-bottom: 1px solid #f1f5f9;
   width:10%;
-   padding: 10px 0px;
+   padding-top: 10px;
+  padding-bottom: 10px;
 }
 .edit-btn,
 .delete-btn {
