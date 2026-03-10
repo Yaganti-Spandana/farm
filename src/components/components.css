@@ -172,6 +172,7 @@ body {
 .animal-table-wrapper {
   width: 100%;
   overflow-x: auto;
+  padding: 0px 15px;
 }
 .animal-table {
   width: 100%;
