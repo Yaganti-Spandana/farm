@@ -268,8 +268,8 @@ const handleDelete = async (id) => {
               <div><b>Purchase:</b> {a.purchase_date}</div>
             </div>
             <div className="card-actions">
-  <button onClick={() => handleEdit(a)}>Edit</button>
-  <button onClick={() => handleDelete(a.id)}>Delete</button>
+  <button onClick={() => handleEdit(a)} className="edit-btn">Edit</button>
+  <button onClick={() => handleDelete(a.id)} className="delete-btn">Delete</button>
 </div>
           </div>
           
