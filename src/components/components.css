@@ -190,6 +190,7 @@ body {
   font-weight: 600;
   padding: 10px 35px;
   text-align: center;
+  width:10%;
 }
 
 /* cells */
@@ -197,6 +198,7 @@ body {
   padding: 8px 35px;
   text-align: center;
   border-bottom: 1px solid #f1f5f9;
+  width:10%;
 }
 .edit-btn,
 .delete-btn {
@@ -470,18 +472,5 @@ body {
     background: #e5e7eb;
     color: #374151;
   }
-  .animal-table th {
-  background: linear-gradient(90deg, #e86f1c, #d35400);
-  color: white;
-  font-weight: 600;
-  padding: 10px 20px;
-  text-align: center;
-}
-
-/* cells */
-.animal-table td {
-  padding: 8px 20px;
-  text-align: center;
-  border-bottom: 1px solid #f1f5f9;
-}
+  
 }
