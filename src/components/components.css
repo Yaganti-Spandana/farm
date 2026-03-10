@@ -175,7 +175,7 @@ body {
 }
 .animal-table {
   width: 100%;
-  margin: 20px 0;      /* remove auto centering */
+  margin: 20px 15px;      /* remove auto centering */
   border-collapse: collapse;
   background: white;
   border-radius: 14px;
