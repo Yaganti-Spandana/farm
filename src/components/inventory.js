@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useActionState } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,24 @@ const [fromDate, setFromDate] = useState("");
 const [toDate, setToDate] = useState("");
 
 
-const fetchRecords = async () => {
+
+
+  const [usage, setUsage] = useState({
+    date: "",
+    feed_type: "",
+    quantity_used: "",
+  });
+
+  const [remaining, setRemaining] = useState({});
+
+  // Load remaining feed
+  const loadRemaining = () => {
+    axios
+      .get("https://farm-pgi5.onrender.com/api/feed-remaining/")
+      .then((res) => setRemaining(res.data));
+  };
+
+  const fetchRecords = useCallback(async () => {
 
   setLoading(true);
 
@@ -40,27 +57,7 @@ const fetchRecords = async () => {
     setLoading(false);
   }
 
-};
-
-  const [usage, setUsage] = useState({
-    date: "",
-    feed_type: "",
-    quantity_used: "",
-  });
-
-  const [remaining, setRemaining] = useState({});
-
-  // Load remaining feed
-  const loadRemaining = () => {
-    axios
-      .get("https://farm-pgi5.onrender.com/api/feed-remaining/")
-      .then((res) => setRemaining(res.data));
-  };
-
-  useEffect(() => {
-  loadRemaining();
-  fetchRecords();
-}, [fetchRecords]);
+}, [fromDate, toDate]);
 
   const handleStockChange = (e) => {
     setStock({ ...stock, [e.target.name]: e.target.value });
