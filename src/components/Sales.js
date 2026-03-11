@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
+import "./components.css";
 import { useNavigate } from "react-router-dom";
 
-export default function SaleForm() {
+export default function SaleManagement() {
+
   const navigate = useNavigate();
 
   const [sale, setSale] = useState({
@@ -14,8 +16,13 @@ export default function SaleForm() {
     payment_received: false,
   });
 
+  const [sales, setSales] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     setSale({
       ...sale,
       [name]: type === "checkbox" ? checked : value
@@ -25,14 +32,56 @@ export default function SaleForm() {
   const totalIncome =
     (sale.quantity_sold || 0) * (sale.price_per_liter || 0);
 
+  // ================= FETCH SALES =================
+
+  const fetchSales = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      const res = await axios.get(
+        "https://farm-pgi5.onrender.com/api/sales/"
+      );
+
+      setSales(res.data);
+
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+
+  }, []);
+
+  useEffect(() => {
+    fetchSales();
+  }, [fetchSales]);
+
+  // ================= SUBMIT =================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await axios.post("https://farm-pgi5.onrender.com/api/sales/", sale);
-      alert("Sale recorded!");
 
-      // reset form
+      if (editingId) {
+
+        await axios.put(
+          `https://farm-pgi5.onrender.com/api/sales/${editingId}/`,
+          sale
+        );
+
+        alert("Sale updated");
+
+      } else {
+
+        await axios.post(
+          "https://farm-pgi5.onrender.com/api/sales/",
+          sale
+        );
+
+        alert("Sale recorded");
+      }
+
       setSale({
         date: "",
         quantity_sold: "",
@@ -41,12 +90,48 @@ export default function SaleForm() {
         payment_received: false,
       });
 
-      // optional: go back to sales list
-      navigate("/sales");
+      setEditingId(null);
 
-    } catch (error) {
-      console.log(error.response?.data);
-      alert("Error saving sale");
+      fetchSales();
+
+    } catch (err) {
+      console.error(err);
+      alert("Save failed");
+    }
+  };
+
+  // ================= EDIT =================
+
+  const handleEdit = (s) => {
+
+    setSale({
+      date: s.date,
+      quantity_sold: s.quantity_sold,
+      price_per_liter: s.price_per_liter,
+      buyer: s.buyer,
+      payment_received: s.payment_received
+    });
+
+    setEditingId(s.id);
+  };
+
+  // ================= DELETE =================
+
+  const handleDelete = async (id) => {
+
+    if (!window.confirm("Delete this sale?")) return;
+
+    try {
+
+      await axios.delete(
+        `https://farm-pgi5.onrender.com/api/sales/${id}/`
+      );
+
+      fetchSales();
+
+    } catch (err) {
+      console.error(err);
+      alert("Delete failed");
     }
   };
 
@@ -54,56 +139,132 @@ export default function SaleForm() {
     <>
       <Navbar />
 
-      {/* Back button */}
-      <button className="back-btn" onClick={() => navigate(-1)}>
-  ← Back
-</button>
+      <div className="page-container">
 
-      <form onSubmit={handleSubmit} className="form2">
-        <input 
-          type="date" 
-          name="date" 
-          value={sale.date}
-          onChange={handleChange} 
-        />
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
 
-        <input 
-          name="quantity_sold" 
-          value={sale.quantity_sold}
-          placeholder="Quantity Sold (L)" 
-          onChange={handleChange} 
-        />
+        <h2 className="head">💰 Milk Sales</h2>
 
-        <input 
-          name="price_per_liter" 
-          value={sale.price_per_liter}
-          placeholder="Price per Liter" 
-          onChange={handleChange} 
-        />
+        {/* FORM */}
 
-        <input 
-          name="buyer" 
-          value={sale.buyer}
-          placeholder="Buyer (optional)" 
-          onChange={handleChange} 
-        />
+        <div className="chart-card">
 
-        <label className="lab">
-          Payment Received?
-          <input 
-            type="checkbox" 
-            name="payment_received" 
-            checked={sale.payment_received}
-            onChange={handleChange} 
-          />
-        </label>
+          <form onSubmit={handleSubmit} className="modern-form">
 
-        <h3 className="h3">
-          Daily Milk Income = {totalIncome}
-        </h3>
+            <h3 className="section-title">
+              {editingId ? "Edit Sale" : "Add Sale"}
+            </h3>
 
-        <button type="submit">Save Sale</button>
-      </form>
+            <input type="date" name="date" value={sale.date} onChange={handleChange} />
+
+            <input
+              name="quantity_sold"
+              value={sale.quantity_sold}
+              placeholder="Quantity Sold (L)"
+              onChange={handleChange}
+            />
+
+            <input
+              name="price_per_liter"
+              value={sale.price_per_liter}
+              placeholder="Price per Liter"
+              onChange={handleChange}
+            />
+
+            <input
+              name="buyer"
+              value={sale.buyer}
+              placeholder="Buyer"
+              onChange={handleChange}
+            />
+
+            <label>
+              Payment Received
+              <input
+                type="checkbox"
+                name="payment_received"
+                checked={sale.payment_received}
+                onChange={handleChange}
+              />
+            </label>
+
+            <h3>Income = ₹{totalIncome}</h3>
+
+            <button type="submit">
+              {editingId ? "Update Sale" : "Save Sale"}
+            </button>
+
+          </form>
+        </div>
+
+        {/* TABLE */}
+
+        <div className="animal-table-wrapper">
+
+          {loading ? (
+            <p style={{ textAlign: "center" }}>Loading...</p>
+          ) : sales.length === 0 ? (
+            <p style={{ textAlign: "center" }}>No sales found</p>
+          ) : (
+
+            <table className="animal-table">
+
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Buyer</th>
+                  <th>Payment</th>
+                  <th>Income</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {sales.map((s) => (
+
+                  <tr key={s.id}>
+
+                    <td>{s.date}</td>
+                    <td>{s.quantity_sold}</td>
+                    <td>{s.price_per_liter}</td>
+                    <td>{s.buyer}</td>
+                    <td>{s.payment_received ? "Yes" : "No"}</td>
+                    <td>{s.total_income}</td>
+
+                    <td>
+
+                      <button
+                        className="edit-btn"
+                        onClick={() => handleEdit(s)}
+                      >
+                        Edit
+                      </button>
+
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(s.id)}
+                      >
+                        Delete
+                      </button>
+
+                    </td>
+
+                  </tr>
+
+                ))}
+
+              </tbody>
+
+            </table>
+          )}
+        </div>
+
+      </div>
     </>
   );
 }
