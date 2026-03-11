@@ -226,7 +226,7 @@ Filter Records
     onClick={()=>{
       setFromDate("");
       setToDate("");
-      fetchRecords();
+      fetchSales();
     }}
   >
     Reset
