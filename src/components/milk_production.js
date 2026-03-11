@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
-import './components.css'
+import "./components.css";
 import { useNavigate } from "react-router-dom";
 
 export default function MilkForm() {
+
   const navigate = useNavigate();
 
   const [animals, setAnimals] = useState([]);
+  const [records, setRecords] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+
   const [record, setRecord] = useState({
     date: "",
     animal: "",
@@ -18,95 +22,280 @@ export default function MilkForm() {
     milk_wasted: "",
   });
 
-  useEffect(() => {
-    axios.get("https://farm-pgi5.onrender.com/api/animals/")
-      .then(res => setAnimals(res.data));
-  }, []);
+  const [loading, setLoading] = useState(false);
+
+  // =========================
+  // INPUT CHANGE
+  // =========================
 
   const handleChange = (e) => {
     setRecord({ ...record, [e.target.name]: e.target.value });
   };
 
+  // =========================
+  // FETCH ANIMALS
+  // =========================
+
+  useEffect(() => {
+    axios
+      .get("https://farm-pgi5.onrender.com/api/animals/")
+      .then((res) => setAnimals(res.data));
+  }, []);
+
+  // =========================
+  // FETCH MILK RECORDS
+  // =========================
+
+  const fetchRecords = useCallback(async () => {
+    setLoading(true);
+
+    try {
+      const res = await axios.get(
+        "https://farm-pgi5.onrender.com/api/milk/"
+      );
+
+      setRecords(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchRecords();
+  }, [fetchRecords]);
+
+  // =========================
+  // SUBMIT
+  // =========================
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("https://farm-pgi5.onrender.com/api/milk/", record);
-    alert("Milk record saved!");
-    navigate("/milk");   // go back to milk list
-    setRecord({
-    date: "",
-    animal: "",
-    morning_milk: "",
-    evening_milk: "",
-    milk_home: "",
-    milk_sold: "",
-    milk_wasted: "",
-  });
+
+    try {
+
+      if (editingId) {
+        await axios.put(
+          `https://farm-pgi5.onrender.com/api/milk/${editingId}/`,
+          record
+        );
+        alert("Milk record updated");
+        setEditingId(null);
+      } else {
+        await axios.post(
+          "https://farm-pgi5.onrender.com/api/milk/",
+          record
+        );
+        alert("Milk record added");
+      }
+
+      setRecord({
+        date: "",
+        animal: "",
+        morning_milk: "",
+        evening_milk: "",
+        milk_home: "",
+        milk_sold: "",
+        milk_wasted: "",
+      });
+
+      fetchRecords();
+
+    } catch (err) {
+      console.error(err);
+      alert("Save failed");
+    }
   };
+
+  // =========================
+  // EDIT
+  // =========================
+
+  const handleEdit = (r) => {
+    setRecord({
+      date: r.date,
+      animal: r.animal,
+      morning_milk: r.morning_milk,
+      evening_milk: r.evening_milk,
+      milk_home: r.milk_home,
+      milk_sold: r.milk_sold,
+      milk_wasted: r.milk_wasted,
+    });
+
+    setEditingId(r.id);
+  };
+
+  // =========================
+  // DELETE
+  // =========================
+
+  const handleDelete = async (id) => {
+
+    if (!window.confirm("Delete this record?")) return;
+
+    try {
+      await axios.delete(
+        `https://farm-pgi5.onrender.com/api/milk/${id}/`
+      );
+
+      fetchRecords();
+
+    } catch (err) {
+      console.error(err);
+      alert("Delete failed");
+    }
+  };
+
+  // =========================
+  // UI
+  // =========================
 
   return (
     <>
       <Navbar />
 
-      {/* Back button */}
-      <button className="back-btn" onClick={() => navigate(-1)}>
-  ← Back
-</button>
+      <div className="page-container">
 
-      <form onSubmit={handleSubmit} className="form2">
-        <input 
-          type="date" 
-          name="date" 
-          value={record.date}
-          onChange={handleChange} 
-        />
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Back
+        </button>
 
-        <select 
-          name="animal" 
-          value={record.animal}
-          onChange={handleChange}
-        >
-          <option value="">Select Animal</option>
-          {animals.map(a => (
-            <option key={a.id} value={a.id}>
-              {a.animal_id} - {a.name}
-            </option>
-          ))}
-        </select>
+        <h2 className="head">🥛 Milk Records</h2>
 
-        <input 
-          name="morning_milk" 
-          value={record.morning_milk}
-          placeholder="Morning Milk (L)" 
-          onChange={handleChange} 
-        />
-        <input 
-          name="evening_milk" 
-          value={record.evening_milk}
-          placeholder="Evening Milk (L)" 
-          onChange={handleChange} 
-        />
+        {/* ================= FORM ================= */}
 
-        <input 
-          name="milk_home" 
-          value={record.milk_home}
-          placeholder="Milk Used at Home" 
-          onChange={handleChange} 
-        />
-        <input 
-          name="milk_sold" 
-          value={record.milk_sold}
-          placeholder="Milk Sold" 
-          onChange={handleChange} 
-        />
-        <input 
-          name="milk_wasted" 
-          value={record.milk_wasted}
-          placeholder="Milk Wasted" 
-          onChange={handleChange} 
-        />
+        <div className="chart-card">
 
-        <button type="submit">Save</button>
-      </form>
+          <form onSubmit={handleSubmit} className="modern-form">
+
+            <h3 className="section-title">
+              {editingId ? "Edit Milk Record" : "Add Milk Record"}
+            </h3>
+
+            <input
+              type="date"
+              name="date"
+              value={record.date}
+              onChange={handleChange}
+            />
+
+            <select
+              name="animal"
+              value={record.animal}
+              onChange={handleChange}
+            >
+              <option value="">Select Animal</option>
+
+              {animals.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.animal_id} - {a.name}
+                </option>
+              ))}
+            </select>
+
+            <input
+              name="morning_milk"
+              value={record.morning_milk}
+              placeholder="Morning Milk (L)"
+              onChange={handleChange}
+            />
+
+            <input
+              name="evening_milk"
+              value={record.evening_milk}
+              placeholder="Evening Milk (L)"
+              onChange={handleChange}
+            />
+
+            <input
+              name="milk_home"
+              value={record.milk_home}
+              placeholder="Home Use"
+              onChange={handleChange}
+            />
+
+            <input
+              name="milk_sold"
+              value={record.milk_sold}
+              placeholder="Sold"
+              onChange={handleChange}
+            />
+
+            <input
+              name="milk_wasted"
+              value={record.milk_wasted}
+              placeholder="Wasted"
+              onChange={handleChange}
+            />
+
+            <button type="submit">
+              {editingId ? "Update Record" : "Save Record"}
+            </button>
+
+          </form>
+        </div>
+
+        {/* ================= TABLE ================= */}
+
+        <div className="animal-table-wrapper">
+
+          {loading ? (
+            <p style={{ textAlign: "center" }}>Loading...</p>
+          ) : records.length === 0 ? (
+            <p style={{ textAlign: "center" }}>No milk records</p>
+          ) : (
+            <>
+              <table className="animal-table desktop-only">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Animal</th>
+                    <th>Morning</th>
+                    <th>Evening</th>
+                    <th>Total</th>
+                    <th>Home</th>
+                    <th>Sold</th>
+                    <th>Wasted</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {records.map((r) => (
+                    <tr key={r.id}>
+                      <td>{r.date}</td>
+                      <td>{r.animal_name}</td>
+                      <td>{r.morning_milk}</td>
+                      <td>{r.evening_milk}</td>
+                      <td>{r.total_milk}</td>
+                      <td>{r.milk_home}</td>
+                      <td>{r.milk_sold}</td>
+                      <td>{r.milk_wasted}</td>
+
+                      <td>
+                        <button
+                          className="edit-btn"
+                          onClick={() => handleEdit(r)}
+                        >
+                          Edit
+                        </button>
+
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDelete(r.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 }
