@@ -11,7 +11,8 @@ export default function MilkForm() {
   const [animals, setAnimals] = useState([]);
   const [records, setRecords] = useState([]);
   const [editingId, setEditingId] = useState(null);
-
+   const [fromDate, setFromDate] = useState("");
+const [toDate, setToDate] = useState("");
   const [record, setRecord] = useState({
     date: "",
     animal: "",
@@ -110,8 +111,7 @@ export default function MilkForm() {
     }
   };
 
-  const [fromDate, setFromDate] = useState("");
-const [toDate, setToDate] = useState("");
+ 
 
   // =========================
   // EDIT
