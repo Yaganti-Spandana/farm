@@ -44,20 +44,18 @@ const [toDate, setToDate] = useState("");
 
     let url = "https://farm-pgi5.onrender.com/api/sales/?";
 
-    if (fromDate) url += `from=${fromDate}&`;
-    if (toDate) url += `to=${toDate}&`;
+    if (statusFilter) url += `status=${statusFilter}&`;
+      if (fromDate) url += `from=${fromDate}&`;
+      if (toDate) url += `to=${toDate}&`;
 
-    const res = await axios.get(url);
-
-    setSales(res.data);
-
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setLoading(false);
-  }
-
-}, [fromDate, toDate]);
+      const res = await axios.get(url);
+      setSale(res.data);
+    } catch (err) {
+      console.error("Fetch error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [statusFilter, fromDate, toDate]);
 
   // ================= SUBMIT =================
 
