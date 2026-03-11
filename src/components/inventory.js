@@ -12,8 +12,6 @@ export default function FeedInventory() {
     quantity_in: "",
     notes: "",
   });
-  const [fromDate, setFromDate] = useState("");
-const [toDate, setToDate] = useState("");
 
   const [usage, setUsage] = useState({
     date: "",
