@@ -233,6 +233,28 @@ export default function ExpenseManagement() {
 
         </div>
 
+<div className="animal-cards mobile-only">
+{expenses.map((e) => (
+  <div key={e.id} className="animal-card">
+
+    <div className="card-header">
+      <strong>{e.category}</strong>
+      <span>₹{e.amount}</span>
+    </div>
+
+    <div className="card-grid">
+      <div><b>Date:</b> {e.date}</div>
+      <div><b>Notes:</b> {e.notes}</div>
+    </div>
+
+    <div className="card-actions">
+      <button onClick={() => handleEdit(e)} className="edit-btn">Edit</button>
+      <button onClick={() => handleDelete(e.id)} className="delete-btn">Delete</button>
+    </div>
+
+  </div>
+))}
+</div>
       </div>
     </>
   );

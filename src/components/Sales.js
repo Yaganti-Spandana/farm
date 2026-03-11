@@ -261,8 +261,35 @@ export default function SaleManagement() {
               </tbody>
 
             </table>
+
+            
           )}
         </div>
+
+        <div className="animal-cards mobile-only">
+{sales.map((s) => (
+  <div key={s.id} className="animal-card">
+
+    <div className="card-header">
+      <strong>{s.date}</strong>
+      <span>₹{s.total_income}</span>
+    </div>
+
+    <div className="card-grid">
+      <div><b>Quantity:</b> {s.quantity_sold} L</div>
+      <div><b>Price:</b> ₹{s.price_per_liter}</div>
+      <div><b>Buyer:</b> {s.buyer}</div>
+      <div><b>Paid:</b> {s.payment_received ? "Yes" : "No"}</div>
+    </div>
+
+    <div className="card-actions">
+      <button onClick={() => handleEdit(s)} className="edit-btn">Edit</button>
+      <button onClick={() => handleDelete(s.id)} className="delete-btn">Delete</button>
+    </div>
+
+  </div>
+))}
+</div>
 
       </div>
     </>
