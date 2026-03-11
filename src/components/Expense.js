@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 export default function ExpenseManagement() {
 
   const navigate = useNavigate();
-
+const [fromDate, setFromDate] = useState("");
+const [toDate, setToDate] = useState("");
   const [expense, setExpense] = useState({
     date: "",
     category: "feed",
@@ -26,17 +27,16 @@ export default function ExpenseManagement() {
 
   const fetchExpenses = useCallback(async () => {
 
-    const res = await axios.get(
-      "https://farm-pgi5.onrender.com/api/expenses/"
-    );
+  let url = "https://farm-pgi5.onrender.com/api/expenses/?";
 
-    setExpenses(res.data);
+  if (fromDate) url += `from=${fromDate}&`;
+  if (toDate) url += `to=${toDate}&`;
 
-  }, []);
+  const res = await axios.get(url);
 
-  useEffect(() => {
-    fetchExpenses();
-  }, [fetchExpenses]);
+  setExpenses(res.data);
+
+}, [fromDate, toDate]);
 
   // ================= SUBMIT =================
 
@@ -178,6 +178,37 @@ export default function ExpenseManagement() {
 
         </div>
 
+        <h3 className="section-title" style={{marginTop:20}}>
+Filter Records
+</h3>
+
+<div className="animal-filters">
+
+  <input
+    type="date"
+    value={fromDate}
+    onChange={(e)=>setFromDate(e.target.value)}
+  />
+
+  <input
+    type="date"
+    value={toDate}
+    onChange={(e)=>setToDate(e.target.value)}
+  />
+
+  <button onClick={fetchExpenses}>Search</button>
+
+  <button
+    onClick={()=>{
+      setFromDate("");
+      setToDate("");
+      fetchRecords();
+    }}
+  >
+    Reset
+  </button>
+
+</div>
         {/* TABLE */}
 
         <div className="animal-table-wrapper">

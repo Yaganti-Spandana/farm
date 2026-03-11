@@ -47,24 +47,26 @@ export default function MilkForm() {
   // =========================
 
   const fetchRecords = useCallback(async () => {
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const res = await axios.get(
-        "https://farm-pgi5.onrender.com/api/milk/"
-      );
+  try {
 
-      setRecords(res.data);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    let url = "https://farm-pgi5.onrender.com/api/milk/?";
 
-  useEffect(() => {
-    fetchRecords();
-  }, [fetchRecords]);
+    if (fromDate) url += `from=${fromDate}&`;
+    if (toDate) url += `to=${toDate}&`;
+
+    const res = await axios.get(url);
+
+    setRecords(res.data);
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+
+}, [fromDate, toDate]);
 
   // =========================
   // SUBMIT
@@ -107,6 +109,9 @@ export default function MilkForm() {
       alert("Save failed");
     }
   };
+
+  const [fromDate, setFromDate] = useState("");
+const [toDate, setToDate] = useState("");
 
   // =========================
   // EDIT
@@ -235,6 +240,40 @@ export default function MilkForm() {
 
           </form>
         </div>
+
+        <h3 className="section-title" style={{marginTop:20}}>
+Filter Records
+</h3>
+
+<div className="animal-filters">
+
+  <input
+    type="date"
+    value={fromDate}
+    onChange={(e)=>setFromDate(e.target.value)}
+  />
+
+  <input
+    type="date"
+    value={toDate}
+    onChange={(e)=>setToDate(e.target.value)}
+  />
+
+  <button onClick={fetchRecords}>
+    Search
+  </button>
+
+  <button
+    onClick={()=>{
+      setFromDate("");
+      setToDate("");
+      fetchRecords();
+    }}
+  >
+    Reset
+  </button>
+
+</div>
 
         {/* ================= TABLE ================= */}
 

@@ -8,6 +8,8 @@ export default function SaleManagement() {
 
   const navigate = useNavigate();
 
+  const [fromDate, setFromDate] = useState("");
+const [toDate, setToDate] = useState("");
   const [sale, setSale] = useState({
     date: "",
     quantity_sold: "",
@@ -35,26 +37,27 @@ export default function SaleManagement() {
   // ================= FETCH SALES =================
 
   const fetchSales = useCallback(async () => {
-    setLoading(true);
 
-    try {
-      const res = await axios.get(
-        "https://farm-pgi5.onrender.com/api/sales/"
-      );
+  setLoading(true);
 
-      setSales(res.data);
+  try {
 
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
+    let url = "https://farm-pgi5.onrender.com/api/sales/?";
 
-  }, []);
+    if (fromDate) url += `from=${fromDate}&`;
+    if (toDate) url += `to=${toDate}&`;
 
-  useEffect(() => {
-    fetchSales();
-  }, [fetchSales]);
+    const res = await axios.get(url);
+
+    setSales(res.data);
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+
+}, [fromDate, toDate]);
 
   // ================= SUBMIT =================
 
@@ -198,6 +201,38 @@ export default function SaleManagement() {
 
           </form>
         </div>
+
+        <h3 className="section-title" style={{marginTop:20}}>
+Filter Records
+</h3>
+
+<div className="animal-filters">
+
+  <input
+    type="date"
+    value={fromDate}
+    onChange={(e)=>setFromDate(e.target.value)}
+  />
+
+  <input
+    type="date"
+    value={toDate}
+    onChange={(e)=>setToDate(e.target.value)}
+  />
+
+  <button onClick={fetchSales}>Search</button>
+
+  <button
+    onClick={()=>{
+      setFromDate("");
+      setToDate("");
+      fetchRecords();
+    }}
+  >
+    Reset
+  </button>
+
+</div>
 
         {/* TABLE */}
 
