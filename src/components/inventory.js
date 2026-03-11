@@ -12,6 +12,35 @@ export default function FeedInventory() {
     quantity_in: "",
     notes: "",
   });
+  const [records, setRecords] = useState([]);
+const [loading, setLoading] = useState(false);
+
+const [fromDate, setFromDate] = useState("");
+const [toDate, setToDate] = useState("");
+
+
+const fetchRecords = async () => {
+
+  setLoading(true);
+
+  try {
+
+    let url = "https://farm-pgi5.onrender.com/api/feed-stock/?";
+
+    if (fromDate) url += `from=${fromDate}&`;
+    if (toDate) url += `to=${toDate}&`;
+
+    const res = await axios.get(url);
+
+    setRecords(res.data);
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+
+};
 
   const [usage, setUsage] = useState({
     date: "",
@@ -29,8 +58,9 @@ export default function FeedInventory() {
   };
 
   useEffect(() => {
-    loadRemaining();
-  }, []);
+  loadRemaining();
+  fetchRecords();
+}, []);
 
   const handleStockChange = (e) => {
     setStock({ ...stock, [e.target.name]: e.target.value });
@@ -167,6 +197,96 @@ export default function FeedInventory() {
           </div>
         </div>
       </div>
+      <h3 className="section-title" style={{marginTop:25}}>
+Filter Feed Records
+</h3>
+
+<div className="animal-filters">
+
+  <input
+    type="date"
+    value={fromDate}
+    onChange={(e)=>setFromDate(e.target.value)}
+  />
+
+  <input
+    type="date"
+    value={toDate}
+    onChange={(e)=>setToDate(e.target.value)}
+  />
+
+  <button onClick={fetchRecords}>
+    Search
+  </button>
+
+  <button
+    onClick={()=>{
+      setFromDate("");
+      setToDate("");
+      fetchRecords();
+    }}
+  >
+    Reset
+  </button>
+
+</div>
+
+<div className="animal-table-wrapper">
+
+{loading ? (
+  <p style={{textAlign:"center"}}>Loading...</p>
+) : records.length === 0 ? (
+  <p style={{textAlign:"center"}}>No feed records</p>
+) : (
+
+<table className="animal-table desktop-only">
+
+<thead>
+<tr>
+<th>Date</th>
+<th>Feed Type</th>
+<th>Quantity</th>
+<th>Notes</th>
+</tr>
+</thead>
+
+<tbody>
+
+{records.map((r)=>(
+<tr key={r.id}>
+<td>{r.date}</td>
+<td>{r.feed_type}</td>
+<td>{r.quantity_in}</td>
+<td>{r.notes}</td>
+</tr>
+))}
+
+</tbody>
+
+</table>
+
+)}
+</div>
+
+<div className="animal-cards mobile-only">
+
+{records.map((r)=>(
+<div key={r.id} className="animal-card">
+
+<div className="card-header">
+<strong>{r.feed_type}</strong>
+<span>{r.date}</span>
+</div>
+
+<div className="card-grid">
+<div><b>Quantity:</b> {r.quantity_in} kg</div>
+<div><b>Notes:</b> {r.notes}</div>
+</div>
+
+</div>
+))}
+
+</div>
     </>
   );
 }
