@@ -292,6 +292,33 @@ export default function MilkForm() {
                   ))}
                 </tbody>
               </table>
+
+              <div className="animal-cards mobile-only">
+{records.map((r) => (
+  <div key={r.id} className="animal-card">
+
+    <div className="card-header">
+      <strong>{r.animal_name}</strong>
+      <span>{r.date}</span>
+    </div>
+
+    <div className="card-grid">
+      <div><b>Morning:</b> {r.morning_milk} L</div>
+      <div><b>Evening:</b> {r.evening_milk} L</div>
+      <div><b>Total:</b> {r.total_milk} L</div>
+      <div><b>Sold:</b> {r.milk_sold}</div>
+      <div><b>Home:</b> {r.milk_home}</div>
+      <div><b>Waste:</b> {r.milk_wasted}</div>
+    </div>
+
+    <div className="card-actions">
+      <button onClick={() => handleEdit(r)} className="edit-btn">Edit</button>
+      <button onClick={() => handleDelete(r.id)} className="delete-btn">Delete</button>
+    </div>
+
+  </div>
+))}
+</div>
             </>
           )}
         </div>
