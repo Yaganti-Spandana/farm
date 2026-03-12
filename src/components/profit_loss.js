@@ -13,7 +13,7 @@ export default function ProfitLoss() {
   });
   const [fromDate, setFromDate] = useState("");
 const [toDate, setToDate] = useState("");
-const fetchReport = async () => {
+const fetchReport = useCallback(async () => {
 
   let url = "https://farm-pgi5.onrender.com/api/profit-loss/?";
 
@@ -22,7 +22,8 @@ const fetchReport = async () => {
 
   const res = await axios.get(url);
   setData(res.data);
-};
+
+}, [fromDate, toDate]);
 useEffect(() => {
   fetchReport();
 }, [fetchReport]);
