@@ -26,21 +26,17 @@ const [toDate, setToDate] = useState("");
   // ================= FETCH =================
 
   const fetchExpenses = useCallback(async () => {
-try {
+
   let url = "https://farm-pgi5.onrender.com/api/expenses/?";
 
-  if (statusFilter) url += `status=${statusFilter}&`;
-      if (fromDate) url += `from=${fromDate}&`;
-      if (toDate) url += `to=${toDate}&`;
+  if (fromDate) url += `from=${fromDate}&`;
+  if (toDate) url += `to=${toDate}&`;
 
-      const res = await axios.get(url);
-      setExpense(res.data);
-    } catch (err) {
-      console.error("Fetch error:", err);
-    } finally {
-      setLoading(false);
-    }
-  }, [statusFilter, fromDate, toDate]);
+  const res = await axios.get(url);
+
+  setExpenses(res.data);
+
+}, [fromDate, toDate]);
 
   // ================= SUBMIT =================
 

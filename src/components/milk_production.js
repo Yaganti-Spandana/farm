@@ -54,18 +54,20 @@ const [toDate, setToDate] = useState("");
 
     let url = "https://farm-pgi5.onrender.com/api/milk/?";
 
-    if (statusFilter) url += `status=${statusFilter}&`;
-      if (fromDate) url += `from=${fromDate}&`;
-      if (toDate) url += `to=${toDate}&`;
+    if (fromDate) url += `from=${fromDate}&`;
+    if (toDate) url += `to=${toDate}&`;
 
-      const res = await axios.get(url);
-      setRecords(res.data);
-    } catch (err) {
-      console.error("Fetch error:", err);
-    } finally {
-      setLoading(false);
-    }
-  }, [statusFilter, fromDate, toDate]);
+    const res = await axios.get(url);
+
+    setRecords(res.data);
+
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+
+}, [fromDate, toDate]);
 
   // =========================
   // SUBMIT
