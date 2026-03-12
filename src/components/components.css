@@ -195,6 +195,43 @@ body {
   padding-bottom: 10px;
 }
 
+/* ========================================= */
+/* ===== YEARLY FINANCE PIE CHART ========== */
+/* ========================================= */
+
+.finance-chart {
+  width: 100%;
+  height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.finance-chart-title {
+  text-align: center;
+  color: #e86f1c;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+/* legend style */
+.recharts-legend-item-text {
+  font-size: 13px;
+  color: #475569;
+}
+
+/* tooltip */
+.recharts-tooltip-wrapper {
+  font-size: 13px;
+}
+
+/* pie hover animation */
+.recharts-pie-sector:hover {
+  transform: scale(1.04);
+  transition: 0.2s ease;
+}
+
 /* cells */
 .animal-table td {
   text-align: center;
