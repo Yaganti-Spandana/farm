@@ -13,7 +13,7 @@ export default function YearlyFinancePieChart({ data }) {
 
   const chartData = [
     { name: "Profit", value: data.profit || 0 },
-    { name: "Expenses", value: data.total_expenses || 0 },
+
   ];
 
   return (
