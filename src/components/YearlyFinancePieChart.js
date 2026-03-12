@@ -7,42 +7,45 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const COLORS = ["#28a745", "#dc3545"];
+const COLORS = ["#007bff", "#dc3545", "#28a745"];
 
-export default function YearlyFinancePieChart({ data }) {
+export default function FinancePieChart({ summary }) {
 
-  const chartData = [
-    { name: "Profit", value: data.profit || 0 },
-    { name: "Expenses", value: data.total_expenses || 0 },
+  const data = [
+    { name: "Sales", value: summary.total_sales || 0 },
+    { name: "Expenses", value: summary.total_expenses || 0 },
+    { name: "Profit", value: summary.profit || 0 },
   ];
+
+  const renderLabel = ({ name, value }) => {
+    return `${name}: ₹${value}`;
+  };
 
   return (
     <div style={{ width: "100%", height: 360 }}>
       <h2 style={{ textAlign: "center", color: "orange" }}>
-        Yearly Profit vs Expenses
+        Finance Distribution
       </h2>
 
       <ResponsiveContainer width="100%" height="300">
         <PieChart>
-
           <Pie
-            data={chartData}
+            data={data}
             dataKey="value"
             nameKey="name"
-            outerRadius={85}
+            outerRadius={80}
             innerRadius={70}
             paddingAngle={3}
-            label={({ name, value }) => `${name}: ₹${value}`}
+            label={renderLabel}
             labelLine={false}
           >
-            {chartData.map((entry, index) => (
+            {data.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
             ))}
           </Pie>
 
           <Tooltip />
           <Legend />
-
         </PieChart>
       </ResponsiveContainer>
     </div>
