@@ -25,7 +25,7 @@ const fetchReport = async () => {
 };
 useEffect(() => {
   fetchReport();
-}, []);
+}, [fetchReport]);
 
   useEffect(() => {
     axios
