@@ -204,7 +204,6 @@ const handleDelete = async (id) => {
       <table className="animal-table desktop-only">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Animal ID</th>
             <th>Name</th>
             <th>Breed</th>
@@ -219,7 +218,6 @@ const handleDelete = async (id) => {
         <tbody>
           {animals.map((a) => (
             <tr key={a.id}>
-              <td>{a.id}</td>
               <td>{a.animal_id}</td>
               <td>{a.name}</td>
               <td>{a.breed}</td>
