@@ -1,4 +1,15 @@
-export default function FinancePieChart({ data }) {
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+
+const COLORS = ["#28a745", "#dc3545"];
+
+export default function YearlyFinancePieChart({ data }) {
 
   const chartData = [
     { name: "Profit", value: data.profit || 0 },
@@ -18,7 +29,7 @@ export default function FinancePieChart({ data }) {
             data={chartData}
             dataKey="value"
             nameKey="name"
-            outerRadius={80}
+            outerRadius={85}
             innerRadius={70}
             paddingAngle={3}
             label={({ name, value }) => `${name}: ₹${value}`}
