@@ -5,15 +5,36 @@ import Navbar from "./navbar/navbar";
 import "./components.css";
 import MilkPieChart from "./MilkPieChart";
 import FinancePieChart from "./FinancePieChart";
+import YearlyFinancePieChart from "./YearlyFinancePieChart";
 function Overview() {
   // ✅ default = current month
   const [month, setMonth] = useState(() => {
     const now = new Date();
     return now.toISOString().slice(0, 7);
   });
-
+  const [yearFinance, setYearFinance] = useState({});
   const [summary, setSummary] = useState({});
+useEffect(() => {
 
+  const fetchYearFinance = async () => {
+
+    try {
+
+      const res = await axios.get(
+        "https://farm-pgi5.onrender.com/api/yearly-profit/"
+      );
+
+      setYearFinance(res.data);
+
+    } catch (err) {
+      console.error("Year finance error", err);
+    }
+
+  };
+
+  fetchYearFinance();
+
+}, []);
   // ✅ fetch summary based on month
   useEffect(() => {
     const fetchSummary = async () => {
@@ -104,6 +125,9 @@ function Overview() {
   <div className="chart-card">
     <FinancePieChart summary={summary} />
   </div>
+  <div className="chart-card">
+  <YearlyFinancePieChart data={yearFinance} />
+</div>
 
 </div>
 
