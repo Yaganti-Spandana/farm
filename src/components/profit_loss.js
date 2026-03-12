@@ -11,6 +11,21 @@ export default function ProfitLoss() {
     total_expenses: 0,
     profit: 0,
   });
+  const [fromDate, setFromDate] = useState("");
+const [toDate, setToDate] = useState("");
+const fetchReport = async () => {
+
+  let url = "https://farm-pgi5.onrender.com/api/profit-loss/?";
+
+  if (fromDate) url += `from=${fromDate}&`;
+  if (toDate) url += `to=${toDate}&`;
+
+  const res = await axios.get(url);
+  setData(res.data);
+};
+useEffect(() => {
+  fetchReport();
+}, []);
 
   useEffect(() => {
     axios
@@ -28,7 +43,37 @@ export default function ProfitLoss() {
         </button>
 
         <h1 className="head">Profit & Loss Report</h1>
+        <h3 className="section-title">Filter Report</h3>
 
+<div className="animal-filters">
+
+<input
+  type="date"
+  value={fromDate}
+  onChange={(e)=>setFromDate(e.target.value)}
+/>
+
+<input
+  type="date"
+  value={toDate}
+  onChange={(e)=>setToDate(e.target.value)}
+/>
+
+<button onClick={fetchReport}>
+Search
+</button>
+
+<button
+  onClick={()=>{
+    setFromDate("");
+    setToDate("");
+    fetchReport();
+  }}
+>
+Reset
+</button>
+
+</div>
         <div className="summary-grid">
           <div className="card">
             <h3>Total Income</h3>
