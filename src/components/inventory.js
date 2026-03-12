@@ -27,6 +27,7 @@ const [toDate, setToDate] = useState("");
     quantity_used: "",
   });
 
+  const [editingId, setEditingId] = useState(null);
   const [remaining, setRemaining] = useState({});
 
   // Load remaining feed
@@ -71,15 +72,69 @@ useEffect(() => {
   };
 
   const submitStock = async (e) => {
-    e.preventDefault();
-    await axios.post(
-      "https://farm-pgi5.onrender.com/api/feed-stock/",
-      stock
-    );
-    alert("Feed stock added");
-    setStock({ date: "", feed_type: "", quantity_in: "", notes: "" });
+  e.preventDefault();
+
+  try {
+
+    if (editingId) {
+      await axios.put(
+        `https://farm-pgi5.onrender.com/api/feed-stock/${editingId}/`,
+        stock
+      );
+      alert("Feed stock updated");
+      setEditingId(null);
+    } else {
+      await axios.post(
+        "https://farm-pgi5.onrender.com/api/feed-stock/",
+        stock
+      );
+      alert("Feed stock added");
+    }
+
+    setStock({
+      date: "",
+      feed_type: "",
+      quantity_in: "",
+      notes: "",
+    });
+
+    fetchRecords();
     loadRemaining();
-  };
+
+  } catch (err) {
+    console.error(err);
+    alert("Save failed");
+  }
+};
+
+const handleEdit = (r) => {
+  setStock({
+    date: r.date,
+    feed_type: r.feed_type,
+    quantity_in: r.quantity_in,
+    notes: r.notes,
+  });
+
+  setEditingId(r.id);
+};
+
+const handleDelete = async (id) => {
+
+  if (!window.confirm("Delete this record?")) return;
+
+  try {
+    await axios.delete(
+      `https://farm-pgi5.onrender.com/api/feed-stock/${id}/`
+    );
+
+    fetchRecords();
+    loadRemaining();
+
+  } catch (err) {
+    console.error(err);
+    alert("Delete failed");
+  }
+};
 
   const submitUsage = async (e) => {
     e.preventDefault();
@@ -247,6 +302,7 @@ Filter Feed Records
 <th>Feed Type</th>
 <th>Quantity</th>
 <th>Notes</th>
+<th>Actions</th>
 </tr>
 </thead>
 
@@ -258,6 +314,21 @@ Filter Feed Records
 <td>{r.feed_type}</td>
 <td>{r.quantity_in}</td>
 <td>{r.notes}</td>
+<td>
+<button
+  className="edit-btn"
+  onClick={() => handleEdit(r)}
+>
+Edit
+</button>
+
+<button
+  className="delete-btn"
+  onClick={() => handleDelete(r.id)}
+>
+Delete
+</button>
+</td>
 </tr>
 ))}
 
@@ -281,6 +352,15 @@ Filter Feed Records
 <div className="card-grid">
 <div><b>Quantity:</b> {r.quantity_in} kg</div>
 <div><b>Notes:</b> {r.notes}</div>
+<div className="card-actions">
+<button onClick={() => handleEdit(r)} className="edit-btn">
+Edit
+</button>
+
+<button onClick={() => handleDelete(r.id)} className="delete-btn">
+Delete
+</button>
+</div>
 </div>
 
 </div>
