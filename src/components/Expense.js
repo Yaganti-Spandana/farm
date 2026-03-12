@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback,useEffect } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import "./components.css";
@@ -37,6 +37,10 @@ const [toDate, setToDate] = useState("");
   setExpenses(res.data);
 
 }, [fromDate, toDate]);
+
+useEffect(() => {
+    fetchExpenses();
+  }, [fetchExpenses]);
 
   // ================= SUBMIT =================
 

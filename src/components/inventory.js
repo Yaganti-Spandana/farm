@@ -1,4 +1,4 @@
-import { useState,useCallback } from "react";
+import { useState,useCallback,useEffect } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import { useNavigate } from "react-router-dom";
@@ -59,6 +59,9 @@ const [toDate, setToDate] = useState("");
 
 }, [fromDate, toDate]);
 
+useEffect(() => {
+    fetchRecords();
+  }, [fetchRecords]);
   const handleStockChange = (e) => {
     setStock({ ...stock, [e.target.name]: e.target.value });
   };

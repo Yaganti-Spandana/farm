@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback,useEffect } from "react";
 import axios from "axios";
 import Navbar from "./navbar/navbar";
 import "./components.css";
@@ -47,6 +47,7 @@ const [toDate, setToDate] = useState("");
   // FETCH MILK RECORDS
   // =========================
 
+  
   const fetchRecords = useCallback(async () => {
   setLoading(true);
 
@@ -68,6 +69,10 @@ const [toDate, setToDate] = useState("");
   }
 
 }, [fromDate, toDate]);
+
+useEffect(() => {
+    fetchRecords();
+  }, [fetchRecords]);
 
   // =========================
   // SUBMIT
